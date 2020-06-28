@@ -1,0 +1,30 @@
+{
+  "name": "peloton-metrics",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jason Lutterloh",
+    "url": "https://lutterloh.dev"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.0",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "rollup": "^1.20.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^5.1.2",
+    "svelte": "^3.0.0"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "chartjs-plugin-annotation": "^0.5.7",
+    "sirv-cli": "^0.4.4",
+    "svelte-simple-modal": "^0.4.2"
+  }
+}
