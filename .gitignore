@@ -105,3 +105,9 @@ dist
 
 # Compiled project
 public/build
+
+# Hosting
+.firebase/
+.firebaserc
+firebase.json
+
