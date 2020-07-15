@@ -1,5 +1,3 @@
-import {convertRawTotalWork} from '../data/utils.js';
-
 export const getColor = (lengthOfArray, index) => {
 	// Vaguely the colors of the rainbow. Idea is to gradually move up to red for the hardest rides.
 	const colorPalette = ["#e60000", "#ff4d88", "#e65c00", "#ffcc00", "#00cc00","#00cccc", "#008ae6", "#6666ff", "#7300e6"].reverse();
@@ -13,8 +11,8 @@ export const getColor = (lengthOfArray, index) => {
 
 export const getAverageEffort = (data) => {
     let sum = 0;
-    data.forEach(element => {
-        sum = sum + convertRawTotalWork(element.total_work)
+    data.forEach(ride => {
+        sum = sum + ride.output
     });
     return Math.round(sum/data.length);
 }

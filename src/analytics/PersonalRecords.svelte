@@ -14,7 +14,7 @@ import PersonalRecordRideCard from './PersonalRecordRideCard.svelte';
 
 <style>
     h2 {
-        margin-left: 20px;
+        margin: 20px 0 0 20px;
     }
     .flex-container {
         flex-wrap: wrap;

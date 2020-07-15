@@ -2,15 +2,15 @@
     import { onMount } from "svelte";
     import Chart from 'chart.js';
     import * as ChartAnnotation from 'chartjs-plugin-annotation';
-    import {showAverages, organizedRidesByLength} from '../store/store.js';
-    import {getColor} from './chartUtils.js';
+    import {showAverages, organizedRidesByLength, averagesByLength} from '../store/store.js';
     import moment from 'moment';
-    import {getAverageEffort} from './chartUtils.js';     
+    import {getAverageEffort, getColor} from './chartUtils.js';     
     import {convertRawTotalWork} from '../data/utils.js';
+    import AveragesByLength from './AveragesByLength.svelte';
                  
     const getPlotPoints = (data) => {
-        return data.map(item => {
-            return {y: convertRawTotalWork(item.total_work), x: moment.unix(item.created_at)}
+        return data.map(ride => {
+            return {y: ride.output, x: moment(ride.date, "MM-DD-YYYY")}
         })
     }
     const getChartData = (ridesByDuration) => {
@@ -49,12 +49,7 @@
                 scaleID: 'y-axis-0',
                 value: average,
                 borderColor: getColor(durations.length, i),
-                borderWidth: .5,
-                label: {
-                    enabled: true,
-                    position: 'right',
-                    content: duration + ' Minute Average: ' + average
-                }
+                borderWidth: .5
             }
             annotations.push(annotation);
         }
@@ -73,13 +68,15 @@
         data: getChartData($organizedRidesByLength),
         options: {
             maintainAspectRatio: false,
+            responsive: true,
             scales: {
                 xAxes: [{
                     type: 'time',
                     distribution: 'series',
                     bounds: 'data',
                     time: {
-                        unit: 'day'
+                        unit: 'day',
+                        tooltipFormat: 'MMM DD YYYY'
                     }
                 }]
             },
@@ -108,16 +105,19 @@
    
 </script>
 
-<div class="card">
+<div class="card chart-card">
     <h2>Output Over Time</h2>
-    <canvas id="outputChart"></canvas>
+    <div class="canvas-wrapper">
+        <canvas id="outputChart"></canvas>
+    </div>
+    <AveragesByLength />
 </div>
 
 <style>
-    div {
-        max-height: 60vh;
-        min-height: 400px;
-        padding-bottom: 60px;
+    .chart-card {
         max-width: 100vw;
+    }
+    .canvas-wrapper{
+        min-height: 70vh;
     }
 </style>

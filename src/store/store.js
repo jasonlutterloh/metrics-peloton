@@ -1,5 +1,14 @@
 import { writable, readable, derived } from 'svelte/store';
-import {filterByTitle, organizeRidesByLength, getAverageOutputs, getBestRidesByLength, getUniqueRideTypes, filterDataByFitnessDiscipline} from './storeUtils.js';
+import {
+    filterRidesByTitle, 
+    organizeRidesByLength, 
+    getAverageOutputs, 
+    getBestRidesByLength, 
+    getUniqueRideTypes, 
+    getAverageOutputByRideLength, 
+    mapRawData, 
+    filterSameDayRides
+} from './storeUtils.js';
 
 // Initialize raw data store 
 export const rawData = writable();
@@ -11,29 +20,35 @@ export const selectedFitnessDiscipline = writable("cycling");
 export const showAverages = writable(true);
 
 // Initialize filters
-export const rideTitleFilters = writable(["Intervals & Arms"]);
+export const rideTitleFilters = writable(["Intervals & Arms", "Cool Down", "Warm Up", "Recovery"]);
 
-// Filter out anything but cycling workouts
-export const rawCyclingData = derived([rawData, selectedFitnessDiscipline], 
-    ([$rawData, $selectedFitnessDiscipline]) => {
+export const showSameDayRides = writable(false);
+
+export const mappedData = derived([rawData, selectedFitnessDiscipline, showSameDayRides],
+    ([$rawData, $selectedFitnessDiscipline, $showSameDayRides]) => {
         if ($rawData) {
-            return filterDataByFitnessDiscipline($rawData.data, $selectedFitnessDiscipline)
+            let mappedData = mapRawData($rawData.data, $selectedFitnessDiscipline);
+            if (!$showSameDayRides){
+                filterSameDayRides(mappedData);
+            }
+            return mappedData;
         }
-        return []
+        return [];
     });
 
 // Get ride types 
-export const rideTypes = derived(rawCyclingData, $rawCyclingData => getUniqueRideTypes($rawCyclingData));
+export const rideTypes = derived(mappedData, $mappedData => getUniqueRideTypes($mappedData));
 
-// Filtered cycling data
-export const filteredCyclingData = derived([rawCyclingData, rideTitleFilters],
-    ([$rawCyclingData, $rideTitleFilters]) => filterByTitle($rawCyclingData, $rideTitleFilters));
-    
+export const filteredData = derived([mappedData, rideTitleFilters], 
+    ([$mappedData, $rideTitleFilters]) => filterRidesByTitle($mappedData, $rideTitleFilters));
+
 // Get average outputs
-export const averageOutputs = derived(filteredCyclingData, $filteredCyclingData => getAverageOutputs($filteredCyclingData));
+export const averageOutputs = derived(filteredData, $filteredData => getAverageOutputs($filteredData));
 
 // Sort rides by time
-export const organizedRidesByLength = derived(filteredCyclingData, $filteredCyclingData => organizeRidesByLength($filteredCyclingData));
+export const organizedRidesByLength = derived(filteredData, $filteredData => organizeRidesByLength($filteredData));
 
 // Get personal bests from data
 export const bestRides = derived(organizedRidesByLength, $organizedRidesByLength => getBestRidesByLength($organizedRidesByLength));
+
+export const averagesByLength = derived(organizedRidesByLength, $organizedRidesByLength => getAverageOutputByRideLength($organizedRidesByLength));

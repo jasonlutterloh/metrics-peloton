@@ -1,12 +1,11 @@
 <script>
 export let ride;
-import {convertRawTotalWork} from '../data/utils.js';
 </script>
 
 {#if ride}
-<div class="card" style="background-image: url({ride.ride.image_url});">
-    <h3>{ride.ride.title}</h3>
-    <p>{convertRawTotalWork(ride.total_work)}<p></p>
+<div class="card" style="background-image: url({ride.image});">
+    <h3>{ride.title}</h3>
+    <p>{ride.output}<p></p>
 </div>
 {/if}
 
@@ -30,7 +29,6 @@ import {convertRawTotalWork} from '../data/utils.js';
         padding: 0;
         box-sizing: border-box;
         flex: 0 1 calc(50% - 20px);
-        /* width: calc(50% - 20px); */
     }
     p {
         position: absolute;

@@ -54,28 +54,11 @@ input[type="range"] {
 	height: 0;
 }
 
-button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
-}
-
-button:disabled {
-	color: #999;
-}
-
-button:not(:disabled):active {
-	background-color: #ddd;
-}
-
-button:focus {
-	border-color: #666;
-}
 .card {
     background: #fff;
     padding: 18px;
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
-    margin: 10px; 
+    margin: 10px 10px 20px 10px; 
 }
 .info{
 	background-color: rgba(71, 106, 111, .1);
@@ -99,6 +82,16 @@ button:focus {
 .columns{
 	column-count: 2;
 }
+.sr-only {
+	border: 0; 
+	clip: rect(0 0 0 0); 
+	height: 1px; 
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+  }
 
 @media only screen and (max-width: 768px) {
 	.flex-container{

@@ -1,6 +1,7 @@
 <script>
     import { getContext } from 'svelte';
     import Options from './Options.svelte';
+    import Button from '../components/Button.svelte';
 
     const { open } = getContext('simple-modal');
     const showModal = () => {
@@ -9,10 +10,11 @@
 
 </script>
 
-<button on:click={showModal}>Options</button>
-
+<div>
+    <Button clickHandler={showModal} title="Options" />
+</div>
 <style>
-    button{
+    div{
         position: absolute;
         right: 20px;
         top: 10px;

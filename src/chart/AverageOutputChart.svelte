@@ -7,7 +7,7 @@
                    
     const convertDataToPlotPoints = (data) => {
         return data.map(item => {
-            return {y: item.average, x: moment.unix(item.createdAt)}
+            return {y: Math.round(item.average * 10)/10, x: moment(item.createdAt, "MM-DD-YYYY")}
         })
     }
     const getChartData = (data) => {
@@ -18,7 +18,7 @@
                     label: "Average Output Per Minute",
                     data: convertDataToPlotPoints(data),
                     fill: false,
-                    lineTension: 0.2
+                    lineTension: 0
                 }
             ]
         }
@@ -32,13 +32,15 @@
         data: getChartData($averageOutputs),
         options: {
             maintainAspectRatio: false,
+            responsive: true,
             scales: {
                 xAxes: [{
                     type: 'time',
                     distribution: 'series',
                     bounds: 'data',
                     time: {
-                        unit: 'day'
+                        unit: 'day',
+                        tooltipFormat: 'MMM DD YYYY'
                     }
                 }]
             }
@@ -59,16 +61,18 @@
    
 </script>
 
-<div class="card">
+<div class="card chart-card">
     <h2>Average Output Per Minute Over Time</h2>
-    <canvas id="averageOutputChart"></canvas>
+    <div class="canvas-wrapper">
+        <canvas id="averageOutputChart"></canvas>
+    </div>
 </div>
 
 <style>
-div {
-    max-height: 60vh;
-    min-height: 400px;
-    padding-bottom: 60px;
+.chart-card {
     max-width: 100vw;
+}
+.canvas-wrapper{
+    min-height: 70vh;
 }
 </style>

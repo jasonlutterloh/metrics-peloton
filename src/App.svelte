@@ -4,13 +4,13 @@
 	import AverageOutputChart from './chart/AverageOutputChart.svelte';
 	import AppMessage from './AppMessage.svelte';
 	import PersonalRecords from './analytics/PersonalRecords.svelte';
-	import {rawCyclingData, averageOutputs} from './store/store.js';
+	import {mappedData, averageOutputs} from './store/store.js';
 	import OptionsWrapper from './options/OptionsWrapper.svelte';
 </script>
 
 <main>
 	<h1><span>Peloton</span> Metrics</h1>
-	{#if $rawCyclingData.length > 0}
+	{#if $mappedData.length > 0}
 		<OptionsWrapper />
 		<OutputChart />
 		<AverageOutputChart />

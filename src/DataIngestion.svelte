@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import {rawData} from './store/store.js';
     import InstructionsWrapper from './instructions/InstructionsWrapper.svelte';
+    import Button from './components/Button.svelte';
     
     let data = JSON.stringify($rawData);
     let errorStatus = false;
@@ -52,13 +53,13 @@
         {#if errorStatus}
             <p class="error">There was an error parsing your Peloton data.</p>
         {/if}
-        <button type="button" on:click={updateData}>Update</button>
-        <button type="button" on:click={clearData}>Clear My Data</button>
+        <Button clickHandler={updateData} title="Update" />
+        <Button clickHandler={clearData} title="Clear My Data" />
     </form>
 </div>
 {:else}
 <div class="edit-button-container">
-    <button type="button" on:click={()=>{isCollapsed = false}}>Edit My Data</button>
+    <Button clickHandler={()=>{isCollapsed = false}} title="Edit My Data" />
 </div>
 {/if}
 
@@ -66,19 +67,6 @@
     textarea {
         width: 100%;
         height: 50vh;
-    }
-    button {
-        background-color: rgba(71, 106, 111, .1);
-        border: .5px solid rgba(71, 106, 111, .6);
-        padding: 10px;
-        transition: .5s background;
-    }
-    button:hover,
-    button:focus {
-        background-color: rgba(71, 106, 111, .3);
-    }
-    button:active {
-        background-color: rgba(71, 106, 111, .5);
     }
     .edit-button-container {
         margin: 0 auto 20px;
