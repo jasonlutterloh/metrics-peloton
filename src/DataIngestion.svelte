@@ -60,8 +60,8 @@
         {/if}
         <Button clickHandler={updateData} title="Update" />
         <Button clickHandler={clearData} title="Clear My Data" />
-        <button class="demo-link" on:click={() => loadDemoMode()}><span class="sr-only">Activate </span>Demo Mode</button>
     </form>
+    <button class="demo-link" on:click={() => loadDemoMode()}><span class="sr-only">Activate </span>Demo Mode</button>
 </div>
 {:else}
 <div class="edit-button-container">
@@ -85,7 +85,9 @@
         cursor: pointer;
         padding: 10px;
         text-decoration: underline;
-        float: right;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
         transition: all .5s;
     }
     .demo-link:hover,
