@@ -13,7 +13,7 @@ To start locally, run the following commands:
     npm run dev
 ```  
 
-The app should be available at [http://localhost:5000](http://localhost:5000). A `sample-data.json` is provided to test the app.
+The app should be available at [http://localhost:5000](http://localhost:5000). A `sample-data.json` is provided to test the app inside the `src/data` folder.
 
 ### Production Deploy
 

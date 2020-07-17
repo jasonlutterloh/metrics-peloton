@@ -3,6 +3,7 @@
     import {rawData} from './store/store.js';
     import InstructionsWrapper from './instructions/InstructionsWrapper.svelte';
     import Button from './components/Button.svelte';
+    import demoData from './data/sample-data.json';
     
     let data = JSON.stringify($rawData);
     let errorStatus = false;
@@ -37,6 +38,10 @@
         rawData.set();
         errorStatus = false;
     }
+    const loadDemoMode = () =>{
+        data = JSON.stringify(demoData);
+        updateData();
+    }
 </script>
 
 <svelte:window bind:scrollY={y} />
@@ -55,6 +60,7 @@
         {/if}
         <Button clickHandler={updateData} title="Update" />
         <Button clickHandler={clearData} title="Clear My Data" />
+        <button class="demo-link" on:click={() => loadDemoMode()}><span class="sr-only">Activate </span>Demo Mode</button>
     </form>
 </div>
 {:else}
@@ -71,5 +77,19 @@
     .edit-button-container {
         margin: 0 auto 20px;
         text-align: center;
+    }
+    .demo-link{
+        background: none;
+        border: 0;
+        color: #333;
+        cursor: pointer;
+        padding: 10px;
+        text-decoration: underline;
+        float: right;
+        transition: all .5s;
+    }
+    .demo-link:hover,
+    .demo-link:focus{
+        font-weight: bold;
     }
 </style>
