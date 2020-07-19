@@ -1,11 +1,11 @@
 <script>
     import { getContext } from 'svelte';
-    import Instructions from './Instructions.svelte';
-    import Button from '../components/Button.svelte';
+    import InstructionsContent from './InstructionsContent.svelte';
+    import Button from '../../components/Button.svelte';
 
     const { open } = getContext('simple-modal');
     const showModal = () => {
-		open(Instructions);
+		open(InstructionsContent);
 	};
 </script>
 

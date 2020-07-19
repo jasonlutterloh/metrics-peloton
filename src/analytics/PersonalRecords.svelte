@@ -3,20 +3,25 @@ import {bestRides} from '../store/store.js';
 import PersonalRecordRideCard from './PersonalRecordRideCard.svelte';
 </script>
 
+<h2>Personal Records</h2>
 <div>
-    <h2>Personal Records</h2>
-    <div class="flex-container">
-        {#each $bestRides as ride}
-        <PersonalRecordRideCard ride={ride} />
-        {/each}
-    </div>
+    {#each $bestRides as ride}
+    <PersonalRecordRideCard ride={ride} />
+    {/each}
 </div>
 
 <style>
     h2 {
-        margin: 20px 0 0 20px;
+        margin: 20px 0 20px 10px;
     }
-    .flex-container {
+    div {
+        display: flex;
+	    margin-bottom: 20px;
         flex-wrap: wrap;
+    }
+    @media only screen and (max-width: 768px) {
+        div {
+            flex-direction: column;
+        }
     }
 </style>

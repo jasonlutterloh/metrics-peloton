@@ -1,9 +1,12 @@
 <script>
     import { onMount } from "svelte";
-    import {rawData} from './store/store.js';
-    import InstructionsWrapper from './instructions/InstructionsWrapper.svelte';
-    import Button from './components/Button.svelte';
-    import demoData from './data/sample-data.json';
+    import {rawData} from '../store/store.js';
+    import Card from '../components/Card.svelte';
+    import Instructions from './instructions/Instructions.svelte';
+    import Button from '../components/Button.svelte';
+    import ErrorMessage from '../components/ErrorMessage.svelte';
+    import InfoMessage from '../components/InfoMessage.svelte';
+    import demoData from './sample-data.json';
     
     let data = JSON.stringify($rawData);
     let errorStatus = false;
@@ -47,22 +50,22 @@
 <svelte:window bind:scrollY={y} />
 
 {#if !isCollapsed}
-<div class="card">
-    <InstructionsWrapper />
+<Card>
+    <Instructions />
     <form id="dataIngestion">
         <label>
             <h2>Data</h2>
             <textarea id="dataEntry" bind:value={data} />
         </label>
-        <p class="info">Note: Your data is not sent anywhere or stored remotely. This app runs in the browser and uses local storage on your device. </p>
+        <InfoMessage>Note: Your data is not sent anywhere or stored remotely. This app runs in the browser and uses local storage on your device. </InfoMessage>
         {#if errorStatus}
-            <p class="error">There was an error parsing your Peloton data.</p>
+            <ErrorMessage>There was an error parsing your Peloton data.</ErrorMessage>
         {/if}
         <Button clickHandler={updateData} title="Update" />
         <Button clickHandler={clearData} title="Clear My Data" />
     </form>
     <button class="demo-link" on:click={() => loadDemoMode()}><span class="sr-only">Activate </span>Demo Mode</button>
-</div>
+</Card>
 {:else}
 <div class="edit-button-container">
     <Button clickHandler={()=>{isCollapsed = false}} title="Edit My Data" />

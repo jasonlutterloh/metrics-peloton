@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import Chart from 'chart.js';
+    import Card from '../components/Card.svelte';
     import * as ChartAnnotation from 'chartjs-plugin-annotation';
     import {averageOutputs} from '../store/store.js';
     import moment from 'moment';      
@@ -61,18 +62,15 @@
    
 </script>
 
-<div class="card chart-card">
+<Card>
     <h2>Average Output Per Minute Over Time</h2>
-    <div class="canvas-wrapper">
+    <div>
         <canvas id="averageOutputChart"></canvas>
     </div>
-</div>
+</Card>
 
 <style>
-.chart-card {
-    max-width: 100vw;
-}
-.canvas-wrapper{
+div{
     min-height: 70vh;
 }
 </style>

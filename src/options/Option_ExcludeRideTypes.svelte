@@ -1,5 +1,6 @@
 <script>
     import { rideTypes, rideTitleFilters } from '../store/store.js';
+    import OptionLabel from './OptionLabel.svelte';
 
     const handleChange = (filter, value) => {        
         if (value){
@@ -14,11 +15,22 @@
 </script>
 
 <h3>Exclude Ride Types</h3>
-<div class="columns">
+<div>
     {#each $rideTypes as type}
-    <label class="option-label">
+    <OptionLabel>
         <input type="checkbox" on:change={(e)=>handleChange(type, e.target.checked)} checked={$rideTitleFilters.includes(type) ? "checked" : false} class="option-field"/>
         {type}
-    </label>
+    </OptionLabel>
     {/each}
 </div>
+
+<style>
+div{
+	column-count: 2;
+}
+@media only screen and (max-width: 768px) {
+    div{
+        column-count: 1;
+    }
+}
+</style>

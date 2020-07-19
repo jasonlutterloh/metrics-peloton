@@ -1,21 +1,8 @@
 <script>
-    import { showAverages } from '../store/store.js';
-    import ShowAverages from './ShowAverages.svelte';
-    import ExcludeRideTypes from './ExcludeRideTypes.svelte';
-    import ShowSameDayRides from './ShowSameDayRides.svelte';
+    import Modal from 'svelte-simple-modal';
+    import OptionsButton from './OptionsButton.svelte';
 </script>
 
-
-<h2>Options</h2>
-<form>
-    <ShowAverages />
-    <ShowSameDayRides />
-    <ExcludeRideTypes />
-</form>
-
-<style>
-    form {
-        margin-left: 10px;
-    }
-</style>
-    
+<Modal>
+    <OptionsButton />
+</Modal>
