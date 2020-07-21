@@ -169,11 +169,14 @@ export const getAverageOutputByRideLength = (data) => {
 export const getClassesTakenByInstructor = (data) => {
     let classesTakenByInstructor = [];
     const uniqueInstructors = [...new Set(data.map(ride => ride.instructor))];
+
     uniqueInstructors.forEach(instructor => {
-        let value = {};
-        value.instructor = instructor;
-        value.count = data.filter(ride => ride.instructor === instructor).length;
-        classesTakenByInstructor.push(value);
+        if (instructor !== ""){
+            let value = {};
+            value.instructor = instructor;
+            value.count = data.filter(ride => ride.instructor === instructor).length;
+            classesTakenByInstructor.push(value);
+        }
     });
 
     // Sort by count
