@@ -96,6 +96,7 @@ export const mapCSVData = (data, discipline = "Cycling", ridesToShow) => {
             ride.output = parseInt(effort["Total Output"]);
             ride.title = effort["Title"];
             ride.duration = parseInt(effort["Length (minutes)"]);
+            ride.instructor = effort["Instructor Name"]
             mappedData.push(ride);
         }
     });
@@ -163,4 +164,23 @@ export const getAverageOutputByRideLength = (data) => {
         averages.push(average);
     }
     return averages;
+}
+
+export const getClassesTakenByInstructor = (data) => {
+    let classesTakenByInstructor = [];
+    const uniqueInstructors = [...new Set(data.map(ride => ride.instructor))];
+    uniqueInstructors.forEach(instructor => {
+        let value = {};
+        value.instructor = instructor;
+        value.count = data.filter(ride => ride.instructor === instructor).length;
+        classesTakenByInstructor.push(value);
+    });
+
+    // Sort by count
+    classesTakenByInstructor = classesTakenByInstructor.sort((a, b) => {
+        return a.count - b.count;
+    });
+
+    // Reverse so highest number is first
+    return classesTakenByInstructor.reverse();
 }

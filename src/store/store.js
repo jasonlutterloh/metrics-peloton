@@ -7,7 +7,8 @@ import {
     getUniqueRideTypes, 
     getAverageOutputByRideLength, 
     mapCSVData,
-    filterSameDayRides
+    filterSameDayRides,
+    getClassesTakenByInstructor
 } from './storeUtils.js';
 
 // Initialize data store 
@@ -16,7 +17,7 @@ export const csvData = writable();
 // Default to Cycling. This just allows for flexibility long term
 export const selectedFitnessDiscipline = writable("Cycling");
 
-export const ridesToShow = writable(100);
+export const ridesToShow = writable(250);
 
 // Controls showing the average line on the chart
 export const showAverages = writable(true);
@@ -56,3 +57,5 @@ export const organizedRidesByLength = derived(filteredData, $filteredData => org
 export const bestRides = derived(organizedRidesByLength, $organizedRidesByLength => getBestRidesByLength($organizedRidesByLength));
 
 export const averagesByLength = derived(organizedRidesByLength, $organizedRidesByLength => getAverageOutputByRideLength($organizedRidesByLength));
+
+export const classesTakenPerInstructor = derived(filteredData, $filteredData => getClassesTakenByInstructor($filteredData));
