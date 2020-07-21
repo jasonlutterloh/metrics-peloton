@@ -45,8 +45,6 @@ export const getUniqueRideTypes = (data) => {
             endIndex = originalTitle.toLowerCase().indexOf("home") - 1; // Fixes an issue with Live From Home rides
         }
         // TODO: Add validation
-        console.log(endIndex);
-        console.log(originalTitle);
         return originalTitle.substring(startIndex, endIndex);
     }))];
 
