@@ -37,7 +37,16 @@ export const getUniqueRideTypes = (data) => {
         let originalTitle = ride.title;
         let startIndex = originalTitle.indexOf(MIN) + MIN.length + 1; //1 for space
         let endIndex = originalTitle.toLowerCase().indexOf("ride") - 1; //1 for space
+        // TODO: Make this more elegant
+        if (endIndex < 0){
+            endIndex = originalTitle.toLowerCase().indexOf("cody") - 1; // Fixes an issue with XOXO, Cody rides
+        }
+        if (endIndex < 0){
+            endIndex = originalTitle.toLowerCase().indexOf("home") - 1; // Fixes an issue with Live From Home rides
+        }
         // TODO: Add validation
+        console.log(endIndex);
+        console.log(originalTitle);
         return originalTitle.substring(startIndex, endIndex);
     }))];
 

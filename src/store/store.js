@@ -16,7 +16,7 @@ export const csvData = writable();
 // Default to Cycling. This just allows for flexibility long term
 export const selectedFitnessDiscipline = writable("Cycling");
 
-export const ridesToShow = writable(250);
+export const ridesToShow = writable(100);
 
 // Controls showing the average line on the chart
 export const showAverages = writable(true);
