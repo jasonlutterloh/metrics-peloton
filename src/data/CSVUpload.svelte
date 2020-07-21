@@ -97,11 +97,13 @@
     <div>
       <button type="submit">Update</button>
       <button type="button" on:click={clearData}>Clear My Data</button>
-      <button class="link-button" on:click={() => loadDemoMode()}><span class="sr-only">Activate </span>Demo Mode</button>
     </div>
+  </form>
+  <div>
+    <button class="link-button" on:click={() => loadDemoMode()}><span class="sr-only">Activate </span>Demo Mode</button>
     <InfoMessage>
       Note: Your data is not sent anywhere or stored remotely. This app runs in
       the browser and uses local storage on your device.
     </InfoMessage>
-  </form>
+ </div>
 </Card>
