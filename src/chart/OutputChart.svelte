@@ -6,12 +6,11 @@
     import {showAverages, organizedRidesByLength, averagesByLength} from '../store/store.js';
     import moment from 'moment';
     import {getAverageEffort, getColor} from './chartUtils.js';     
-    import {convertRawTotalWork} from '../data/utils.js';
     import AveragesByLength from './AveragesByLength.svelte';
                  
     const getPlotPoints = (data) => {
         return data.map(ride => {
-            return {y: ride.output, x: moment(ride.date, "MM-DD-YYYY")}
+            return {y: ride.output, x: moment(ride.date, "YYYY-MM-DD")}
         })
     }
     const getChartData = (ridesByDuration) => {
@@ -116,6 +115,6 @@
 
 <style>
     div{
-        min-height: 70vh;
+        min-height: 90vh;
     }
 </style>

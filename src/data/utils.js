@@ -1,1 +1,0 @@
-export const convertRawTotalWork = (total_work) =>  Math.round(total_work/1000);

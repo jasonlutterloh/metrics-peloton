@@ -8,7 +8,7 @@
                    
     const convertDataToPlotPoints = (data) => {
         return data.map(item => {
-            return {y: Math.round(item.average * 10)/10, x: moment(item.createdAt, "MM-DD-YYYY")}
+            return {y: Math.round(item.average * 10)/10, x: moment(item.createdAt, "YYYY-MM-DD")}
         })
     }
     const getChartData = (data) => {
@@ -71,6 +71,6 @@
 
 <style>
 div{
-    min-height: 70vh;
+    min-height: 90vh;
 }
 </style>

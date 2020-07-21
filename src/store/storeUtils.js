@@ -1,6 +1,4 @@
-import {convertRawTotalWork} from '../data/utils.js';
 import {getAverageEffort, getColor} from '../chart/chartUtils.js';
-import moment from 'moment';
 
 export const filterRidesByTitle = (data, filters) => {
     let filteredData = data.filter(ride => {
@@ -80,59 +78,68 @@ export const getAverageOutputs = (data) => {
     return outputs
 };
 
-export const mapRawData = (data, discipline = "cycling") => {
+export const mapCSVData = (data, discipline = "Cycling", ridesToShow) => {
     let mappedData = [];
+
     data.forEach(effort => {
-        if (discipline === effort.fitness_discipline) {
+        if (discipline === effort["Fitness Discipline"]) {
             let ride = {};
-            ride.date = moment.unix(effort.created_at).format("MM-DD-YYYY");
-            ride.output = convertRawTotalWork(effort.total_work);
-            ride.title = effort.ride.title;
-            ride.duration = effort.ride.duration/60;
-            ride.image = effort.ride.image_url;
+            let timestamp = effort["Workout Timestamp"];
+            ride.date = timestamp.substr(0, timestamp.indexOf(' '));
+            ride.output = parseInt(effort["Total Output"]);
+            ride.title = effort["Title"];
+            ride.duration = parseInt(effort["Length (minutes)"]);
             mappedData.push(ride);
         }
     });
+    
+    let mappedDataLength = mappedData.length;
+
+    if (ridesToShow < mappedDataLength){
+        mappedData = mappedData.slice(mappedDataLength-ridesToShow, mappedDataLength);
+    }
 
     return mappedData;
-};
+}
 
 export const filterSameDayRides = (data) => {
-    let datesWithMultipleRides = [];
+    if (data){
+        let datesWithMultipleRides = [];
+        // Get all unique dates
+        const uniqueDates = [...new Set(data.map(effort => {
+            return effort.date;
+        }))];
+
+        // Determine which dates have multiple rides
+        uniqueDates.forEach(date => {
+            let ridesOnSpecificDate = data.filter(effort => {
+                return effort.date === date;
+            });
+            
+            if (ridesOnSpecificDate.length > 1){
+                datesWithMultipleRides.push(date);
+            };
+        });
+
+        // Find best ride for days with multiple rides
+        datesWithMultipleRides.forEach(date => {
+            let ridesOnSpecificDay = data.filter(effort => {
+                return date == effort.date;
+            });
+            let bestRideForDay = getBestRide(ridesOnSpecificDay);
+
+            // Remove best ride from ones to remove
+            let bestRideIndex = ridesOnSpecificDay.indexOf(bestRideForDay);
+            ridesOnSpecificDay.splice(bestRideIndex, 1);
+
+            // Remove all rides for that day
+            ridesOnSpecificDay.forEach(rideToRemove => {
+                let index = data.indexOf(rideToRemove);
+                data.splice(index, 1);
+            });
+        });
+    }
     
-    // Get all unique dates
-    const uniqueDates = [...new Set(data.map(effort => {
-        return effort.date;
-    }))];
-
-    // Determine which dates have multiple rides
-    uniqueDates.forEach(date => {
-        let ridesOnSpecificDate = data.filter(effort => {
-            return effort.date === date;
-        });
-        
-        if (ridesOnSpecificDate.length > 1){
-            datesWithMultipleRides.push(date);
-        };
-    });
-
-    // Find best ride for days with multiple rides
-    datesWithMultipleRides.forEach(date => {
-        let ridesOnSpecificDay = data.filter(effort => {
-            return date == effort.date;
-        });
-        let bestRideForDay = getBestRide(ridesOnSpecificDay);
-
-        // Remove best ride from ones to remove
-        let bestRideIndex = ridesOnSpecificDay.indexOf(bestRideForDay);
-        ridesOnSpecificDay.splice(bestRideIndex, 1);
-
-        // Remove all rides for that day
-        ridesOnSpecificDay.forEach(rideToRemove => {
-            let index = data.indexOf(rideToRemove);
-            data.splice(index, 1);
-        });
-    });
 
     return data;
 }

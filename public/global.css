@@ -55,4 +55,34 @@ input, button, select, textarea {
 	padding: 0;
 	position: absolute;
 	width: 1px;
-  }
+}
+
+button {
+    background-color: rgba(71, 106, 111, .1);
+	border: .5px solid rgba(71, 106, 111, .6);
+	display: block;
+    padding: 10px;
+	transition: .5s background;
+	width: 100%;
+}
+button:hover,
+button:focus {
+    background-color: rgba(71, 106, 111, .3);
+    outline: 0;
+}
+button:active {
+    background-color: rgba(71, 106, 111, .5);
+}
+button.link-button{
+	background: none;
+	border: 0;
+	color: #333;
+	cursor: pointer;
+	padding: 10px;
+	text-decoration: underline;
+	transition: all .5s;
+}
+button.link-button:hover,
+button.link-button:focus{
+	font-weight: bold;
+}
