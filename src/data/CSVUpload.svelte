@@ -60,7 +60,6 @@
       let reader = new FileReader();
       reader.onload = function(e) {
         let json = CSVtoJSON(e.target.result);
-        console.log(JSON.stringify(json));
         updateData(json);
       };
       reader.readAsText(files[0]);
