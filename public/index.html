@@ -4,11 +4,24 @@
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width,initial-scale=1'>
 	<meta name="description" content="Visualize your Peloton cycling output over time and other metrics" >
+	<meta name="theme-color" content="#222222"/>
 	<title>Peloton Metrics</title>
+	<link rel="manifest" href="manifest.json">
+	<link rel="icon" type="image/png" sizes="512x512" href="images/icon-512x512">
+	<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="images/icon-512x512">
 	<link rel='stylesheet' href='/global.css'>
 	<link rel='stylesheet' href='/build/bundle.css'>
 	<script defer src='/build/bundle.js'></script>
 </head>
 <body>
+	<!-- This is added for the demo site hosted through Firebase. You can remove this.-->
+	<script src="/__/firebase/7.14.6/firebase-app.js"></script>
+	<script src="/__/firebase/7.14.6/firebase-analytics.js"></script>
+	<script src="/__/firebase/init.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			firebase.analytics();
+		});
+	</script>
 </body>
 </html>
