@@ -111,3 +111,5 @@ public/build
 .firebaserc
 firebase.json
 
+public/workbox*
+public/sw*
