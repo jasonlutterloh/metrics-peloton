@@ -17,7 +17,7 @@ The app should be available at [http://localhost:5000](http://localhost:5000).
 
 ### Production Deploy
 
-If looking to deploy, make sure to use `npm run build` and then deploy the `/public` folder. You can test the production build using `npm run start`.
+If looking to deploy, make sure to use `npm run build` and then deploy the `/public` folder (This will compile the code and create the service worker for the PWA). You can test the production build using `npm run start`.
 
 ## Technical Details
 

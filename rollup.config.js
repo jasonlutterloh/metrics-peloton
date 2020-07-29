@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import json from 'rollup-plugin-json';
+import { generateSW } from 'rollup-plugin-workbox';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -48,7 +49,24 @@ export default {
 			// generate a named export for every property of the JSON object
 			namedExports: true // Default: true
 		}),
-
+		generateSW({
+			swDest: 'public/sw.js',
+			globDirectory: 'public/',
+			globPatterns: [
+				'**/*.{html,json,js,css}',
+			],
+			skipWaiting: true,
+			runtimeCaching: [{
+				urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+				handler: 'CacheFirst',
+				options: {
+				  cacheName: 'images',
+				  expiration: {
+					maxEntries: 10,
+				  },
+				},
+			  }],
+		}),
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
 		!production && serve(),
