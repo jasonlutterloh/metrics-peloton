@@ -55,6 +55,7 @@ export default {
 			globPatterns: [
 				'**/*.{html,json,js,css}',
 			],
+			skipWaiting: true,
 			runtimeCaching: [{
 				urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
 				handler: 'CacheFirst',
