@@ -109,7 +109,7 @@ public/build
 # Hosting
 .firebase/
 .firebaserc
-firebase.json
 
+# Service Worker
 **/workbox*
 **/sw*
