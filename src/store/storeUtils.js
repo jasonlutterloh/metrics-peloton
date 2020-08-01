@@ -96,7 +96,9 @@ export const mapCSVData = (data, discipline = "Cycling", ridesToShow) => {
             ride.output = parseInt(effort["Total Output"]);
             ride.title = effort["Title"];
             ride.duration = parseInt(effort["Length (minutes)"]);
-            ride.instructor = effort["Instructor Name"]
+            ride.instructor = effort["Instructor Name"];
+            ride.averageCadence = effort["Avg. Cadence (RPM)"];
+            ride.averageResistance = effort["Avg. Resistance"].replace("%", "");
             mappedData.push(ride);
         }
     });
@@ -186,4 +188,28 @@ export const getClassesTakenByInstructor = (data) => {
 
     // Reverse so highest number is first
     return classesTakenByInstructor.reverse();
+}
+
+export const getAverageCadence = (data) => {
+    let cadences = [];
+    data.forEach(ride => {
+        let cadence = {};
+        cadence["average"] = ride.averageCadence;
+        cadence["createdAt"] = ride.date;
+        cadences.push(cadence);
+    })
+
+    return cadences
+}
+
+export const getAverageResistance = (data) => {
+    let resistances = [];
+    data.forEach(ride => {
+        let resistance = {};
+        resistance["average"] = ride.averageResistance;
+        resistance["createdAt"] = ride.date;
+        resistances.push(resistance);
+    })
+
+    return resistances;
 }
