@@ -10,7 +10,7 @@
 <h2>Options</h2>
 <form>
     <RidesToShow />
-    <ShowAverages />
+    <!-- <ShowAverages /> Removed after changing averages appearance -->
     <ShowSameDayRides />
     <ExcludeRideTypes />
 </form>

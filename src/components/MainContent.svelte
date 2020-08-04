@@ -8,6 +8,7 @@
 	// import PersonalRecords from '../analytics/PersonalRecords.svelte';
 	import {mappedCSVData, classesTakenPerInstructor} from '../store/store.js';
 	import Options from '../options/Options.svelte';
+	import TopFiveSection from '../analytics/TopFiveSection.svelte';
 </script>
 
 <main>
@@ -19,6 +20,7 @@
         <!-- <PersonalRecords /> // May use this again but needs styling-->
 		<ClassesTakenPerInstructorChart />
 		<AverageCadenceResistanceChart />
+		<TopFiveSection />
 	{:else}
 		<ErrorMessage>Looks like you haven't added your data yet. Click the "Instructions" button to begin.</ErrorMessage>
 	{/if}

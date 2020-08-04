@@ -61,7 +61,12 @@
         averageCadenceResistanceChart = new Chart(ctx, config);
 
         averageCadence.subscribe(value => {
-            averageCadenceResistanceChart.data = getChartData(value);
+            averageCadenceResistanceChart.data = getChartData(value, $averageResistance);
+            averageCadenceResistanceChart.update();
+        });
+
+         averageResistance.subscribe(value => {
+            averageCadenceResistanceChart.data = getChartData($averageCadence, value);
             averageCadenceResistanceChart.update();
         });
 

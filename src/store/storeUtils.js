@@ -210,6 +210,21 @@ export const getAverageResistance = (data) => {
         resistance["createdAt"] = ride.date;
         resistances.push(resistance);
     })
-
     return resistances;
+}
+
+export const getOrganizedRidesSortedByOutput = (data) => {
+    let newOrganizedRides = {};
+    const durations = Object.keys(data);
+    for (const [i, duration] of durations.entries()) {
+        newOrganizedRides[duration] = sortRidesByProperty(data[duration], "output");
+    }
+    return newOrganizedRides;
+}
+
+export const sortRidesByProperty = (rides, propertyName) => {
+    // Concat so we dont change the original
+   return rides.concat().sort((a, b) => {
+        return a[propertyName] - b[propertyName];
+    }).reverse();
 }

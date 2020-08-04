@@ -10,7 +10,8 @@ import {
     filterSameDayRides,
     getClassesTakenByInstructor,
     getAverageCadence,
-    getAverageResistance
+    getAverageResistance,
+    getOrganizedRidesSortedByOutput
 } from './storeUtils.js';
 
 // Initialize data store 
@@ -56,6 +57,8 @@ export const averageCadence = derived(filteredData, $filteredData => getAverageC
 
 export const averageResistance = derived(filteredData, $filteredData => getAverageResistance($filteredData));
 
+export const classesTakenPerInstructor = derived(filteredData, $filteredData => getClassesTakenByInstructor($filteredData));
+
 // Sort rides by time
 export const organizedRidesByLength = derived(filteredData, $filteredData => organizeRidesByLength($filteredData));
 
@@ -64,4 +67,4 @@ export const bestRides = derived(organizedRidesByLength, $organizedRidesByLength
 
 export const averagesByLength = derived(organizedRidesByLength, $organizedRidesByLength => getAverageOutputByRideLength($organizedRidesByLength));
 
-export const classesTakenPerInstructor = derived(filteredData, $filteredData => getClassesTakenByInstructor($filteredData));
+export const organizedRidesSortedByOutput = derived(organizedRidesByLength, $organizedRidesByLength => getOrganizedRidesSortedByOutput($organizedRidesByLength));
