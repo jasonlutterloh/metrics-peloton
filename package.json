@@ -20,7 +20,7 @@
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
-    "rollup-plugin-workbox": "^5.0.1",
+    "rollup-plugin-workbox": "^5.1.0",
     "svelte": "^3.24.0",
     "workbox-cli": "^5.1.3"
   },

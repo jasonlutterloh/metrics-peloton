@@ -56,6 +56,7 @@ export default {
 				'**/*.{html,json,js,css}',
 			],
 			skipWaiting: true,
+			clientsClaim: true,
 			runtimeCaching: [{
 				urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
 				handler: 'CacheFirst',
