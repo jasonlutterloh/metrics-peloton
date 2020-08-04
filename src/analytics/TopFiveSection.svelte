@@ -1,10 +1,17 @@
 <script>
+import {onMount} from 'svelte';
 import {organizedRidesSortedByOutput} from '../store/store.js';
 import TopFiveRides from './TopFiveRides.svelte';
 import {getColor} from '../chart/chartUtils.js';
 import Card from '../components/Card.svelte';
 
 let durations = Object.keys($organizedRidesSortedByOutput).reverse();
+
+onMount(async () => {
+    organizedRidesSortedByOutput.subscribe(value => {
+        durations = Object.keys(value).reverse()
+    });
+})
 </script>
 
 <div class="top-five-container">
