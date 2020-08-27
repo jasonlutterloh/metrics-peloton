@@ -2,7 +2,7 @@
 <ol>
     <li>
         <a target="_blank" href="https://members.onepeloton.com/profile/workouts">Click here to view the Workouts section of your Peloton profile</a>
-        <p>(Login if you haven't already)</p>
+        <p>(Open this link with the browser, not the mobile app)</p>
     </li>
     <li>Click the "Download Workouts" button. This will save a CSV file to your device.
     </li>
