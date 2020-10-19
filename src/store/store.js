@@ -28,6 +28,8 @@ export const showAverages = writable(true);
 // Initialize filters
 export const rideTitleFilters = writable(["Intervals & Arms", "Cool Down", "Warm Up", "Recovery"]);
 
+export const ftpTestFilter = writable(["FTP Test Ride"]);
+
 export const showSameDayRides = writable(false);
 
 export const mappedCSVData = derived([csvData, selectedFitnessDiscipline, showSameDayRides, ridesToShow],
@@ -49,6 +51,10 @@ export const rideTypes = derived(mappedCSVData, $mappedCSVData => getUniqueRideT
 
 export const filteredData = derived([mappedCSVData, rideTitleFilters], 
     ([$mappedCSVData, $rideTitleFilters]) => filterRidesByTitle($mappedCSVData, $rideTitleFilters));
+
+// get FTP Test Rides
+export const ftpTestRides  = derived([mappedCSVData, ftpTestFilter],
+    ([$mappedCSVData, $ftpTestFilter]) => filterRidesByTitle($mappedCSVData, $ftpTestFilter, true));
 
 // Get average outputs
 export const averageOutputs = derived(filteredData, $filteredData => getAverageOutputs($filteredData));

@@ -1,6 +1,7 @@
 <script>
     import CSVUpload from '../data/CSVUpload.svelte';
 	import OutputChart from '../chart/OutputChart.svelte';
+	import FtpHistoryChart from '../chart/FtpHistoryChart.svelte';
 	import AverageOutputChart from '../chart/AverageOutputChart.svelte';
 	import AverageCadenceResistanceChart from '../chart/AverageCadenceResistanceChart.svelte';
 	import ClassesTakenPerInstructorChart from '../chart/ClassesTakenPerInstructorChart.svelte';
@@ -16,7 +17,8 @@
 		<Options />
         
         <OutputChart />
-        <AverageOutputChart />
+		<AverageOutputChart />
+		<FtpHistoryChart />
         <!-- <PersonalRecords /> // May use this again but needs styling-->
 		<ClassesTakenPerInstructorChart />
 		<AverageCadenceResistanceChart />

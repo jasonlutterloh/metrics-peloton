@@ -1,12 +1,15 @@
 import {getAverageEffort, getColor} from '../chart/chartUtils.js';
 
-export const filterRidesByTitle = (data, filters) => {
+export const filterRidesByTitle = (data, filters, matching = false) => {
     let filteredData = data.filter(ride => {
         let isFiltered = false;
         if (ride.title){
             filters.forEach(filter => {
                 if (ride.title.includes(filter)){
-                    isFiltered = true;
+                    // default is to filter out matching
+                    isFiltered = !matching;
+                } else {
+                    isFiltered = matching;
                 }
             });
         }
@@ -72,12 +75,18 @@ export const getBestRidesByLength = (data) => {
     return bestRides;
 }
 
-export const getAverageOutputs = (data) => {
+export const energy = {
+    WATTS: 'watts',
+    KILOJOULES: 'kj'
+}
+
+export const getAverageOutputs = (data, units = energy.KILOJOULES ) => {
     let outputs = [];
     data.forEach(ride => {
         let averageOutputPerMinute = ride.output/ride.duration;
         let output = {};
-        output["average"] = averageOutputPerMinute;
+        output["average"] = units == energy.KILOJOULES ? averageOutputPerMinute : ride.averageOutput;
+        output['title'] = ride.title;
         output["createdAt"] = ride.date;
         outputs.push(output);
     })
@@ -94,6 +103,7 @@ export const mapCSVData = (data, discipline = "Cycling", ridesToShow) => {
             let timestamp = effort["Workout Timestamp"];
             ride.date = timestamp.substr(0, timestamp.indexOf(' '));
             ride.output = parseInt(effort["Total Output"]);
+            ride.averageOutput = parseInt(effort["Avg. Watts"]);
             ride.title = effort["Title"];
             ride.duration = parseInt(effort["Length (minutes)"]);
             ride.instructor = effort["Instructor Name"];
