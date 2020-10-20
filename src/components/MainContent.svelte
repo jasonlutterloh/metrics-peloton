@@ -7,7 +7,7 @@
 	import ClassesTakenPerInstructorChart from '../chart/ClassesTakenPerInstructorChart.svelte';
 	import ErrorMessage from '../components/ErrorMessage.svelte';
 	// import PersonalRecords from '../analytics/PersonalRecords.svelte';
-	import {mappedCSVData, classesTakenPerInstructor} from '../store/store.js';
+	import {mappedCSVData, ftpAverageOutputs} from '../store/store.js';
 	import Options from '../options/Options.svelte';
 	import TopFiveSection from '../analytics/TopFiveSection.svelte';
 </script>
@@ -18,7 +18,9 @@
         
         <OutputChart />
 		<AverageOutputChart />
-		<FtpHistoryChart />
+		{#if $ftpAverageOutputs.length > 0}
+			<FtpHistoryChart />
+		{/if}
         <!-- <PersonalRecords /> // May use this again but needs styling-->
 		<ClassesTakenPerInstructorChart />
 		<AverageCadenceResistanceChart />
