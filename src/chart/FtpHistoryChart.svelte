@@ -8,8 +8,6 @@
 
     const getPlotPoints = (data) => {
         return data.map((ride) => {
-            // TODO (tmack) find why there are duplicates?
-            console.log(ride);
             // Functional Threshold Power (FTP) is average output over 1h in 20m tests discount by 5%
             return {
                 y: Math.floor(ride.average * 0.95),
