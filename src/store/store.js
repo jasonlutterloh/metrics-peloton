@@ -2,6 +2,7 @@ import { writable, readable, derived } from 'svelte/store';
 import {
     filterRidesByTitle, 
     organizeRidesByLength, 
+    energy,
     getAverageOutputs, 
     getBestRidesByLength, 
     getUniqueRideTypes, 
@@ -58,6 +59,9 @@ export const ftpTestRides  = derived([mappedCSVData, ftpTestFilter],
 
 // Get average outputs
 export const averageOutputs = derived(filteredData, $filteredData => getAverageOutputs($filteredData));
+
+// need to store ftpRides somewhere
+export const ftpAverageOutputs = derived(ftpTestRides, $ftpTestRides => getAverageOutputs($ftpTestRides, energy.WATTS));
 
 export const averageCadence = derived(filteredData, $filteredData => getAverageCadence($filteredData));
 
