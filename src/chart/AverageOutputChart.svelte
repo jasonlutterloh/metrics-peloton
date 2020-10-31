@@ -64,13 +64,7 @@
 
 <Card>
     <h2>Average Output Per Minute Over Time</h2>
-    <div>
+    <div class="chart-wrapper">
         <canvas id="averageOutputChart"></canvas>
     </div>
 </Card>
-
-<style>
-div{
-    min-height: 90vh;
-}
-</style>

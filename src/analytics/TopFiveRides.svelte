@@ -1,15 +1,8 @@
 <script>
     import ProgressBar from './ProgressBar.svelte';
+    import {trimRideTitle} from './utils';
     export let rides;
     export let color;
-
-    const trimRideTitle = (title) => {
-        let indexOfTextToRemove = title.indexOf("min") + 3;
-        if (indexOfTextToRemove > 0){
-            return title.substring(indexOfTextToRemove);
-        }
-        return title;
-    }
 </script>
 
 {#each rides as ride}

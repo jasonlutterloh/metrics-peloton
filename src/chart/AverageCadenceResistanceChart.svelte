@@ -77,13 +77,7 @@
 
 <Card>
     <h2>Average Cadence and Resistance (%) Over Time</h2>
-    <div>
+    <div class="chart-wrapper">
         <canvas id="averageCadenceResistanceChart"></canvas>
     </div>
 </Card>
-
-<style>
-div{
-    min-height: 90vh;
-}
-</style>

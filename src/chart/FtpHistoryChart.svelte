@@ -66,13 +66,7 @@
     });
 </script>
 
-<style>
-    div {
-        min-height: 90vh;
-    }
-</style>
-
 <Card>
     <h2>Function Threshold Power (FTP) Over Time</h2>
-    <div><canvas id="ftpHistoryChart" /></div>
+    <div class="chart-wrapper"><canvas id="ftpHistoryChart" /></div>
 </Card>

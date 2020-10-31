@@ -107,14 +107,8 @@
 
 <Card>
     <h2>Output Over Time</h2>
-    <div>
+    <div class="chart-wrapper">
         <canvas id="outputChart"></canvas>
     </div>
     <AveragesByLength />
 </Card>
-
-<style>
-    div{
-        min-height: 90vh;
-    }
-</style>
