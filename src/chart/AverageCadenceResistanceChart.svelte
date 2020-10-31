@@ -1,89 +1,57 @@
 <script>
-    import { onMount } from "svelte";
-    import Chart from 'chart.js';
-    import Card from '../components/Card.svelte';
-    import * as ChartAnnotation from 'chartjs-plugin-annotation';
-    import {averageCadence, averageResistance} from '../store/store.js';
-    import moment from 'moment';    
-    import {getColor} from './chartUtils.js';  
-                   
-    const convertDataToPlotPoints = (data) => {
-        return data.map(item => {
-            return {y: item.average, x: moment(item.createdAt, "YYYY-MM-DD")}
-        })
-    }
-    const getChartData = (averageCadence, averageResistance) => {
-        return {
-            datasets: [
-                {
-                    borderColor: "#00cccc",
-                    label: "Average Cadence",
-                    data: convertDataToPlotPoints(averageCadence),
-                    fill: false,
-                    lineTension: 0,
-                },
-                {
-                    borderColor: "#ff4d88",
-                    label: "Average Resistance (%)",
-                    data: convertDataToPlotPoints(averageResistance),
-                    fill: false,
-                    lineTension: 0
-                },
-            ]
-        }
-    }
+  import { onMount } from "svelte";
+  import Chart from "chart.js";
+  import Card from "../components/Card.svelte";
+  import { averageCadence, averageResistance } from "../store/store.js";
 
-    let averageCadenceResistanceChart;
+  import { getLineChartByDateConfig, getPlotPointsByDate } from "./utils.js";
+  import { colors } from "./colorPalette";
 
-    let config = {
-        type: 'line',
-        data: getChartData($averageCadence, $averageResistance),
-        options: {
-            borderJoinStyle: "round",
-            maintainAspectRatio: false,
-            responsive: true,
-            scales: {
-                xAxes: [{
-                    type: 'time',
-                    distribution: 'series',
-                    bounds: 'data',
-                    time: {
-                        unit: 'day',
-                        tooltipFormat: 'MMM DD YYYY'
-                    }
-                }]
-            }
-        }
-    }
+  const getChartData = (averageCadence, averageResistance) => {
+    return {
+      datasets: [
+        {
+          borderColor: colors.teal,
+          label: "Average Cadence",
+          data: getPlotPointsByDate(averageCadence, "average", "createdAt"),
+          fill: false,
+          lineTension: 0,
+        },
+        {
+          borderColor: colors.pink,
+          label: "Average Resistance (%)",
+          data: getPlotPointsByDate(averageResistance, "average", "createdAt"),
+          fill: false,
+          lineTension: 0,
+        },
+      ],
+    };
+  };
 
-    onMount(async () => {
-        let ctx = document.getElementById('averageCadenceResistanceChart');
-        averageCadenceResistanceChart = new Chart(ctx, config);
+  let averageCadenceResistanceChart;
+  let chartData = getChartData($averageCadence, $averageResistance);
+  let config = getLineChartByDateConfig(chartData);
 
-        averageCadence.subscribe(value => {
-            averageCadenceResistanceChart.data = getChartData(value, $averageResistance);
-            averageCadenceResistanceChart.update();
-        });
+  onMount(async () => {
+    let ctx = document.getElementById("averageCadenceResistanceChart");
+    averageCadenceResistanceChart = new Chart(ctx, config);
 
-         averageResistance.subscribe(value => {
-            averageCadenceResistanceChart.data = getChartData($averageCadence, value);
-            averageCadenceResistanceChart.update();
-        });
+    averageCadence.subscribe((value) => {
+      averageCadenceResistanceChart.data = getChartData(
+        value,
+        $averageResistance
+      );
+      averageCadenceResistanceChart.update();
+    });
 
-    }); 
-    
-   
+    averageResistance.subscribe((value) => {
+      averageCadenceResistanceChart.data = getChartData($averageCadence, value);
+      averageCadenceResistanceChart.update();
+    });
+  });
 </script>
 
 <Card>
-    <h2>Average Cadence and Resistance (%) Over Time</h2>
-    <div>
-        <canvas id="averageCadenceResistanceChart"></canvas>
-    </div>
+  <h2>Average Cadence and Resistance (%) Over Time</h2>
+  <div class="chart-wrapper"><canvas id="averageCadenceResistanceChart" /></div>
 </Card>
-
-<style>
-div{
-    min-height: 90vh;
-}
-</style>

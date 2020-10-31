@@ -12,8 +12,8 @@ import {
     getClassesTakenByInstructor,
     getAverageCadence,
     getAverageResistance,
-    getOrganizedRidesSortedByOutput
-} from './storeUtils.js';
+    getOrganizedRidesSortedByOutput, sliceArrayByGivenMax
+} from './utils.js';
 
 // Initialize data store 
 export const csvData = writable();
@@ -36,8 +36,8 @@ export const showSameDayRides = writable(false);
 export const mappedCSVData = derived([csvData, selectedFitnessDiscipline, showSameDayRides, ridesToShow],
     ([$csvData, $selectedFitnessDiscipline, $showSameDayRides, $ridesToShow]) => {
         if ($csvData) {
-            let mappedData = mapCSVData($csvData, $selectedFitnessDiscipline, $ridesToShow);
-
+            let mappedData = mapCSVData($csvData, $selectedFitnessDiscipline);
+            mappedData = sliceArrayByGivenMax(mappedData, $ridesToShow);
             if (!$showSameDayRides){
                 filterSameDayRides(mappedData);
             }

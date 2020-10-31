@@ -86,3 +86,7 @@ button.link-button:hover,
 button.link-button:focus{
 	font-weight: bold;
 }
+
+.chart-wrapper{
+	min-height: 70vh;
+}
