@@ -13,7 +13,7 @@ import {
     getAverageCadence,
     getAverageResistance,
     getOrganizedRidesSortedByOutput
-} from './storeUtils.js';
+} from './utils.js';
 
 // Initialize data store 
 export const csvData = writable();
