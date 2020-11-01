@@ -1,19 +1,28 @@
 import {getAverageEffort, getColor} from '../chart/chartUtils.js';
 
+//This needs cleanup but had to fix a defect fast. Unit tests coming to help out with this.
 export const filterRidesByTitle = (data, filters, matching = false) => {
     let filteredData = data.filter(ride => {
         let isFiltered = false;
         if (ride.title){
-            filters.forEach(filter => {
-                if (ride.title.includes(filter)){
-                    // default is to filter out matching
-                    isFiltered = !matching;
-                } else {
-                    isFiltered = matching;
-                }
-            });
+            if (!matching){
+                filters.forEach(filter => {
+                    if (ride.title.includes(filter)){
+                        // default is to filter out matching
+                        isFiltered = true
+                    }
+                });
+                return !isFiltered;
+            } else {
+                let shouldBeKept = false;
+                filters.forEach(filter => {
+                    if (ride.title.includes(filter)){
+                        shouldBeKept = true
+                    }
+                });
+                return shouldBeKept;
+            }
         }
-        return !isFiltered;
     });
     return filteredData;
 }
