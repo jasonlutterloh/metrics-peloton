@@ -1,6 +1,7 @@
 import {getAverageFromArray} from '../chart/utils.js';
 import {getColorBasedOnArrayLengthAndIndex} from '../chart/colorPalette';
 
+//This needs cleanup but had to fix a defect fast. Unit tests coming to help out with this.
 export const filterRidesByTitle = (data, filters, matching = false) => {
     let filteredData = data.filter(ride => {
         let isFiltered = false;
