@@ -28,16 +28,21 @@ export const filterRidesByTitle = (data, filters, matching = false) => {
     return filteredData;
 }
 
-const filterRidesByLength = (data, length) => {
+export const getRidesByLength = (data, length) => {
     return data.filter(ride => ride.title.startsWith(length));
 }
 
 export const organizeRidesByLength = (data) => {
     let ridesByLength = {};
-    const uniqueRideDurations = [...new Set(data.map(ride => ride.duration))];
+    const uniqueRideDurations = [...new Set(data.map(ride => {
+        if (ride.duration){
+            return ride.duration
+        } 
+        throw new Error ("One or more rides did not include duration.")
+    }))];
 
     uniqueRideDurations.forEach(duration => {
-        ridesByLength[duration.toString()] = filterRidesByLength(data, duration);
+        ridesByLength[duration.toString()] = getRidesByLength(data, duration);
     });
 
     return ridesByLength;
@@ -48,30 +53,33 @@ export const getUniqueRideTypes = (data) => {
     const uniqueRideTypes = [...new Set(data.map(ride => {
         const MIN = "min";
         let originalTitle = ride.title;
-        let startIndex = originalTitle.indexOf(MIN) + MIN.length + 1; //1 for space
+        let startIndex = originalTitle.toLowerCase().indexOf(MIN) + MIN.length + 1; //1 for space
         let endIndex = originalTitle.toLowerCase().indexOf("ride") - 1; //1 for space
         // TODO: Make this more elegant
-        if (endIndex < 0){
-            endIndex = originalTitle.toLowerCase().indexOf("cody") - 1; // Fixes an issue with XOXO, Cody rides
-        }
+        // if (endIndex < 0){
+        //     endIndex = originalTitle.toLowerCase().indexOf("cody") - 1; // Fixes an issue with XOXO, Cody rides
+        // }
         if (endIndex < 0){
             endIndex = originalTitle.toLowerCase().indexOf("home") - 1; // Fixes an issue with Live From Home rides
         }
         // TODO: Add validation
+        if (endIndex < 0){
+            endIndex = originalTitle.length;
+        }
         return originalTitle.substring(startIndex, endIndex);
     }))];
 
     return uniqueRideTypes;
 }
 
-const getBestRide = (cyclingData) => {
-    if (cyclingData.length > 0){
+export const getBestRide = (cyclingData) => {
+    if (cyclingData && cyclingData.length > 0){
         let bestTotalWork = Math.max(...cyclingData.map(ride => ride.output), 0);
         let bestRide = cyclingData.find(function(ride){ return ride.output == bestTotalWork; });
 
         return bestRide;
     }
-    return;
+    throw new Error("Bad input");
 }
 
 export const getBestRidesByLength = (data) => {
