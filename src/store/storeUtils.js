@@ -1,4 +1,5 @@
-import {getAverageEffort, getColor} from '../chart/chartUtils.js';
+import {getAverageFromArray} from '../chart/utils.js';
+import {getColorBasedOnArrayLengthAndIndex} from '../chart/colorPalette';
 
 export const filterRidesByTitle = (data, filters, matching = false) => {
     let filteredData = data.filter(ride => {
@@ -170,8 +171,8 @@ export const getAverageOutputByRideLength = (data) => {
     for (const [i, duration] of durations.entries()) {
         let average = {};
         let rides = data[duration];
-        average["value"] =  getAverageEffort(rides);
-        average["color"] =  getColor(durations.length, i);
+        average["value"] =  getAverageFromArray(rides, "output");
+        average["color"] =  getColorBasedOnArrayLengthAndIndex(durations.length, i);
         average["duration"] = duration;
         averages.push(average);
     }

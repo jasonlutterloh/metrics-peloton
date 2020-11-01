@@ -1,78 +1,65 @@
 <script>
-    import { onMount } from "svelte";
-    import Chart from 'chart.js';
-    import Card from '../components/Card.svelte';
-    import {classesTakenPerInstructor} from '../store/store.js';
-    import {getColor} from './chartUtils.js';
+  import { onMount } from "svelte";
+  import Chart from "chart.js";
+  import Card from "../components/Card.svelte";
+  import { classesTakenPerInstructor } from "../store/store.js";
+  import { getColorArrayBasedOnLength } from "./colorPalette";
 
-    const getCounts = (data) => {
-        return data.map(item => {
-            return item.count;
-        })
-    }
-    const getCountsLabels = (data) => {
-        return data.map(item => {
-            return item.instructor;
-        })
-    }
-    const getBackgroundColor = (data) => {
-        let colors = [];
-        for (const [i, entry] of data.entries()){
-            if (i < 9){ // 9 is the max in the getColor function
-                colors.push(getColor(data.length, i));
-            } else { // Default to a gray
-                colors.push("#BBBBBB");
-            }
-        }
-        return colors;
-    }
-    const getChartData = (instructorsData) => {
-        
-        return {
-            datasets: [
-                {
-                    data: getCounts(instructorsData),
-                    backgroundColor: getBackgroundColor(instructorsData)
-                }
-            ],
-            labels: getCountsLabels(instructorsData)
-        }
-    }
+  const getCounts = (data) => {
+    return data.map((item) => {
+      return item.count;
+    });
+  };
+  const getCountsLabels = (data) => {
+    return data.map((item) => {
+      return item.instructor;
+    });
+  };
 
-    let instructorChart;
+  const getChartData = (instructorsData) => {
+    let backgroundColor = getColorArrayBasedOnLength(instructorsData.length);
+    console.log(backgroundColor);
+    return {
+      datasets: [
+        {
+          data: getCounts(instructorsData),
+          backgroundColor,
+        },
+      ],
+      labels: getCountsLabels(instructorsData),
+    };
+  };
 
-    let config = {
-        data: getChartData($classesTakenPerInstructor),
-        type: 'doughnut',
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    }
+  let instructorChart;
 
-    onMount(async () => {
-        let ctx = document.getElementById('instructorChart');
-        instructorChart = new Chart(ctx, config);
+  let config = {
+    data: getChartData($classesTakenPerInstructor),
+    type: "doughnut",
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+    },
+  };
 
-        classesTakenPerInstructor.subscribe(value => {
-            instructorChart.data = getChartData(value);
-            instructorChart.update();
-        });
+  onMount(async () => {
+    let ctx = document.getElementById("instructorChart");
+    instructorChart = new Chart(ctx, config);
 
-    }); 
-    
+    classesTakenPerInstructor.subscribe((value) => {
+      instructorChart.data = getChartData(value);
+      instructorChart.update();
+    });
+  });
 </script>
 
-<Card>
-    <h2>Classes Taken Per Instructor</h2>
-    <div>
-        <canvas id="instructorChart"></canvas>
-    </div>
-</Card>
-
 <style>
-    div {
-        position: relative;
-        min-height: 50vh;
-    }
+  div {
+    position: relative;
+    min-height: 50vh;
+  }
 </style>
+
+<Card>
+  <h2>Classes Taken Per Instructor</h2>
+  <div><canvas id="instructorChart" /></div>
+</Card>
