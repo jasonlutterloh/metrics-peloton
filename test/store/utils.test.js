@@ -4,7 +4,9 @@ const {
   organizeRidesByLength,
   getUniqueRideTypes,
   getBestRide,
-  getBestRidesByLength
+  getBestRidesByLength,
+  getAverageOutputs,
+  sliceArrayByGivenMax
 } = require("../../src/store/utils");
 
 const sampleData = [
@@ -105,7 +107,7 @@ describe("getBestRide", () => {
     expect(result).toMatchObject(sampleData[0]);
   });
   it("should return an error if input is empty", () => {
-    expect(getBestRide([])).toThrowError();
+    expect(()=>getBestRide([])).toThrowError();
   })
 });
 
@@ -119,5 +121,45 @@ describe("getBestRidesByLength", () => {
     expect(result[1]).toMatchObject(sampleData[2]);
     // 20 Minute Ride
     expect(result[0]).toMatchObject(sampleData[9]);
+  })
+});
+
+describe("getAverageOutputs", () => {
+  it("should average output per minute by ride", () => {
+    let result = getAverageOutputs(sampleData);
+    expect(result).toHaveLength(sampleData.length);
+    expect(result[0].average).toBe(sampleData[0].output/sampleData[0].duration);
+    expect(result[1].average).toBe(sampleData[1].output/sampleData[1].duration);
+    expect(result[2].average).toBe(sampleData[2].output/sampleData[2].duration);
+    expect(result[3].average).toBe(sampleData[3].output/sampleData[3].duration);
+    expect(result[4].average).toBe(sampleData[4].output/sampleData[4].duration);
+    expect(result[5].average).toBe(sampleData[5].output/sampleData[5].duration);
+    expect(result[6].average).toBe(sampleData[6].output/sampleData[6].duration);
+    expect(result[7].average).toBe(sampleData[7].output/sampleData[7].duration);
+    expect(result[8].average).toBe(sampleData[8].output/sampleData[8].duration);
+    expect(result[9].average).toBe(sampleData[9].output/sampleData[9].duration);
+
+    expect(result[0].title).toBe(sampleData[0].title);
+    expect(result[1].title).toBe(sampleData[1].title);
+    expect(result[2].title).toBe(sampleData[2].title);
+    expect(result[3].title).toBe(sampleData[3].title);
+    expect(result[4].title).toBe(sampleData[4].title);
+    expect(result[5].title).toBe(sampleData[5].title);
+    expect(result[6].title).toBe(sampleData[6].title);
+    expect(result[7].title).toBe(sampleData[7].title);
+    expect(result[8].title).toBe(sampleData[8].title);
+    expect(result[9].title).toBe(sampleData[9].title);
+  })
+});
+
+describe('sliceArrayByGivenMax', () => {
+  const array = [1,2,3,4,5];
+  it('should shorten array given a max', () => {
+    expect(sliceArrayByGivenMax(array,3)).toHaveLength(3);
+    expect(sliceArrayByGivenMax(array,2)).toStrictEqual([4,5]);
+  });
+  it('should just return the given array of the length is less than max', () => {
+    expect(sliceArrayByGivenMax(array,8)).toHaveLength(5);
+    expect(sliceArrayByGivenMax(array,8)).toStrictEqual([1,2,3,4,5]);
   })
 })

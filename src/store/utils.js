@@ -112,7 +112,7 @@ export const getAverageOutputs = (data, units = energy.KILOJOULES ) => {
     return outputs
 };
 
-export const mapCSVData = (data, discipline = "Cycling", ridesToShow) => {
+export const mapCSVData = (data, discipline = "Cycling") => {
     let mappedData = [];
 
     data.forEach(effort => {
@@ -130,14 +130,19 @@ export const mapCSVData = (data, discipline = "Cycling", ridesToShow) => {
             mappedData.push(ride);
         }
     });
-    
-    let mappedDataLength = mappedData.length;
-
-    if (ridesToShow < mappedDataLength){
-        mappedData = mappedData.slice(mappedDataLength-ridesToShow, mappedDataLength);
-    }
 
     return mappedData;
+}
+
+//Assumes to pull from bottom to top
+export const sliceArrayByGivenMax = (array, max) => {
+    let arrayLength = array.length;
+
+    if (max < arrayLength){
+        array = array.slice(arrayLength-max, arrayLength);
+    }
+
+    return array;
 }
 
 export const filterSameDayRides = (data) => {
