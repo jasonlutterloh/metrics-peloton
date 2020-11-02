@@ -145,24 +145,37 @@ export const sliceArrayByGivenMax = (array, max) => {
     return array;
 }
 
+export const getUniqueValuesFromDataArrayByAtribute = (data, attribute) => {
+    let values = [...new Set(data.map(item => {
+        if (item[attribute]){
+            return item[attribute];
+        }
+        throw new Error ("Bad input. Object in array did not have given attribute.")
+    }))];
+    return values;
+}
+
+
+export const getDatesWithMultipleRides = (data) => {
+    let datesWithMultipleRides = [];
+    const uniqueDates = getUniqueValuesFromDataArrayByAtribute(data, 'date');
+    // Determine which dates have multiple rides
+    uniqueDates.forEach(date => {
+        let ridesOnSpecificDate = data.filter(effort => {
+            return effort.date === date;
+        });
+        
+        if (ridesOnSpecificDate.length > 1){
+            datesWithMultipleRides.push(date);
+        };
+    });
+    return datesWithMultipleRides;
+}
+
 export const filterSameDayRides = (data) => {
     if (data){
-        let datesWithMultipleRides = [];
-        // Get all unique dates
-        const uniqueDates = [...new Set(data.map(effort => {
-            return effort.date;
-        }))];
-
-        // Determine which dates have multiple rides
-        uniqueDates.forEach(date => {
-            let ridesOnSpecificDate = data.filter(effort => {
-                return effort.date === date;
-            });
-            
-            if (ridesOnSpecificDate.length > 1){
-                datesWithMultipleRides.push(date);
-            };
-        });
+        
+        let datesWithMultipleRides = getDatesWithMultipleRides(data);
 
         // Find best ride for days with multiple rides
         datesWithMultipleRides.forEach(date => {
@@ -183,7 +196,6 @@ export const filterSameDayRides = (data) => {
         });
     }
     
-
     return data;
 }
 
@@ -201,9 +213,16 @@ export const getAverageOutputByRideLength = (data) => {
     return averages;
 }
 
+// Will return lowest first
+export const sortArrayByAttributeInObject = (array, attribute) => {
+    return array.sort((a,b) => {
+        return a[attribute]-b[attribute];    
+    });
+}
+
 export const getClassesTakenByInstructor = (data) => {
     let classesTakenByInstructor = [];
-    const uniqueInstructors = [...new Set(data.map(ride => ride.instructor))];
+    const uniqueInstructors = getUniqueValuesFromDataArrayByAtribute(data, 'instructor');
 
     uniqueInstructors.forEach(instructor => {
         if (instructor !== ""){
@@ -215,9 +234,7 @@ export const getClassesTakenByInstructor = (data) => {
     });
 
     // Sort by count
-    classesTakenByInstructor = classesTakenByInstructor.sort((a, b) => {
-        return a.count - b.count;
-    });
+    classesTakenByInstructor = sortArrayByAttributeInObject(classesTakenByInstructor, 'count');
 
     // Reverse so highest number is first
     return classesTakenByInstructor.reverse();

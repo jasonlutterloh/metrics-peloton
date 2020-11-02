@@ -6,21 +6,32 @@ const {
   getBestRide,
   getBestRidesByLength,
   getAverageOutputs,
-  sliceArrayByGivenMax
+  sliceArrayByGivenMax,
+  filterSameDayRides,
+  getUniqueValuesFromDataArrayByAtribute,
+  getDatesWithMultipleRides,
+  getAverageOutputByRideLength,
+  getClassesTakenByInstructor,
+  sortArrayByAttributeInObject
 } = require("../../src/store/utils");
 
-const sampleData = [
-  { title: "45 min HIIT Ride", output: 400, duration: 45 },
-  { title: "45 min Tabata Ride", output: 300, duration: 45 },
-  { title: "30 Min Climb Ride", output: 200, duration: 30 },
-  { title: "45 min HIIT Ride", output: 350, duration: 45 },
-  { title: "30 min Tabata Ride", output: 200, duration: 30 },
-  { title: "20 min Climb Ride", output: 100, duration: 20 },
-  { title: "45 min Tabata Ride", output: 300, duration: 45 },
-  { title: "30 min Ministry of Sound: I Love Ibiza", output: 200, duration: 30 },
-  { title: "30 min Tabata Ride: Live From Home", output: 200, duration: 30 },
-  { title: "20 min XOXO Cody", output: 110, duration: 20 },
-];
+let sampleData;
+
+beforeEach(() => {
+  sampleData = [
+    { title: "45 min HIIT Ride", output: 400, duration: 45, date: "2020-02-21", instructor: "Ben Alldis" },
+    { title: "45 min Tabata Ride", output: 300, duration: 45, date: "2020-02-21", instructor: "Ben Alldis" },
+    { title: "30 Min Climb Ride", output: 200, duration: 30, date: "2020-02-20", instructor: "Ben Alldis" },
+    { title: "45 min HIIT Ride", output: 350, duration: 45, date: "2020-02-19", instructor: "Ben Alldis" },
+    { title: "30 min Tabata Ride", output: 200, duration: 30, date: "2020-02-18", instructor: "Ben Alldis" },
+    { title: "20 min Climb Ride", output: 100, duration: 20, date: "2020-02-17", instructor: "Robin Arzon" },
+    { title: "45 min Tabata Ride", output: 300, duration: 45, date: "2020-02-16", instructor: "Robin Arzon" },
+    { title: "30 min Ministry of Sound: I Love Ibiza", output: 200, duration: 30, date: "2020-02-15", instructor: "Robin Arzon" },
+    { title: "30 min Tabata Ride: Live From Home", output: 200, duration: 30, date: "2020-02-14", instructor: "Robin Arzon" },
+    { title: "20 min XOXO Cody", output: 110, duration: 20, date: "2020-02-13", instructor: "Alex Touisant" },
+  ];
+});
+
 
 describe("filterRidesByTitle", () => {
   it("should remove any rides that have a title matching the list of filters", () => {
@@ -161,5 +172,99 @@ describe('sliceArrayByGivenMax', () => {
   it('should just return the given array of the length is less than max', () => {
     expect(sliceArrayByGivenMax(array,8)).toHaveLength(5);
     expect(sliceArrayByGivenMax(array,8)).toStrictEqual([1,2,3,4,5]);
+  })
+});
+
+describe('getUniqueValuesFromDataArrayByAtribute', () => {
+  let data = [
+    {date:"2020-11-01"},
+    {date:"2020-11-01"},
+    {date:"2020-11-02"},
+    {date:"2020-11-02"},
+  ]
+  it('should return an array of unique dates', () => {
+    let result = getUniqueValuesFromDataArrayByAtribute(data, 'date');
+    expect(result).toHaveLength(2);
+    expect(result).toContain(data[0].date);
+    expect(result).toContain(data[2].date);
+  });
+  it('should throw an error if an object does not include a dates', () => {
+    let badData = data.push({notDate:"bad"})
+    let result = () => getUniqueValuesFromDataArrayByAtribute(badData, 'date');
+    expect(result).toThrowError();
+  });
+  it('should return empty for an empty input', () => {
+    expect(getUniqueValuesFromDataArrayByAtribute([])).toStrictEqual([]);
+  })
+});
+
+describe('getDatesWithMultipleRides', () => {
+  let data = [
+    {date:"2020-11-01"},
+    {date:"2020-11-01"},
+    {date:"2020-11-02"},
+    {date:"2020-11-02"},
+    {date:"2020-11-03"},
+  ]
+  it('should return dates with multiple rides', () => {
+     let result = getDatesWithMultipleRides(data);
+      expect(result).toHaveLength(2);
+      expect(result).toContain(data[0].date);
+      expect(result).toContain(data[2].date);
+  })
+})
+
+describe("filterSameDayRides", () => {
+  it('should leave the best ride for a day with multiple rides', () => {
+    const originalLength = sampleData.length;
+    let result = filterSameDayRides(sampleData);
+
+    expect(result).toHaveLength(originalLength -1);
+    // Higher Output
+    expect(result[0]).toStrictEqual({ title: "45 min HIIT Ride", output: 400, instructor: "Ben Alldis", duration: 45, date: "2020-02-21" });
+  });
+  it('should handle an empty an array', () => {
+    expect(filterSameDayRides([])).toStrictEqual([]);
+  })
+});
+
+describe("getAverageOutputByRideLength", () => {
+  it("should organize ride arrays in an object by length", () => {
+    let organizedRides = organizeRidesByLength(sampleData);
+    let result = getAverageOutputByRideLength(organizedRides);
+
+    expect(result).toHaveLength(3);
+    result.forEach(element => {
+      expect(element).toHaveProperty('value');
+      expect(element).toHaveProperty('color');
+      expect(element).toHaveProperty('duration');
+    });
+  });
+});
+
+describe('sortArrayByAttributeInObject', () => {
+  const data = [
+    {count: 1, value:'least'},
+    {count: 5, value:'most'},
+    {count:3, value: 'middle'}
+  ]
+  it('should sort an array given the attribute value', () => {
+    let result = sortArrayByAttributeInObject(data, 'count');
+    expect(result).toHaveLength(3);
+    expect(result[0].value).toBe('least');
+    expect(result[1].value).toBe('middle');
+    expect(result[2].value).toBe('most');
+  })
+})
+
+describe("getClassesTakenByInstructor", () => {
+  it('should return an ordered list of instructors with number of classes taken', () => {
+    let result = getClassesTakenByInstructor(sampleData);
+    expect(result).toHaveLength(3);
+
+    result.forEach(element => {
+      expect(element).toHaveProperty('instructor');
+      expect(element).toHaveProperty('count');
+    })
   })
 })
