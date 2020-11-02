@@ -23,6 +23,7 @@
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "babel-jest": "^26.6.1",
+    "husky": "^4.3.0",
     "jest": "^26.6.1",
     "rollup": "^2.23.1",
     "rollup-plugin-json": "^4.0.0",
@@ -38,5 +39,11 @@
     "chartjs-plugin-annotation": "^0.5.7",
     "sirv-cli": "^0.4.4",
     "svelte-simple-modal": "^0.4.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   }
 }
