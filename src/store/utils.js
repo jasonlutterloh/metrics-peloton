@@ -213,11 +213,12 @@ export const getAverageOutputByRideLength = (data) => {
     return averages;
 }
 
-// Will return lowest first
 export const sortArrayByAttributeInObject = (array, attribute) => {
-    return array.sort((a,b) => {
+    // Concat so we dont change the original
+    return array.concat().sort((a,b) => {
         return a[attribute]-b[attribute];    
-    });
+    }).reverse();
+    //Reverse will return from highest to lowest
 }
 
 export const getClassesTakenByInstructor = (data) => {
@@ -237,7 +238,7 @@ export const getClassesTakenByInstructor = (data) => {
     classesTakenByInstructor = sortArrayByAttributeInObject(classesTakenByInstructor, 'count');
 
     // Reverse so highest number is first
-    return classesTakenByInstructor.reverse();
+    return classesTakenByInstructor;
 }
 
 export const getAverageCadence = (data) => {
@@ -267,14 +268,14 @@ export const getOrganizedRidesSortedByOutput = (data) => {
     let newOrganizedRides = {};
     const durations = Object.keys(data);
     for (const [i, duration] of durations.entries()) {
-        newOrganizedRides[duration] = sortRidesByProperty(data[duration], "output");
+        newOrganizedRides[duration] = sortArrayByAttributeInObject(data[duration], "output");
     }
     return newOrganizedRides;
 }
 
-export const sortRidesByProperty = (rides, propertyName) => {
-    // Concat so we dont change the original
-   return rides.concat().sort((a, b) => {
-        return a[propertyName] - b[propertyName];
-    }).reverse();
-}
+// export const sortRidesByProperty = (rides, propertyName) => {
+//     // Concat so we dont change the original
+//    return rides.concat().sort((a, b) => {
+//         return a[propertyName] - b[propertyName];
+//     }).reverse();
+// }

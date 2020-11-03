@@ -12,7 +12,10 @@ const {
   getDatesWithMultipleRides,
   getAverageOutputByRideLength,
   getClassesTakenByInstructor,
-  sortArrayByAttributeInObject
+  sortArrayByAttributeInObject,
+  getAverageCadence,
+  getAverageResistance,
+  getOrganizedRidesSortedByOutput
 } = require("../../src/store/utils");
 
 let sampleData;
@@ -251,9 +254,9 @@ describe('sortArrayByAttributeInObject', () => {
   it('should sort an array given the attribute value', () => {
     let result = sortArrayByAttributeInObject(data, 'count');
     expect(result).toHaveLength(3);
-    expect(result[0].value).toBe('least');
+    expect(result[2].value).toBe('least');
     expect(result[1].value).toBe('middle');
-    expect(result[2].value).toBe('most');
+    expect(result[0].value).toBe('most');
   })
 })
 
@@ -266,5 +269,58 @@ describe("getClassesTakenByInstructor", () => {
       expect(element).toHaveProperty('instructor');
       expect(element).toHaveProperty('count');
     })
+  })
+});
+
+describe('getAverageCadence', () => {
+  it('should return an array of average cadences with corresponding date', () => {
+    let data = [
+      {averageCadence: 100, date:'2020-01-01'},
+      {averageCadence: 100, date:'2020-01-01'},
+      {averageCadence: 100, date:'2020-01-01'},
+    ]  
+    let result = getAverageCadence(data);
+    expect(result).toHaveLength(3);
+    result.forEach((element,i) => {
+      expect(element).toHaveProperty('average');
+      expect(element.average).toBe(data[i].averageCadence);
+      expect(element).toHaveProperty('createdAt');
+      expect(element.createdAt).toBe(data[i].date);
+    });   
+  })
+});
+
+describe('getAverageResistance', () => {
+  it('should return an array of average Resistances with corresponding date', () => {
+    let data = [
+      {averageResistance: 100, date:'2020-01-01'},
+      {averageResistance: 100, date:'2020-01-01'},
+      {averageResistance: 100, date:'2020-01-01'},
+    ]  
+    let result = getAverageResistance(data);
+    expect(result).toHaveLength(3);
+    result.forEach((element,i) => {
+      expect(element).toHaveProperty('average');
+      expect(element.average).toBe(data[i].averageResistance);
+      expect(element).toHaveProperty('createdAt');
+      expect(element.createdAt).toBe(data[i].date);
+    });   
+  })
+});
+
+describe('getOrganizedRidesSortedByOutput', () => {
+  it('should return the organized rides sorted by output', () => {
+    let data = organizeRidesByLength(sampleData);
+    let result = getOrganizedRidesSortedByOutput(data);
+    let keys = Object.keys(result);
+    
+    for (const [i, key] of keys.entries()) {
+
+      result[key].forEach((element,i) => {
+        if(i>0){ // Nothing to test first element against
+          expect(element.output).toBeLessThanOrEqual(result[key][i-1].output);
+        }
+      });
+    }
   })
 })
