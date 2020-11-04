@@ -18,7 +18,6 @@
 
   const getChartData = (instructorsData) => {
     let backgroundColor = getColorArrayBasedOnLength(instructorsData.length);
-    console.log(backgroundColor);
     return {
       datasets: [
         {
