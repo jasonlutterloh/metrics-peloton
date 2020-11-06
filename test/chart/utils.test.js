@@ -1,5 +1,5 @@
 import { intros } from 'svelte/internal';
-import {getAverageFromArray, getReadableDate, createPlotPoint, getRoundNumber, getPlotPointsByDate} from '../../src/chart/utils';
+import {getAverageFromArray, getReadableDate, createPlotPoint, getRoundNumber, getPlotPointsByDate, calculateFTP, getLineChartByDateConfig} from '../../src/chart/utils';
 
 describe('getAverageFromArray', () => {
     it('should return an average of the given data', () => {
@@ -100,5 +100,23 @@ describe('getPlotPointsByDate', () => {
         ]
 
         expect(()=>{getPlotPointsByDate(sampleData, 'output', 'date')}).toThrowError();
+    })
+})
+
+describe('calculateFTP', () => {
+    it('should return 95% of the given value', () => {
+        expect(calculateFTP(100)).toBe(95);
+        expect(calculateFTP(100.9)).toBe(95);
+        expect(calculateFTP(1)).toBe(0);
+        expect(calculateFTP(102)).toBe(96);
+    })
+});
+
+//This method has no logic; it's just a setter
+describe('getLineChartByDateConfig', () => {
+    it('should set the data attribute to whatever is passed in', () => {
+        expect(getLineChartByDateConfig("string").data).toBe("string");
+        expect(getLineChartByDateConfig({key:"value"}).data).toStrictEqual({key:"value"});
+        expect(getLineChartByDateConfig([1]).data).toStrictEqual([1]);
     })
 })

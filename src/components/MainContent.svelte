@@ -10,6 +10,7 @@
 	import {mappedCSVData, ftpAverageOutputs} from '../store/store.js';
 	import Options from '../options/Options.svelte';
 	import TopFiveSection from '../analytics/TopFiveSection.svelte';
+import TotalsCard from '../analytics/TotalsCard.svelte';
 </script>
 
 <main>
@@ -25,6 +26,7 @@
 		<ClassesTakenPerInstructorChart />
 		<AverageCadenceResistanceChart />
 		<TopFiveSection />
+		<TotalsCard />
 	{:else}
 		<ErrorMessage>Looks like you haven't added your data yet. Click the "Instructions" button to begin.</ErrorMessage>
 	{/if}

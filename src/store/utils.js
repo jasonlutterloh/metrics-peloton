@@ -1,5 +1,6 @@
 import {getAverageFromArray} from '../chart/utils.js';
 import {getColorBasedOnArrayLengthAndIndex} from '../chart/colorPalette';
+const dayjs = require('dayjs');
 
 //This needs cleanup but had to fix a defect fast. Unit tests coming to help out with this.
 export const filterRidesByTitle = (data, filters, matching = false) => {
@@ -127,6 +128,8 @@ export const mapCSVData = (data, discipline = "Cycling") => {
             ride.instructor = effort["Instructor Name"];
             ride.averageCadence = effort["Avg. Cadence (RPM)"];
             ride.averageResistance = effort["Avg. Resistance"].replace("%", "");
+            ride.distance = parseFloat(effort["Distance (mi)"]);
+            ride.calories = parseFloat(effort["Calories Burned"]);
             mappedData.push(ride);
         }
     });
@@ -279,3 +282,14 @@ export const getOrganizedRidesSortedByOutput = (data) => {
 //         return a[propertyName] - b[propertyName];
 //     }).reverse();
 // }
+
+export const getTotalByAttribute = (data, key) => {
+    let sum = 0;
+    data.forEach(element => {
+        let value = element[key];
+        if (value) {
+            sum = sum + value;
+        }
+    });
+    return Math.round(sum);
+}

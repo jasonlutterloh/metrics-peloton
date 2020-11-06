@@ -12,7 +12,8 @@ import {
     getClassesTakenByInstructor,
     getAverageCadence,
     getAverageResistance,
-    getOrganizedRidesSortedByOutput, sliceArrayByGivenMax
+    getOrganizedRidesSortedByOutput, sliceArrayByGivenMax,
+    getTotalByAttribute
 } from './utils.js';
 
 // Initialize data store 
@@ -57,6 +58,11 @@ export const filteredData = derived([mappedCSVData, rideTitleFilters],
 export const ftpTestRides  = derived([mappedCSVData, ftpTestFilter],
     ([$mappedCSVData, $ftpTestFilter]) => filterRidesByTitle($mappedCSVData, $ftpTestFilter, true));
 
+export const totalDistance = derived(filteredData, $filteredData => getTotalByAttribute($filteredData, 'distance'));
+
+export const totalCalories = derived(filteredData, $filteredData => getTotalByAttribute($filteredData, 'calories'));
+
+export const totalMinutes = derived(filteredData, $filteredData => getTotalByAttribute($filteredData, 'duration'));
 // Get average outputs
 export const averageOutputs = derived(filteredData, $filteredData => getAverageOutputs($filteredData));
 
