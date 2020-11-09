@@ -16,6 +16,7 @@ import {
     getTotalByAttribute
 } from './utils.js';
 
+export const isError = writable(false);
 // Initialize data store 
 export const csvData = writable();
 
@@ -76,11 +77,27 @@ export const averageResistance = derived(filteredData, $filteredData => getAvera
 export const classesTakenPerInstructor = derived(filteredData, $filteredData => getClassesTakenByInstructor($filteredData));
 
 // Sort rides by time
-export const organizedRidesByLength = derived(filteredData, $filteredData => organizeRidesByLength($filteredData));
+export const organizedRidesByLength = derived(filteredData, $filteredData => {
+    try{
+        return organizeRidesByLength($filteredData);
+    } catch (e){
+        isError.set(true);
+        console.error("Could not parse data to organize the rides by length");
+        return {}
+    }
+});
 
 // Get personal bests from data
 export const bestRides = derived(organizedRidesByLength, $organizedRidesByLength => getBestRidesByLength($organizedRidesByLength));
 
 export const averagesByLength = derived(organizedRidesByLength, $organizedRidesByLength => getAverageOutputByRideLength($organizedRidesByLength));
 
-export const organizedRidesSortedByOutput = derived(organizedRidesByLength, $organizedRidesByLength => getOrganizedRidesSortedByOutput($organizedRidesByLength));
+export const organizedRidesSortedByOutput = derived(organizedRidesByLength, $organizedRidesByLength => {
+    try {
+        return getOrganizedRidesSortedByOutput($organizedRidesByLength);
+    } catch (e) {
+        isError.set(true);
+        console.error("Could not parse data to organize the rides sorted by output");
+        return {}
+    }
+});

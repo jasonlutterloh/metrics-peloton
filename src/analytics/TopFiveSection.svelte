@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { organizedRidesSortedByOutput } from "../store/store.js";
   import TopFiveRides from "./TopFiveRides.svelte";
-  import { getColorBasedOnArrayLengthAndIndex } from "../chart/colorPalette";
+  import { getColorBasedOnArrayLengthAndIndex } from "../utils/colorUtils";
   import Card from "../components/Card.svelte";
 
   let durations = Object.keys($organizedRidesSortedByOutput).reverse();

@@ -1,5 +1,5 @@
-import { getDefaultColorArray } from "./colorPalette";
 import moment from "moment";
+import {getReadableDate} from '../utils/dateUtils';
 
 export const getAverageFromArray = (array, key) => {
   let sum = 0;
@@ -15,10 +15,6 @@ export const getAverageFromArray = (array, key) => {
     }
   });
   return Math.round(sum / array.length);
-};
-
-export const getReadableDate = (dateString) => {
-  return moment(dateString, "YYYY-MM-DD").format();
 };
 
 export const createPlotPoint = (x, y) => {
@@ -37,10 +33,11 @@ export const calculateFTP = (number) => {
 export const getPlotPointsByDate = (data, yAttribute, dateAttribute) => {
   return data.map((object) => {
     if (object[yAttribute] && object[dateAttribute]) {
-      let date = getReadableDate(moment(object[dateAttribute]));
+      let date = getReadableDate(moment(object[dateAttribute])); // TODO: Remove moment in favor of dayjs
       let yAxis = getRoundNumber(object[yAttribute]);
       return createPlotPoint(date, yAxis);
     }
+    console.error("One or more of the given attributes '"+yAttribute+"', '" +dateAttribute+"' was null or empty for the following object: ", object)
     throw new Error(
       "Data does not match given parameters to generate plot points"
     );
@@ -71,3 +68,8 @@ export const getLineChartByDateConfig = (data) => {
     },
   };
 };
+
+export const isEmpty = (obj) => {
+  return Object.keys(obj).length === 0 && obj.constructor === Object
+}
+

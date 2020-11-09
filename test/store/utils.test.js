@@ -293,9 +293,15 @@ describe("getUniqueValuesFromDataArrayByAttribute", () => {
     expect(result).toContain(data[0].date);
     expect(result).toContain(data[2].date);
   });
-  it("should throw an error if an object does not include a dates", () => {
+  it("should log an error and throw an error if an object does not include a dates", () => {
     let badData = data.push({ notDate: "bad" });
-    let result = () => getUniqueValuesFromDataArrayByAttribute(badData, "date");
+    console.error = jest.fn();
+    
+    let result = () => {
+      getUniqueValuesFromDataArrayByAttribute(badData, "date");
+      expect(console.error).toHaveBeenCalled();
+    };
+    
     expect(result).toThrowError();
   });
   it("should return empty for an empty input", () => {
@@ -372,6 +378,12 @@ describe("getClassesTakenByInstructor", () => {
       expect(element).toHaveProperty("count");
     });
   });
+  it("should log an error and return an empty string if there is an error", () => {
+    let badData = sampleData.push({notInstructor:"bad data"});
+    console.error = jest.fn();
+    expect(getClassesTakenByInstructor(badData)).toStrictEqual([]);
+    expect(console.error).toHaveBeenCalled();
+  })
 });
 
 describe("getAverageCadence", () => {

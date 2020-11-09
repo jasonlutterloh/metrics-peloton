@@ -1,5 +1,5 @@
 import { getAverageFromArray } from "../chart/utils.js";
-import { getColorBasedOnArrayLengthAndIndex } from "../chart/colorPalette";
+import { getColorBasedOnArrayLengthAndIndex } from "../utils/colorUtils";
 const dayjs = require("dayjs");
 
 //This needs cleanup but had to fix a defect fast. Unit tests coming to help out with this.
@@ -163,13 +163,14 @@ export const sliceArrayByGivenMax = (array, max) => {
 export const getUniqueValuesFromDataArrayByAttribute = (data, attribute) => {
   let values = [...new Set(
       data
-        .filter((item) => item[attribute] != "")
+        .filter((item) => item[attribute] != "") // Needed to filter out scenic rides without an instructor
         .map((item) => {
           if (item[attribute]) {
             return item[attribute];
           }
+          console.error("Attribute (" + attribute + ") for the following item returned null or undefined", item);
           throw new Error(
-            "Bad input. Object in array did not have given attribute."
+            "Error getting values for '" + attribute + "'"
           );
         })
     ),
@@ -246,27 +247,31 @@ export const sortArrayByAttributeInObject = (array, attribute) => {
 
 export const getClassesTakenByInstructor = (data) => {
   let classesTakenByInstructor = [];
-  const uniqueInstructors = getUniqueValuesFromDataArrayByAttribute(
-    data,
-    "instructor"
-  );
+  try {
+    const uniqueInstructors = getUniqueValuesFromDataArrayByAttribute(
+        data,
+        "instructor"
+    );
 
-  uniqueInstructors.forEach((instructor) => {
-    if (instructor !== "") {
-      let value = {};
-      value.instructor = instructor;
-      value.count = data.filter(
-        (ride) => ride.instructor === instructor
-      ).length;
-      classesTakenByInstructor.push(value);
-    }
-  });
+    uniqueInstructors.forEach((instructor) => {
+        if (instructor !== "") {
+        let value = {};
+        value.instructor = instructor;
+        value.count = data.filter(
+            (ride) => ride.instructor === instructor
+        ).length;
+        classesTakenByInstructor.push(value);
+        }
+    });
 
-  // Sort by count
-  classesTakenByInstructor = sortArrayByAttributeInObject(
-    classesTakenByInstructor,
-    "count"
-  );
+    // Sort by count
+    classesTakenByInstructor = sortArrayByAttributeInObject(
+        classesTakenByInstructor,
+        "count"
+    );
+  } catch (e) {
+      console.error("Error creating the instructor chart");
+  }
 
   // Reverse so highest number is first
   return classesTakenByInstructor;
