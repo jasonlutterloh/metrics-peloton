@@ -50,9 +50,11 @@ describe("getPlotPointsByDate", () => {
       {average: 100, createdAt: "2020-09-25"},
     ];
 
+    console.error = jest.fn();
     expect(()=>{
       getPlotPointsByDate(sampleData, "output", "date");
     }).toThrowError();
+    expect(console.error).toHaveBeenCalled();
   });
 });
 

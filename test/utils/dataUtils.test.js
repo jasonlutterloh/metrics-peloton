@@ -83,13 +83,9 @@ describe("getUniqueValuesFromDataArrayByAttribute", () => {
   it("should log an error and throw an error if an object does not include a dates", () => {
     const badData = data.push({notDate: "bad"});
     console.error = jest.fn();
-
-    const result = () => {
+    expect(()=>{
       getUniqueValuesFromDataArrayByAttribute(badData, "date");
-      expect(console.error).toHaveBeenCalled();
-    };
-
-    expect(result).toThrowError();
+    }).toThrowError();
   });
   it("should return empty for an empty input", () => {
     expect(getUniqueValuesFromDataArrayByAttribute([])).toStrictEqual([]);
