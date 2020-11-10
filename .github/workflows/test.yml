@@ -12,5 +12,6 @@ jobs:
         with:
           node-version: 12
       - run: npm install
+      - run: npm i -g eslint
       - run: eslint src/** test/**
       - run: npm run test -- --coverage
