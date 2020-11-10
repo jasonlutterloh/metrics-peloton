@@ -1,11 +1,11 @@
 <script>
-    import { getContext } from 'svelte';
-    import OptionsForm from './OptionsForm.svelte';
+    import {getContext} from "svelte";
+    import OptionsForm from "./OptionsForm.svelte";
 
-    const { open } = getContext('simple-modal');
+    const {open} = getContext("simple-modal");
     const showModal = () => {
-		open(OptionsForm);
-	};
+  open(OptionsForm);
+};
 
 </script>
 

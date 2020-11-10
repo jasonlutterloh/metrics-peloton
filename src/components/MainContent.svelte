@@ -1,16 +1,15 @@
 <script>
-  import CSVUpload from "../data/CSVUpload.svelte";
+  import CSVUpload from "../upload/CSVUpload.svelte";
   import OutputOverTime from "../visuals/charts/OutputOverTime.svelte";
   import FTP from "../visuals/charts/FTP.svelte";
   import AverageOutput from "../visuals/charts/AverageOutput.svelte";
   import AverageCadenceVsResistance from "../visuals/charts/AverageCadenceVsResistance.svelte";
   import ClassesTakenByInstructor from "../visuals/charts/ClassesTakenByInstructor.svelte";
   import ErrorMessage from "../components/ErrorMessage.svelte";
-  // import PersonalRecords from '../analytics/PersonalRecords.svelte';
-  import { mappedCSVData, ftpAverageOutputs, isError } from "../store/store.js";
+  import {mappedCSVData, isError} from "../store/store.js";
   import Options from "../options/Options.svelte";
-  import TopFiveSection from "../analytics/TopFiveSection.svelte";
-  import TotalsCard from "../analytics/TotalsCard.svelte";
+  import TopFiveSection from "../visuals/TopFiveSection.svelte";
+  import TotalsCard from "../visuals/TotalsCard.svelte";
 </script>
 
 <style>

@@ -1,11 +1,12 @@
 <script>
-  import { onMount } from "svelte";
+  import {onMount} from "svelte";
   import Card from "../components/Card.svelte";
   import InfoMessage from "../components/InfoMessage.svelte";
-  import { csvData } from "../store/store.js";
+  import {csvData} from "../store/store.js";
   import Instructions from "./instructions/Instructions.svelte";
-  import demoData from './demoData.json';
-  import {CSVtoJSON} from './utils.js';
+  import {csvToJson} from "../utils/fileUtils";
+
+  import demoData from "./demoData.json";
 
   let files;
   let errorStatus = false;
@@ -13,14 +14,14 @@
   let y = 0;
 
   onMount(async () => {
-    let localStorageData = localStorage.getItem("savedData");
+    const localStorageData = localStorage.getItem("savedData");
 
     if (localStorageData) {
       updateData(JSON.parse(localStorageData));
     }
   });
 
-  const updateData = json => {
+  const updateData = (json) => {
     try {
       csvData.set(json);
       errorStatus = false;
@@ -39,9 +40,9 @@
 
   const upload = () => {
     if (files && files.length > 0) {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = function(e) {
-        let json = CSVtoJSON(e.target.result);
+        const json = csvToJson(e.target.result);
         updateData(json);
       };
       reader.readAsText(files[0]);
@@ -49,7 +50,7 @@
   };
   const loadDemoMode = () =>{
     updateData(demoData);
-  }
+  };
 </script>
 
 <style>

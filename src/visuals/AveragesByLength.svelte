@@ -1,5 +1,5 @@
 <script>
-  import { averagesByLength } from "../store/store.js";
+  import {averagesByLength} from "../store/store.js";
 </script>
 
 <style>

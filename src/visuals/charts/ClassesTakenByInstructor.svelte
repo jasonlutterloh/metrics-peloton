@@ -1,8 +1,8 @@
 <script>
   import DoughnutChart from "../../components/charts/DoughnutChart.svelte";
   import Card from "../../components/Card.svelte";
-  import { classesTakenPerInstructor } from "../../store/store.js";
-  import { getColorArrayBasedOnLength } from "../../utils/colorUtils";
+  import {classesTakenPerInstructor} from "../../store/store.js";
+  import {getColorArrayBasedOnLength} from "../../utils/colorUtils";
 
   const getCounts = (data) => {
     return data.map((item) => {
@@ -16,9 +16,9 @@
   };
 
   const getDatasets = (instructorsData) => {
-    let backgroundColor = getColorArrayBasedOnLength(instructorsData.length);
-    let data = getCounts(instructorsData);
-    let labels = getCountsLabels(instructorsData);
+    const backgroundColor = getColorArrayBasedOnLength(instructorsData.length);
+    const data = getCounts(instructorsData);
+    const labels = getCountsLabels(instructorsData);
     return {
       datasets: [
         {

@@ -1,6 +1,6 @@
 <script>
-    import { ridesToShow, csvData } from '../store/store.js';
-    import OptionLabel from './OptionLabel.svelte';
+    import {ridesToShow} from "../store/store.js";
+    import OptionLabel from "./OptionLabel.svelte";
 </script>
 
 <OptionLabel>

@@ -1,17 +1,17 @@
 <script>
-    import { rideTypes, rideTitleFilters } from '../store/store.js';
-    import OptionLabel from './OptionLabel.svelte';
+    import {rideTypes, rideTitleFilters} from "../store/store.js";
+    import OptionLabel from "./OptionLabel.svelte";
 
-    const handleChange = (filter, value) => {        
-        if (value){
-            $rideTitleFilters.push(filter);
-        } else {
-            let filterToRemove = $rideTitleFilters.indexOf(filter);
-            $rideTitleFilters.splice(filterToRemove, 1);
-        }
+    const handleChange = (filter, value) => {
+      if (value) {
+        $rideTitleFilters.push(filter);
+      } else {
+        const filterToRemove = $rideTitleFilters.indexOf(filter);
+        $rideTitleFilters.splice(filterToRemove, 1);
+      }
 
-        rideTitleFilters.set($rideTitleFilters);
-    }
+      rideTitleFilters.set($rideTitleFilters);
+    };
 </script>
 
 <h3>Exclude Ride Types</h3>

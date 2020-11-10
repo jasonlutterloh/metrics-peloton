@@ -11,8 +11,8 @@ export const colors = {
   purple: "#7300e6",
 };
 export const getDefaultColorArray = () => {
-  let keys = Object.keys(colors);
-  let array = [];
+  const keys = Object.keys(colors);
+  const array = [];
   keys.forEach((key) => {
     array.push(colors[key]);
   });
@@ -23,17 +23,17 @@ export const getColorBasedOnArrayLengthAndIndex = (lengthOfArray, index) => {
   if (index >= lengthOfArray) {
     throw new Error("Index is out of range");
   }
-  let colorPalette = getDefaultColorArray();
+  const colorPalette = getDefaultColorArray();
   // Most people only do a few different distances, don't want it to always be the first three colors of the rainbow. This allows spreading through evenly depending on how many different lengths of ride the user has done.
-  let skip = Math.max(1, Math.floor(colorPalette.length / lengthOfArray));
-  let arrayValue = index * skip;
-  let color = colorPalette[arrayValue];
+  const skip = Math.max(1, Math.floor(colorPalette.length / lengthOfArray));
+  const arrayValue = index * skip;
+  const color = colorPalette[arrayValue];
 
   return color;
 };
 
 export const getColorArrayBasedOnLength = (length) => {
-  let array = [];
+  const array = [];
   for (let index = 0; index < length; index++) {
     if (index < getDefaultColorArray().length) {
       // 9 is the max in the getColor function

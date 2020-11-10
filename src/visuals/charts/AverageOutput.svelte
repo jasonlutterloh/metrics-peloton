@@ -1,12 +1,12 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
   import Card from "../../components/Card.svelte";
-  import { averageOutputs } from "../../store/store.js";
-  import { getPlotPointsByDate } from "../../chart/utils.js";
-  import { colors } from "../../utils/colorUtils";
+  import {averageOutputs} from "../../store/store.js";
+  import {getPlotPointsByDate} from "../../utils/chartUtils";
+  import {colors} from "../../utils/colorUtils";
 
   const getDatasets = (data) => {
-    let averageData = getPlotPointsByDate(data, "average", "createdAt");
+    const averageData = getPlotPointsByDate(data, "average", "createdAt");
     return {
       datasets: [
         {

@@ -1,9 +1,8 @@
 <script>
-  import { onMount } from "svelte";
+  import {onMount} from "svelte";
   import Chart from "chart.js";
-  import Card from "../Card.svelte";
   import * as ChartAnnotation from "chartjs-plugin-annotation";
-  import {convertStringToID} from '../../utils/stringUtils';
+  import {convertStringToID} from "../../utils/stringUtils";
 
   export let title;
   export let datasets;
@@ -14,11 +13,11 @@
   const chartID = "chart-" + convertStringToID(title);
   let isError = false;
 
-  let config = {
+  const config = {
     type: "line",
     options: {
       animation: {
-        duration: 0
+        duration: 0,
       },
       borderJoinStyle: "round",
       maintainAspectRatio: false,
@@ -52,7 +51,7 @@
 
   onMount(async () => {
     try {
-      let ctx = document.getElementById(chartID);
+      const ctx = document.getElementById(chartID);
       chartReference = new Chart(ctx, config);
     } catch (e) {
       isError = true;
@@ -61,9 +60,9 @@
   });
 </script>
 
-  <h2>{title}</h2>
-  {#if isError}
-    <p>{ERROR_MESSAGE}</p>
-  {:else}
-    <div class="chart-wrapper"><canvas id={chartID} /></div>
-  {/if}
+<h2>{title}</h2>
+{#if isError}
+  <p>{ERROR_MESSAGE}</p>
+{:else}
+  <div class="chart-wrapper"><canvas id={chartID} /></div>
+{/if}

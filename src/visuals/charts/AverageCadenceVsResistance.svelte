@@ -1,20 +1,20 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
   import Card from "../../components/Card.svelte";
-  import { averageResistance, averageCadence } from "../../store/store.js";
-  import { getPlotPointsByDate } from "../../chart/utils.js";
-  import { colors } from "../../utils/colorUtils";
+  import {averageResistance, averageCadence} from "../../store/store.js";
+  import {getPlotPointsByDate} from "../../utils/chartUtils";
+  import {colors} from "../../utils/colorUtils";
 
   const getDatasets = (averageCadence, averageResistance) => {
     const cadenceData = getPlotPointsByDate(
-      averageCadence,
-      "average",
-      "createdAt"
+        averageCadence,
+        "average",
+        "createdAt",
     );
     const resistanceData = getPlotPointsByDate(
-      averageResistance,
-      "average",
-      "createdAt"
+        averageResistance,
+        "average",
+        "createdAt",
     );
 
     return {
@@ -40,7 +40,7 @@
   let datasets;
   let chartReference;
   let isError = false;
-  const ERROR_MESSAGE = "There was an error generating the output over time chart."
+  const ERROR_MESSAGE = "There was an error generating the output over time chart.";
 
   try {
     datasets = getDatasets($averageCadence, $averageResistance);

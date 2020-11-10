@@ -1,13 +1,14 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
   import Card from "../../components/Card.svelte";
-  import { showAverages, organizedRidesByLength } from "../../store/store.js";
-  import { getAverageFromArray, getPlotPointsByDate } from "../../chart/utils.js";
-  import AveragesByLength from "../../chart/AveragesByLength.svelte";
-  import { getColorBasedOnArrayLengthAndIndex } from "../../utils/colorUtils";
+  import {organizedRidesByLength} from "../../store/store.js";
+  import {getAverageFromArray} from "../../utils/dataUtils.js";
+  import {getPlotPointsByDate} from "../../utils/chartUtils";
+  import AveragesByLength from "../AveragesByLength.svelte";
+  import {getColorBasedOnArrayLengthAndIndex} from "../../utils/colorUtils";
 
   const getDatasets = (ridesByDuration) => {
-    let datasets = [];
+    const datasets = [];
     const durations = Object.keys(ridesByDuration);
 
     for (const [i, duration] of durations.entries()) {
@@ -33,7 +34,7 @@
   };
 
   const getAnnotations = (ridesByDuration) => {
-    let annotations = [];
+    const annotations = [];
     const durations = Object.keys(ridesByDuration);
 
     for (const [i, duration] of durations.entries()) {
@@ -72,21 +73,17 @@
     console.error(ERROR_MESSAGE, e);
   }
 
-  organizedRidesByLength.subscribe(value => {
-    try{
+  organizedRidesByLength.subscribe((value) => {
+    try {
       if (chartReference) {
-      chartReference.data = getDatasets(value);
-      chartReference.options.annotation = getAnnotations(value);
-      chartReference.options.annotation.drawTime = $showAverages
-        ? "afterDatasetsDraw"
-        : null;
-      chartReference.update();
-    }
+        chartReference.data = getDatasets(value);
+        chartReference.options.annotation = getAnnotations(value);
+        chartReference.update();
+      }
     } catch (e) {
-    isError = true;
-    console.error(ERROR_MESSAGE, e);
-  }
-    
+      isError = true;
+      console.error(ERROR_MESSAGE, e);
+    }
   });
 </script>
 

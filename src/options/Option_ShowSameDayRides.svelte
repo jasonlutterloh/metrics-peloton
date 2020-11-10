@@ -1,6 +1,6 @@
 <script>
-    import { showSameDayRides } from '../store/store.js';
-    import OptionLabel from './OptionLabel.svelte';
+    import {showSameDayRides} from "../store/store.js";
+    import OptionLabel from "./OptionLabel.svelte";
 </script>
 
 <OptionLabel>

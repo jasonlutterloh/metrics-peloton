@@ -8,7 +8,7 @@ import {
 
 describe("getDefaultColorArray", () => {
   it("should return the colors of the rainbow", () => {
-    let colorsOfTheRainbow = getDefaultColorArray();
+    const colorsOfTheRainbow = getDefaultColorArray();
     expect(colorsOfTheRainbow).toHaveLength(9);
     expect(colorsOfTheRainbow[8]).toBe(colors.red);
     expect(colorsOfTheRainbow[7]).toBe(colors.pink);
@@ -95,7 +95,7 @@ describe("getColorArrayBasedOnLength", () => {
     }
   });
   it("should compensate for any length over 9 to be the color grey", () => {
-    let longArray = getColorArrayBasedOnLength(15);
+    const longArray = getColorArrayBasedOnLength(15);
     expect(longArray[9]).toBe(GREY);
     expect(longArray[10]).toBe(GREY);
     expect(longArray[11]).toBe(GREY);

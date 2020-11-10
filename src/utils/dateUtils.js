@@ -1,6 +1,10 @@
-import moment from "moment";
+const dayjs = require("dayjs");
 
-//TODO: convert to using dayjs
 export const getReadableDate = (dateString) => {
-    return moment(dateString, "YYYY-MM-DD").format();
-  };
+  return dayjs(dateString).format("YYYY-MM-DD");
+};
+
+export const getFriendlyDate = (date) => {
+  const parsedDate = dayjs(date);
+  return parsedDate.format("MMM DD, YYYY");
+};

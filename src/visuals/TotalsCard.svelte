@@ -1,10 +1,11 @@
 <script>
-import {totalDistance, totalCalories, filteredData, totalMinutes} from '../store/store';
-import Card from '../components/Card.svelte';
-import { getFriendlyDate, formatNumberWithCommas } from './utils';
+import {totalDistance, totalCalories, filteredData, totalMinutes} from "../store/store";
+import Card from "../components/Card.svelte";
+import {getFriendlyDate} from "../utils/dateUtils";
+import {formatNumberWithCommas} from "../utils/numberUtils";
 
-let beginDate = getFriendlyDate($filteredData[0].date);
-let endDate = getFriendlyDate($filteredData[$filteredData.length - 1].date);
+const beginDate = getFriendlyDate($filteredData[0].date);
+const endDate = getFriendlyDate($filteredData[$filteredData.length - 1].date);
 </script>
 
 <Card>
