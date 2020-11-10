@@ -1,36 +1,42 @@
 <script>
-    import {rideTypes, rideTitleFilters} from "../store/store.js";
-    import OptionLabel from "./OptionLabel.svelte";
+  import {rideTypes, rideTitleFilters} from "../store/store.js";
 
-    const handleChange = (filter, value) => {
-      if (value) {
-        $rideTitleFilters.push(filter);
-      } else {
-        const filterToRemove = $rideTitleFilters.indexOf(filter);
-        $rideTitleFilters.splice(filterToRemove, 1);
-      }
+  const handleChange = (filter, value) => {
+    if (value) {
+      $rideTitleFilters.push(filter);
+    } else {
+      const filterToRemove = $rideTitleFilters.indexOf(filter);
+      $rideTitleFilters.splice(filterToRemove, 1);
+    }
 
-      rideTitleFilters.set($rideTitleFilters);
-    };
+    rideTitleFilters.set($rideTitleFilters);
+  };
 </script>
+
+<style>
+  div {
+    column-count: 2;
+  }
+  @media only screen and (max-width: 768px) {
+    div {
+      column-count: 1;
+    }
+  }
+  .option-label {
+    margin-bottom: 10px;
+  }
+</style>
 
 <h3>Exclude Ride Types</h3>
 <div>
-    {#each $rideTypes as type}
-    <OptionLabel>
-        <input type="checkbox" on:change={(e)=>handleChange(type, e.target.checked)} checked={$rideTitleFilters.includes(type) ? "checked" : false} class="option-field"/>
-        {type}
-    </OptionLabel>
-    {/each}
+  {#each $rideTypes as type}
+    <label class="option-label">
+      <input
+        type="checkbox"
+        on:change={(e) => handleChange(type, e.target.checked)}
+        checked={$rideTitleFilters.includes(type) ? "checked" : false}
+        class="option-field" />
+      {type}
+    </label>
+  {/each}
 </div>
-
-<style>
-div{
-	column-count: 2;
-}
-@media only screen and (max-width: 768px) {
-    div{
-        column-count: 1;
-    }
-}
-</style>
