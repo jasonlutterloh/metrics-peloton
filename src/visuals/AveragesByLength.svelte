@@ -5,6 +5,8 @@
 <style>
   h2 {
     margin-top: 20px;
+    font-size: 24px;
+    margin-bottom: 10px;
   }
   ul {
     display: flex;

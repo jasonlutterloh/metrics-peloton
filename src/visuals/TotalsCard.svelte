@@ -8,9 +8,10 @@ const beginDate = getFriendlyDate($filteredData[0].date);
 const endDate = getFriendlyDate($filteredData[$filteredData.length - 1].date);
 </script>
 
-<Card>
-    <h2>Totals</h2>
-    <p class="time-period">{beginDate} - {endDate}</p>
+<section>
+    <div class="section-wrapper">
+    <h2 class="sr-only">Totals</h2>
+    <!-- <p class="time-period">{beginDate} - {endDate}</p> TODO: Move this-->
     <div class="wrapper">
         <div>
             <p><span>{formatNumberWithCommas($totalDistance)}</span> miles traveled</p>
@@ -22,9 +23,21 @@ const endDate = getFriendlyDate($filteredData[$filteredData.length - 1].date);
             <p><span>{formatNumberWithCommas($totalMinutes)}</span> minutes spent</p>
         </div>
     </div>
-</Card>
+</div>
+</section>
 
 <style>
+    section{
+        background-color: #e65c00;
+        color: #fff;
+        margin: 0;
+        position: relative;
+        max-width: 100vw;
+    }
+    .section-wrapper{
+        max-width: 1200px;
+        margin: 0 auto;
+    }
     .wrapper{
         display: flex;
         flex-wrap: wrap;
@@ -37,7 +50,7 @@ const endDate = getFriendlyDate($filteredData[$filteredData.length - 1].date);
     span{
         display: block;
         font-size: 3em;
-        font-weight: 100;
+        font-weight: 200;
     }
     .time-period{
         font-size: 75%;

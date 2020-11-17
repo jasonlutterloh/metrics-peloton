@@ -87,7 +87,8 @@
   });
 </script>
 
-<Card>
+<section>
+  <div class="section-wrapper">
   {#if isError}
   <p>{ERROR_MESSAGE}</p>
   {:else}
@@ -98,4 +99,16 @@
     bind:chartReference />
   <AveragesByLength />
   {/if}
-</Card>
+</div>
+</section>
+
+<style>
+  section{
+    
+  }
+  .section-wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 10px
+  }
+</style>

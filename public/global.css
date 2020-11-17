@@ -5,8 +5,8 @@ html, body {
 }
 
 body {
-	background: #efefef;
-	color: #333;
+	background: #fff;
+	color: #222;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -15,8 +15,12 @@ body {
 }
 
 h2{
-    font-weight: 100;
-    margin: 0 0 10px;
+	font-weight: bold;
+	text-transform: lowercase;
+	letter-spacing: 1px;
+	font-size: 32px;
+	text-align: center;
+	margin: 0 0 30px;
 }
 
 a {
@@ -58,20 +62,28 @@ input, button, select, textarea {
 }
 
 button {
-    background-color: rgba(71, 106, 111, .1);
-	border: .5px solid rgba(71, 106, 111, .6);
+    background-color:#222;
+	border: 0;
+	border-radius: 30px;
+	color: #efefef;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 13  px;
 	display: block;
     padding: 10px;
-	transition: .5s background;
+	transition: .5s all;
 	width: 100%;
+	max-width: 400px;
+	margin: 0 auto 20px;
+	cursor: pointer;
 }
 button:hover,
 button:focus {
-    background-color: rgba(71, 106, 111, .3);
+		background-color:#008ae6;
     outline: 0;
 }
 button:active {
-    background-color: rgba(71, 106, 111, .5);
+    background-color:#008ae6;
 }
 button.link-button{
 	background: none;

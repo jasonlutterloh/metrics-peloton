@@ -7,16 +7,15 @@
   import ClassesTakenByInstructor from "../visuals/charts/ClassesTakenByInstructor.svelte";
   import ErrorMessage from "../components/ErrorMessage.svelte";
   import {mappedCSVData, isError} from "../store/store.js";
-  import Options from "../options/Options.svelte";
   import TopFiveSection from "../visuals/TopFiveSection.svelte";
   import TotalsCard from "../visuals/TotalsCard.svelte";
 </script>
 
 <style>
   main {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
-    padding: 0 10px;
+    /* padding: 20px 0; */
   }
 </style>
 
@@ -27,7 +26,7 @@
     </ErrorMessage>
   {/if}
   {#if $mappedCSVData.length > 0}
-    <Options />
+  <TotalsCard />
     <OutputOverTime />
     <AverageOutput />
 
@@ -37,7 +36,7 @@
     <ClassesTakenByInstructor />
     <AverageCadenceVsResistance />
     <TopFiveSection />
-    <TotalsCard />
+   
   {:else}
     <ErrorMessage>
       Looks like you haven't added your data yet. Click the "Instructions"

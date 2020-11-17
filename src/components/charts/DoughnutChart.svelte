@@ -10,6 +10,7 @@
   const ERROR_MESSAGE = "An error occurred creating the Output Chart";
   const chartID = "chart-" + convertStringToID(title);
   let isError = false;
+  let screenWidth = 1200;
 
   const config = {
     type: "doughnut",
@@ -18,6 +19,9 @@
       maintainAspectRatio: false,
       animation: {
         duration: 0,
+      },
+      legend: {
+        position: "right",
       },
     },
   };
@@ -32,6 +36,11 @@
   onMount(async () => {
     try {
       const ctx = document.getElementById(chartID);
+      if (screenWidth < 768) {
+        config.options.legend.position = "top";
+      } else {
+        config.options.legend.position = "right";
+      }
       chartReference = new Chart(ctx, config);
     } catch (e) {
       isError = true;
@@ -46,6 +55,8 @@
     min-height: 50vh;
   }
 </style>
+
+<svelte:window bind:innerWidth={screenWidth}/>
 
 <h2>{title}</h2>
 {#if isError}

@@ -10,7 +10,7 @@
     return {
       datasets: [
         {
-          borderColor: colors.green,
+          borderColor: "#efefef",
           label: "Average Output Per Minute",
           data: averageData,
           fill: false,
@@ -46,13 +46,28 @@
   });
 </script>
 
-<Card>
+<section>
+  <div class="section-wrapper">
   {#if isError}
     <p>{ERROR_MESSAGE}</p>
   {:else}
     <LineChart
       title="Average Output Per Minute Over Time"
       {datasets}
+      isDarkMode = true
       bind:chartReference />
   {/if}
-</Card>
+</div>
+</section>
+
+<style>
+  section{
+    background:#00cc00;
+    color: #fff;
+  }
+  .section-wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 10px;
+  }
+</style>

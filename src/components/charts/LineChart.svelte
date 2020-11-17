@@ -7,6 +7,7 @@
   export let title;
   export let datasets;
   export let annotations = {};
+  export let isDarkMode = false;
 
   export let chartReference = "";
   const ERROR_MESSAGE = "An error occurred creating the line chart";
@@ -21,23 +22,45 @@
       },
       borderJoinStyle: "round",
       maintainAspectRatio: false,
+      legend: {
+        labels: {
+          fontSize: 16,
+          fontColor: "#222",
+          padding: 20,
+        },
+      },
       responsive: true,
       scales: {
+        yAxes: [
+          {
+            gridLines: {},
+            ticks: {},
+          },
+        ],
         xAxes: [
           {
             type: "time",
-            distribution: "series",
+            distribution: "linear",
             bounds: "data",
             time: {
-              unit: "day",
+              unit: "month",
               tooltipFormat: "MMM DD YYYY",
             },
+            gridLines: {},
+            ticks: {},
           },
         ],
       },
     },
   };
 
+  if (isDarkMode) {
+    config.options.legend.fontColor = "#efefef";
+    config.options.scales.xAxes[0].gridLines.color = "#efefef";
+    config.options.scales.xAxes[0].ticks.fontColor = "#efefef";
+    config.options.scales.yAxes[0].gridLines.color = "#efefef";
+    config.options.scales.yAxes[0].ticks.fontColor = "#efefef";
+  }
   try {
     config.data = datasets;
     if (annotations) {
