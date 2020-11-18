@@ -1,6 +1,5 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
-  import Card from "../../components/Card.svelte";
   import {organizedRidesByLength} from "../../store/store.js";
   import {getAverageFromArray} from "../../utils/dataUtils.js";
   import {getPlotPointsByDate} from "../../utils/chartUtils";
@@ -23,6 +22,7 @@
         data: workouts,
         fill: false,
         lineTension: 0.2,
+        pointBackgroundColor: color,
       };
 
       datasets.push(dataset);
@@ -78,6 +78,7 @@
       if (chartReference) {
         chartReference.data = getDatasets(value);
         chartReference.options.annotation = getAnnotations(value);
+        chartReference.options.legend.display = false;
         chartReference.update();
       }
     } catch (e) {
@@ -96,6 +97,7 @@
     title="Output Over Time"
     {datasets}
     {annotations}
+    isSimpleDisplay=true
     bind:chartReference />
   <AveragesByLength />
   {/if}

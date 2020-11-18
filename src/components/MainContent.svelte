@@ -1,5 +1,5 @@
 <script>
-  import CSVUpload from "../upload/CSVUpload.svelte";
+  import CSVUpload from "../data/CSVUpload.svelte";
   import OutputOverTime from "../visuals/charts/OutputOverTime.svelte";
   import FTP from "../visuals/charts/FTP.svelte";
   import AverageOutput from "../visuals/charts/AverageOutput.svelte";
@@ -26,7 +26,7 @@
     </ErrorMessage>
   {/if}
   {#if $mappedCSVData.length > 0}
-  <TotalsCard />
+  
     <OutputOverTime />
     <AverageOutput />
 
@@ -36,12 +36,7 @@
     <ClassesTakenByInstructor />
     <AverageCadenceVsResistance />
     <TopFiveSection />
-   
-  {:else}
-    <ErrorMessage>
-      Looks like you haven't added your data yet. Click the "Instructions"
-      button to begin.
-    </ErrorMessage>
+    <TotalsCard />
   {/if}
   <CSVUpload />
 </main>

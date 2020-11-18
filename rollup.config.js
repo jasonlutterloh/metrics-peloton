@@ -40,7 +40,7 @@ export default {
     json({
       // All JSON files will be parsed by default,
       // but you can also specifically include/exclude files
-      include: "src/upload/**",
+      include: "src/data/demo/**",
       exclude: ["node_modules/**"],
 
       // ignores indent and generates the smallest code

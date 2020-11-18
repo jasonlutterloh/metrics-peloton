@@ -25,6 +25,7 @@ export const filterRidesByTitle = (data, filters, matching = false) => {
       }
     }
   });
+
   return filteredData;
 };
 

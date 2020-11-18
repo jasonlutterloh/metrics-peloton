@@ -17,11 +17,8 @@
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      animation: {
-        duration: 0,
-      },
       legend: {
-        position: "right",
+        position: "bottom",
       },
     },
   };
@@ -36,11 +33,6 @@
   onMount(async () => {
     try {
       const ctx = document.getElementById(chartID);
-      if (screenWidth < 768) {
-        config.options.legend.position = "top";
-      } else {
-        config.options.legend.position = "right";
-      }
       chartReference = new Chart(ctx, config);
     } catch (e) {
       isError = true;
@@ -58,7 +50,6 @@
 
 <svelte:window bind:innerWidth={screenWidth}/>
 
-<h2>{title}</h2>
 {#if isError}
   <p>{ERROR_MESSAGE}</p>
 {:else}

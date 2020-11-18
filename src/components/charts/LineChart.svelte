@@ -8,6 +8,7 @@
   export let datasets;
   export let annotations = {};
   export let isDarkMode = false;
+  export let isSimpleDisplay = false;
 
   export let chartReference = "";
   const ERROR_MESSAGE = "An error occurred creating the line chart";
@@ -23,6 +24,7 @@
       borderJoinStyle: "round",
       maintainAspectRatio: false,
       legend: {
+        display: false,
         labels: {
           fontSize: 16,
           fontColor: "#222",
@@ -33,7 +35,10 @@
       scales: {
         yAxes: [
           {
-            gridLines: {},
+            gridLines: {
+              drawBorder: false,
+              display: false,
+            },
             ticks: {},
           },
         ],
@@ -44,7 +49,7 @@
             bounds: "data",
             time: {
               unit: "month",
-              tooltipFormat: "MMM DD YYYY",
+              tooltipFormat: "MMM DD",
             },
             gridLines: {},
             ticks: {},
@@ -60,6 +65,10 @@
     config.options.scales.xAxes[0].ticks.fontColor = "#efefef";
     config.options.scales.yAxes[0].gridLines.color = "#efefef";
     config.options.scales.yAxes[0].ticks.fontColor = "#efefef";
+  }
+  if (isSimpleDisplay) {
+    config.options.legend.display = false;
+    config.options.scales.xAxes[0].gridLines.display = false;
   }
   try {
     config.data = datasets;
