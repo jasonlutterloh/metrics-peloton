@@ -3,12 +3,9 @@
 </script>
 <style>
   header {
-    /* position: fixed; */
     width: 100%;
     display: flex;
-    /* z-index: 9; */
     background: #013A63;
-
   }
   div{
     flex: 0 1 auto;

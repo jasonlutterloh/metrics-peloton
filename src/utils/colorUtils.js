@@ -1,27 +1,5 @@
 export const GREY = "#bbbbbb";
-// export const colors = {
-//   red: "#e60000",
-//   pink: "#ff4d88",
-//   orange: "#e65c00",
-//   yellow: "#ffcc00",
-//   green: "#00cc00",
-//   teal: "#00cccc",
-//   blue: "#008ae6",
-//   violet: "#6666ff",
-//   purple: "#7300e6",
-// };
-// export const colors = {
-//   darkslateblue: "#54478cff",
-//   saphireblue: "#2c699aff",
-//   bluemunsell: "#048ba8ff",
-//   keppel: "#0db39eff",
-//   mediumaquamarine: "#16db93ff",
-//   lightgreen: "#83e377ff",
-//   yellowgreen: "#8ac926ff",
-//   corn: "#efea5aff",
-//   mango: "#ffbe0bff",
-//   redsalsa: "#f94144ff",
-// };
+
 export const colors = {
   maximumbluegreen: "#3fc1c0ff",
   maximumbluegreen2: "#20bac5ff",

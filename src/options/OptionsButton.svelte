@@ -27,10 +27,6 @@
   button:hover,
   button:focus {
     transform: rotate(90deg);
-    /* background-color: #008ae6; */
-  }
-  button:active {
-    /* background-color: #008ae6; */
   }
 </style>
 

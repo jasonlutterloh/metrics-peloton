@@ -93,7 +93,7 @@
 <style>
   section{
     background: #1A5B92;
-    color: white;
+    color: #fff;
   }
   .section-wrapper{
     max-width: 1200px;

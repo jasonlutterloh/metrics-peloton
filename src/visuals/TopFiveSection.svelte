@@ -15,7 +15,6 @@
 
 <style>
   h2 {
-    /* color: #fff; */
     margin-bottom: 20px;
   }
   .top-five-container {

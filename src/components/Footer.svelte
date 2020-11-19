@@ -7,10 +7,10 @@
     /* background-color: #012A4A; */
     /* color: #fff; */
     background: #013A63;
-    color: white;
+    color: #fff;
   }
   footer a{
-    color: white;
+    color: #fff;
     text-decoration: underline;
   }
   footer h2{
