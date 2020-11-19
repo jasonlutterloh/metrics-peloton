@@ -3,7 +3,6 @@
   import {organizedRidesSortedByOutput} from "../store/store.js";
   import TopFiveRides from "./TopFiveRides.svelte";
   import {getColorBasedOnArrayLengthAndIndex} from "../utils/colorUtils";
-  import Card from "../components/Card.svelte";
 
   let durations = Object.keys($organizedRidesSortedByOutput).reverse();
 
@@ -19,16 +18,14 @@
     margin-bottom: 20px;
   }
   .top-five-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
+    margin: 60px 10px;
   }
   .top-five-card {
-    flex: 0 1 calc(50% - 10px);
-    margin: 0 20px 0 0;
+    max-width: 600px;
+    margin: 0 auto 30px;
   }
-  .top-five-card:nth-of-type(even) {
-    margin-right: 0;
+  .section-wrapper {
+    padding: 20px 0;
   }
   @media only screen and (max-width: 768px) {
     .top-five-container {
@@ -40,17 +37,22 @@
   }
 </style>
 
-<div class="top-five-container">
+<section class="top-five-container">
   {#each durations as duration, i}
     <div class="top-five-card">
-      <Card>
-        <h2>Top {duration} Min Rides</h2>
+      <div class="section-wrapper">
+        <h2
+          style="color:{getColorBasedOnArrayLengthAndIndex(durations.length, i)}">
+          Top
+          {duration}
+          Min Rides
+        </h2>
         <div>
           <TopFiveRides
             rides={$organizedRidesSortedByOutput[duration].slice(0, 5)}
             color={getColorBasedOnArrayLengthAndIndex(durations.length, i)} />
         </div>
-      </Card>
+      </div>
     </div>
   {/each}
-</div>
+  </section>

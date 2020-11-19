@@ -9,18 +9,21 @@
 <style>
   .progress-bar-wrapper {
     width: 100%;
-    height: 30px;
+    height: 40px;
     background: #ddd;
     margin-bottom: 10px;
+    border-radius: 4px;
   }
   .progress-bar {
-    height: 30px;
-    line-height: 30px;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
     width: 0;
     transition: 0.5s all;
     text-align: center;
-    color: #fff;
+    color: #222;
     font-weight: bold;
+    border-radius: 4px;
   }
   .left-label,
   .right-label {
@@ -33,13 +36,13 @@
   }
 </style>
 
-<div>
+<div style="color:{fillColor}">
   <span class="left-label">{leftLabel}</span>
   <span class="right-label">{rightLabel}</span>
   <div class="progress-bar-wrapper">
     <div
       class="progress-bar"
-      style="width:{percentage}%; background-color:{fillColor}">
+      style="width:{percentage}%; background-color:{fillColor}; color:#fff">
       {barLabel}
     </div>
   </div>

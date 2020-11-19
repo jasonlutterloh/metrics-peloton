@@ -1,6 +1,5 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
-  import Card from "../../components/Card.svelte";
   import {organizedRidesByLength} from "../../store/store.js";
   import {getAverageFromArray} from "../../utils/dataUtils.js";
   import {getPlotPointsByDate} from "../../utils/chartUtils";
@@ -23,6 +22,7 @@
         data: workouts,
         fill: false,
         lineTension: 0.2,
+        pointBackgroundColor: color,
       };
 
       datasets.push(dataset);
@@ -63,7 +63,8 @@
   let annotations;
   let chartReference;
   let isError = false;
-  const ERROR_MESSAGE = "There was an error generating the output over time chart.";
+  const ERROR_MESSAGE =
+    "There was an error generating the output over time chart.";
 
   try {
     datasets = getDatasets($organizedRidesByLength);
@@ -78,6 +79,7 @@
       if (chartReference) {
         chartReference.data = getDatasets(value);
         chartReference.options.annotation = getAnnotations(value);
+        chartReference.options.legend.display = false;
         chartReference.update();
       }
     } catch (e) {
@@ -87,15 +89,30 @@
   });
 </script>
 
-<Card>
-  {#if isError}
-  <p>{ERROR_MESSAGE}</p>
-  {:else}
-  <LineChart
-    title="Output Over Time"
-    {datasets}
-    {annotations}
-    bind:chartReference />
-  <AveragesByLength />
-  {/if}
-</Card>
+<style>
+  .section-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 10px;
+  }
+  h2{
+    color: rgb(1, 58, 99);
+  }
+</style>
+
+<section>
+  <div class="section-wrapper">
+    {#if isError}
+      <p>{ERROR_MESSAGE}</p>
+    {:else}
+      <h2>Output Over Time</h2>
+      <LineChart
+        title="Output Over Time"
+        {datasets}
+        {annotations}
+        isSimpleDisplay="true"
+        bind:chartReference />
+      <AveragesByLength />
+    {/if}
+  </div>
+</section>

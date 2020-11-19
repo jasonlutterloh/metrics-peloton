@@ -1,10 +1,11 @@
 <style>
   p {
-    background-color: rgba(255, 0, 0, 0.5);
-    border: 0.5px solid rgba(255, 0, 0, 0.9);
-    color: white;
-    padding: 10px;
+    background-color: #d1495b;
+    color: #fff;
+    font-size: 16px;
+    padding: 20px;
     margin: 0 0 10px 0;
+    text-align: center;
   }
 </style>
 

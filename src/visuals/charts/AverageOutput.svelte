@@ -1,20 +1,19 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
-  import Card from "../../components/Card.svelte";
   import {averageOutputs} from "../../store/store.js";
   import {getPlotPointsByDate} from "../../utils/chartUtils";
-  import {colors} from "../../utils/colorUtils";
 
   const getDatasets = (data) => {
     const averageData = getPlotPointsByDate(data, "average", "createdAt");
     return {
       datasets: [
         {
-          borderColor: colors.green,
+          borderColor: "#efefef",
           label: "Average Output Per Minute",
           data: averageData,
           fill: false,
           lineTension: 0,
+          pointBackgroundColor: "#fff",
         },
       ],
     };
@@ -37,6 +36,7 @@
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
+        chartReference.options.legend.display = false;
         chartReference.update();
       }
     } catch (e) {
@@ -46,13 +46,26 @@
   });
 </script>
 
-<Card>
+<section>
+  <div class="section-wrapper">
   {#if isError}
     <p>{ERROR_MESSAGE}</p>
   {:else}
+    <h2>Average Output Per Minute</h2>
     <LineChart
-      title="Average Output Per Minute Over Time"
+      title="Average Output Per Minute"
       {datasets}
+      isDarkMode = true
+      isSimpleDisplay = true
       bind:chartReference />
   {/if}
-</Card>
+</div>
+</section>
+
+<style>
+  section{
+    background:#04A6C2;
+    color: #fff;
+  }
+
+</style>

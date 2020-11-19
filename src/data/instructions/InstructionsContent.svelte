@@ -11,7 +11,7 @@
 
 <style>
     h1{
-        font-weight: 100;
+        font-weight: 200;
     }
     ol{
         padding-left: 20px;

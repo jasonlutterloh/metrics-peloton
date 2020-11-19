@@ -10,14 +10,15 @@
   const ERROR_MESSAGE = "An error occurred creating the Output Chart";
   const chartID = "chart-" + convertStringToID(title);
   let isError = false;
+  let screenWidth = 1200;
 
   const config = {
     type: "doughnut",
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      animation: {
-        duration: 0,
+      legend: {
+        position: "bottom",
       },
     },
   };
@@ -47,7 +48,8 @@
   }
 </style>
 
-<h2>{title}</h2>
+<svelte:window bind:innerWidth={screenWidth}/>
+
 {#if isError}
   <p>{ERROR_MESSAGE}</p>
 {:else}

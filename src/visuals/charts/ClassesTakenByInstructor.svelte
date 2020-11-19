@@ -1,6 +1,5 @@
 <script>
   import DoughnutChart from "../../components/charts/DoughnutChart.svelte";
-  import Card from "../../components/Card.svelte";
   import {classesTakenPerInstructor} from "../../store/store.js";
   import {getColorArrayBasedOnLength} from "../../utils/colorUtils";
 
@@ -56,7 +55,13 @@
   });
 </script>
 
-<Card>
+<section>
+  <div class="section-wrapper">
+    <div class="left">
+      <h2>Classes Taken Per Instructor</h2>
+    </div>
+    
+    <div class="right">
   {#if isError}
     <p>{ERROR_MESSAGE}</p>
   {:else}
@@ -65,4 +70,30 @@
       {datasets}
       bind:chartReference={chartReference} />
   {/if}
-</Card>
+</div>
+  </div>
+</section>
+
+<style>
+  .section-wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 10px;
+    display: flex;
+    align-items: center;
+  }
+  .left, .right{
+    flex: 0 1 50%;
+  }
+  .left{
+    margin: 0 auto;
+  }
+  .left{
+    padding: 30px 20px;
+  }
+  @media only screen and (max-width: 768px) {
+    .section-wrapper{
+      flex-direction: column;
+    }
+  }
+</style>
