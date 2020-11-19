@@ -15,7 +15,7 @@
   };
 
   const getDatasets = (instructorsData) => {
-    const backgroundColor = getColorArrayBasedOnLength(instructorsData.length);
+    const backgroundColor = getColorArrayBasedOnLength(instructorsData.length).reverse();
     const data = getCounts(instructorsData);
     const labels = getCountsLabels(instructorsData);
     return {

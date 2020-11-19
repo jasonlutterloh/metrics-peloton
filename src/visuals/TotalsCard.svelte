@@ -16,7 +16,7 @@
 
 <style>
     section {
-        background-color: #04a6c2;
+        background-color: #1A5B92;
         color: #fff;
         margin: 0;
         position: relative;

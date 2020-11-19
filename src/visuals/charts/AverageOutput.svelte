@@ -64,7 +64,7 @@
 
 <style>
   section{
-    background:#04A6C2;
+    background:#1A5B92;
     color: #fff;
   }
 

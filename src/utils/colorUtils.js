@@ -1,9 +1,9 @@
 export const GREY = "#bbbbbb";
 
 export const colors = {
-  maximumbluegreen: "#3fc1c0ff",
+  // maximumbluegreen: "#3fc1c0ff",
   maximumbluegreen2: "#20bac5ff",
-  pacificblue: "#00b2caff",
+  // pacificblue: "#00b2caff",
   pacificblue2: "#04a6c2ff",
   bluegreen: "#0899baff",
   cgblue: "#0f80aaff",
@@ -11,6 +11,7 @@ export const colors = {
   lapislazuli: "#1a5b92ff",
   usafablue: "#1c558eff",
   yaleblue: "#1d4e89ff",
+  prussianblue: "#012A4A",
 };
 export const getDefaultColorArray = () => {
   const keys = Object.keys(colors);
@@ -18,7 +19,7 @@ export const getDefaultColorArray = () => {
   keys.forEach((key) => {
     array.push(colors[key]);
   });
-  return array.reverse();
+  return array;
 };
 
 export const getColorBasedOnArrayLengthAndIndex = (lengthOfArray, index) => {
