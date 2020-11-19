@@ -125,16 +125,16 @@
         </li>
         <li>Upload the CSV file</li>
       </ol>
-      <p>
-        Note: Your data is not sent anywhere or stored remotely. This app runs
-        in the browser and uses local storage on your device.
-      </p>
     </div>
     <div class="right">
       <h2>CSV Upload</h2>
       <form on:submit|preventDefault={upload}>
         <label> CSV Upload: <input required type="file" bind:files /> </label>
         <div><button type="submit">See My Metrics</button></div>
+        <p>
+          Note: Your data is not sent anywhere or stored remotely. This app runs
+          in the browser and uses local storage on your device.
+        </p>
       </form>
     </div>
   </div>
