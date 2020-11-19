@@ -9,6 +9,7 @@
   import {mappedCSVData, isError} from "../store/store.js";
   import TopFiveSection from "../visuals/TopFiveSection.svelte";
   import TotalsCard from "../visuals/TotalsCard.svelte";
+import InfoMessage from "./InfoMessage.svelte";
 </script>
 
 <style>
@@ -31,6 +32,8 @@
       <AverageCadenceVsResistance />
       <TopFiveSection />
       <TotalsCard />
+      {:else}
+      <InfoMessage>Upload your Peloton rides to see your output over time, averages, top rides, and more!</InfoMessage>
     {/if}
   {/if}
   <CSVUpload />

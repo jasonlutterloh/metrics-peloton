@@ -1,8 +1,11 @@
 <style>
   p {
-    padding: 10px;
-    margin-bottom: 10px;
-    font-style: italic;
+    background-color: #00B2CA;
+    color: #fff;
+    font-size: 16px;
+    padding: 20px;
+    margin: 0 0 10px 0;
+    text-align: center;
   }
 </style>
 
