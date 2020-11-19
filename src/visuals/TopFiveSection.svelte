@@ -38,7 +38,7 @@
   }
 </style>
 
-<div class="top-five-container">
+<section class="top-five-container">
   {#each durations as duration, i}
     <div class="top-five-card">
       <div class="section-wrapper">
@@ -56,4 +56,4 @@
       </div>
     </div>
   {/each}
-</div>
+  </section>

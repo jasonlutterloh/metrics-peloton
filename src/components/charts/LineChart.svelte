@@ -18,9 +18,9 @@
   const config = {
     type: "line",
     options: {
-      animation: {
-        duration: 0,
-      },
+      // animation: {
+      //   duration: 0,
+      // },
       borderJoinStyle: "round",
       maintainAspectRatio: false,
       legend: {
@@ -92,7 +92,6 @@
   });
 </script>
 
-<h2>{title}</h2>
 {#if isError}
   <p>{ERROR_MESSAGE}</p>
 {:else}

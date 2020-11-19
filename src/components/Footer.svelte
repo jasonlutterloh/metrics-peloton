@@ -50,7 +50,7 @@
     <div class="column">
       <h2>Peloton Metrics</h2>
   <p>
-    This app was built by a Peloton user and is just for fun. It is provided
+    This app was built by a Peloton user. It is provided
     as-is and is not endorsed or sponsored in any way by Peloton.
   </p>
   <p>

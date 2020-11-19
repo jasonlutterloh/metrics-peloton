@@ -51,6 +51,7 @@
   {#if isError}
     <p>{ERROR_MESSAGE}</p>
   {:else}
+    <h2>Average Output Per Minute</h2>
     <LineChart
       title="Average Output Per Minute"
       {datasets}

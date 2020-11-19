@@ -1,10 +1,10 @@
 <script>
   import {onMount} from "svelte";
-  import {csvData} from "../store/store.js";
+  import {csvData, isError} from "../store/store.js";
   import {csvToJson} from "../utils/fileUtils";
 
   let files;
-  let errorStatus = false;
+  // let errorStatus = false;
   let y = 0;
 
   onMount(async () => {
@@ -18,14 +18,14 @@
   const updateData = (json) => {
     localStorage.clear();
     csvData.set();
+    isError.set(false);
     try {
       csvData.set(json);
-      errorStatus = false;
       y = 0;
       localStorage.setItem("savedData", JSON.stringify(json));
     } catch (error) {
-      errorStatus = true;
-      console.log("An error occurred uploading the data", error);
+      console.error("An error occurred uploading the data", error);
+      isError.set(true);
     }
   };
 
@@ -102,6 +102,9 @@
   @media only screen and (max-width: 768px) {
     .section-wrapper {
       flex-direction: column;
+    }
+    .left{
+      margin-bottom: 60px;
     }
   }
 </style>

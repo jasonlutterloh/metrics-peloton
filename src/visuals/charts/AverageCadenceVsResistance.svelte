@@ -79,6 +79,7 @@
   {#if isError}
     <p>{ERROR_MESSAGE}</p>
   {:else}
+    <h2>Average Cadence vs Resistance</h2>
     <LineChart
       title="Average Cadence vs Resistance"
       {datasets}

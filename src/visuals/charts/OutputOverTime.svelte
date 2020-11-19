@@ -63,7 +63,8 @@
   let annotations;
   let chartReference;
   let isError = false;
-  const ERROR_MESSAGE = "There was an error generating the output over time chart.";
+  const ERROR_MESSAGE =
+    "There was an error generating the output over time chart.";
 
   try {
     datasets = getDatasets($organizedRidesByLength);
@@ -88,29 +89,30 @@
   });
 </script>
 
-<section>
-  <div class="section-wrapper">
-  {#if isError}
-  <p>{ERROR_MESSAGE}</p>
-  {:else}
-  <LineChart
-    title="Output Over Time"
-    {datasets}
-    {annotations}
-    isSimpleDisplay=true
-    bind:chartReference />
-  <AveragesByLength />
-  {/if}
-</div>
-</section>
-
 <style>
-  section{
-    
-  }
-  .section-wrapper{
+  .section-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 10px
+    padding: 60px 10px;
+  }
+  h2{
+    color: rgb(1, 58, 99);
   }
 </style>
+
+<section>
+  <div class="section-wrapper">
+    {#if isError}
+      <p>{ERROR_MESSAGE}</p>
+    {:else}
+      <h2>Output Over Time</h2>
+      <LineChart
+        title="Output Over Time"
+        {datasets}
+        {annotations}
+        isSimpleDisplay="true"
+        bind:chartReference />
+      <AveragesByLength />
+    {/if}
+  </div>
+</section>

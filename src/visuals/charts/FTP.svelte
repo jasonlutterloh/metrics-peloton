@@ -66,11 +66,12 @@
       {#if isError}
         <p>{ERROR_MESSAGE}</p>
       {:else}
+        <h2>Function Threshold Power (FTP) Over Time</h2>
         <LineChart
           title="Function Threshold Power (FTP) Over Time"
           {datasets}
-          isSimpleDisplay="true"
-          isDarkMode="true"
+          isSimpleDisplay=true
+          isDarkMode=true
           bind:chartReference />
       {/if}
     </div>

@@ -13,30 +13,25 @@
 
 <style>
   main {
-    /* max-width: 1200px; */
     margin: 0 auto;
-    /* padding: 20px 0; */
   }
 </style>
 
 <main>
   {#if $isError}
     <ErrorMessage>
-      Sorry, an error occurred while processing the workout data.
+      Sorry, an error occurred while processing the data. Please try again.
     </ErrorMessage>
-  {/if}
-  {#if $mappedCSVData.length > 0}
-  
-    <OutputOverTime />
-    <AverageOutput />
-
-    <FTP />
-
-    <!-- <PersonalRecords /> // May use this again but needs styling-->
-    <ClassesTakenByInstructor />
-    <AverageCadenceVsResistance />
-    <TopFiveSection />
-    <TotalsCard />
+  {:else}
+    {#if $mappedCSVData.length > 0}
+      <OutputOverTime />
+      <AverageOutput />
+      <FTP />
+      <ClassesTakenByInstructor />
+      <AverageCadenceVsResistance />
+      <TopFiveSection />
+      <TotalsCard />
+    {/if}
   {/if}
   <CSVUpload />
 </main>
