@@ -13,7 +13,7 @@ export const calculateFTP = (number) => {
 
 export const getPlotPointsByDate = (data, yAttribute, dateAttribute) => {
   return data.map((object) => {
-    if (object[yAttribute] && object[dateAttribute]) {
+    if (object[yAttribute] != null && object[dateAttribute] != null) {
       const date = getReadableDate(object[dateAttribute]);
       const yAxis = getRoundNumber(object[yAttribute]);
       return createPlotPoint(date, yAxis);

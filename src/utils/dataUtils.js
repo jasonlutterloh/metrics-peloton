@@ -5,10 +5,8 @@ export const getAverageFromArray = (array, key) => {
   }
   array.forEach((data) => {
     const value = data[key];
-    if (value) {
+    if (value != null) {
       sum = sum + value;
-    } else {
-      throw new Error("Bad data. Object did not contain the given key.");
     }
   });
   return Math.round(sum / array.length);

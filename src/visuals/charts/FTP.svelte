@@ -55,7 +55,7 @@
 
 <style>
   section {
-    background: #16679a;
+    background: #04a6c2ff;
     color: #fff;
   }
 </style>

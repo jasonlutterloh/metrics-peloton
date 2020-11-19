@@ -23,18 +23,6 @@ describe("getAverageFromArray", () => {
     ];
     expect(getAverageFromArray(testData, "output")).toBe(10);
   });
-  it("should throw an error if that do not contain the given key", () => {
-    const testData = [
-      {output: 10},
-      {output: 10},
-      {notOutput: 20},
-      {output: 10},
-      {output: 10},
-    ];
-    expect(() => {
-      getAverageFromArray(testData, "output");
-    }).toThrowError();
-  });
   it("should handle an empty input by return a zero", () => {
     expect(getAverageFromArray([], "output")).toBe(0);
   });
