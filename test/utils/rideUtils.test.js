@@ -13,6 +13,7 @@ const {
   getAverageCadence,
   getAverageResistance,
   getOrganizedRidesSortedByOutput,
+  getAverageOutputByRideType,
 } = require("../../src/utils/rideUtils");
 import {sampleData1} from "./sampleData";
 
@@ -306,3 +307,12 @@ describe("getOrganizedRidesSortedByOutput", () => {
   });
 });
 
+describe("getAverageOutputByRideType", ()=> {
+  it("should return an array of objects containing ride types and an average output number", () => {
+    const result = getAverageOutputByRideType(sampleData);
+    result.forEach((item) => {
+      expect(item).toHaveProperty("type");
+      expect(item).toHaveProperty("averageOutput");
+    });
+  });
+});
