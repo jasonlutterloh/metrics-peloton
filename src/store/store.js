@@ -11,6 +11,7 @@ import {
   getAverageCadence,
   getAverageResistance,
   getOrganizedRidesSortedByOutput,
+  getAverageOutputByRideType,
 } from "../utils/rideUtils";
 import {sliceArrayByGivenMax, getTotalByAttribute} from "../utils/dataUtils";
 import {mapCSVData} from "../utils/fileUtils";
@@ -71,6 +72,8 @@ export const averageCadence = derived(filteredData, ($filteredData) => getAverag
 export const averageResistance = derived(filteredData, ($filteredData) => getAverageResistance($filteredData));
 
 export const classesTakenPerInstructor = derived(filteredData, ($filteredData) => getClassesTakenByInstructor($filteredData));
+
+export const averageOutputByRideType = derived(filteredData, ($filteredData) => getAverageOutputByRideType($filteredData));
 
 // Sort rides by time
 export const organizedRidesByLength = derived(filteredData, ($filteredData) => {

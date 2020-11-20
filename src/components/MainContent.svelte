@@ -10,6 +10,7 @@
   import TopFiveSection from "../visuals/TopFiveSection.svelte";
   import TotalsCard from "../visuals/TotalsCard.svelte";
 import InfoMessage from "./InfoMessage.svelte";
+import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
 </script>
 
 <style>
@@ -30,6 +31,7 @@ import InfoMessage from "./InfoMessage.svelte";
       <FTP />
       <ClassesTakenByInstructor />
       <AverageCadenceVsResistance />
+      <AverageOutputByRideType />
       <TopFiveSection />
       <TotalsCard />
       {:else}

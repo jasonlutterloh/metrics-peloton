@@ -59,24 +59,27 @@ export const getUniqueRideTypes = (data) => {
   const uniqueRideTypes = [
     ...new Set(
         data.map((ride) => {
-          const MIN = "min";
-          const originalTitle = ride.title;
-          const startIndex =
-          originalTitle.toLowerCase().indexOf(MIN) + MIN.length + 1; // 1 for space
-          let endIndex = originalTitle.toLowerCase().indexOf("ride") - 1; // 1 for space
-          if (endIndex < 0) {
-            endIndex = originalTitle.toLowerCase().indexOf("home") - 1; // Fixes an issue with Live From Home rides
-          }
-
-          if (endIndex < 0) {
-            endIndex = originalTitle.length;
-          }
-          return originalTitle.substring(startIndex, endIndex);
+          return trimTitle(ride.title);
         }),
     ),
   ];
 
   return uniqueRideTypes;
+};
+
+export const trimTitle = (title) => {
+  const MIN = "min";
+  const originalTitle = title;
+  const startIndex = originalTitle.toLowerCase().indexOf(MIN) + MIN.length + 1; // 1 for space
+  let endIndex = originalTitle.toLowerCase().indexOf("ride") - 1; // 1 for space
+  if (endIndex < 0) {
+    endIndex = originalTitle.toLowerCase().indexOf("home") - 1; // Fixes an issue with Live From Home rides
+  }
+
+  if (endIndex < 0) {
+    endIndex = originalTitle.length;
+  }
+  return originalTitle.substring(startIndex, endIndex);
 };
 
 export const getBestRide = (cyclingData) => {
@@ -249,4 +252,29 @@ export const getOrganizedRidesSortedByOutput = (data) => {
   return newOrganizedRides;
 };
 
+
+export const getAverageOutputByRideType = (data) => {
+  const groupedRides = groupBy(data, "type");
+  const averageOutputs = [];
+  Object.keys(groupedRides).forEach((key) => {
+    const average = getAverageFromArray(groupedRides[key], "averageOutput");
+    const result = {};
+    result["type"] = key;
+    result["averageOutput"] = average;
+    averageOutputs.push(result);
+  });
+  const sortedAverageOutputs = sortArrayByAttributeInObject(averageOutputs, "averageOutput");
+  return sortedAverageOutputs;
+};
+
+// Source: https://stackoverflow.com/questions/14696326/break-array-of-objects-into-separate-arrays-based-on-a-property
+const groupBy = (arr, property) => {
+  return arr.reduce(function(result, x) {
+    if (!result[x[property]]) {
+      result[x[property]] = [];
+    }
+    result[x[property]].push(x);
+    return result;
+  }, {});
+};
 
