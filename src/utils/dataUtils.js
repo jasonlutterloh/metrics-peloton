@@ -1,3 +1,9 @@
+/**
+ * Returns the average of a number value within the objects of an array
+ * @param {array} array Array of objects
+ * @param {string} key Attribute pointing to a number within the objects of an array to get the average of
+ * @return {number} Average
+ */
 export const getAverageFromArray = (array, key) => {
   let sum = 0;
   if (array.length === 0) {
@@ -12,6 +18,12 @@ export const getAverageFromArray = (array, key) => {
   return Math.round(sum / array.length);
 };
 
+/**
+ * Sorts an array of objects based on a given object attribute
+ * @param {array} array Array of objects
+ * @param {string} attribute Attribute pointing to a numerical value within the objects
+ * @return {array}
+ */
 export const sortArrayByAttributeInObject = (array, attribute) => {
   // Concat so we dont change the original
   return array
@@ -23,7 +35,12 @@ export const sortArrayByAttributeInObject = (array, attribute) => {
   // Reverse will return from highest to lowest
 };
 
-// Assumes to pull from bottom to top
+/**
+ * Slices an array by a given max
+ * @param {array} array
+ * @param {number} max Resulting array length
+ * @return {array} Sliced Array
+ */
 export const sliceArrayByGivenMax = (array, max) => {
   const arrayLength = array.length;
 
@@ -34,9 +51,15 @@ export const sliceArrayByGivenMax = (array, max) => {
   return array;
 };
 
-export const getUniqueValuesFromDataArrayByAttribute = (data, attribute) => {
+/**
+ * Extracts an array of unique values contained within an attribute contained within each object in an array.
+ * @param {array} array Array of objects
+ * @param {string} attribute Attribute to get unique values from
+ * @return {array} Unique Values
+ */
+export const getUniqueValuesFromDataArrayByAttribute = (array, attribute) => {
   const values = [...new Set(
-      data
+      array
           .filter((item) => item[attribute] != "") // Needed to filter out scenic rides without an instructor
           .map((item) => {
             if (item[attribute]) {
@@ -52,9 +75,15 @@ export const getUniqueValuesFromDataArrayByAttribute = (data, attribute) => {
   return values;
 };
 
-export const getTotalByAttribute = (data, key) => {
+/**
+ * Returns the sum of a number value within the objects of an array
+ * @param {array} array Array of objects
+ * @param {string} key Attribute pointing to a number within the objects of an array to get the sum of
+ * @return {number} Sum
+ */
+export const getTotalByAttribute = (array, key) => {
   let sum = 0;
-  data.forEach((element) => {
+  array.forEach((element) => {
     const value = element[key];
     if (value) {
       sum = sum + value;

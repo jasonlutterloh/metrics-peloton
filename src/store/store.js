@@ -1,11 +1,11 @@
 import {writable, derived} from "svelte/store";
 import {
   filterRidesByTitle,
-  organizeRidesByLength,
+  organizeRidesByDuration,
   energy,
   getAverageOutputs,
   getUniqueRideTypes,
-  getAverageOutputByRideLength,
+  getAverageOutputByRideDuration,
   filterSameDayRides,
   getClassesTakenByInstructor,
   getAverageCadence,
@@ -16,26 +16,44 @@ import {
 import {sliceArrayByGivenMax, getTotalByAttribute} from "../utils/dataUtils";
 import {mapCSVData} from "../utils/fileUtils";
 
+/**
+ * Store boolean for whether or not an error has occurred.
+ */
 export const isError = writable(false);
-// Initialize data store
+
+/**
+ * Store for uploaded CSV data
+ */
 export const csvData = writable();
 
-// Default to Cycling. This just allows for flexibility long term
-export const selectedFitnessDiscipline = writable("Cycling");
-
+/**
+ * Store for the number of rides to filter/show within the app
+ */
 export const ridesToShow = writable(200);
 
-// Initialize filters
+/**
+ * Store for the strings from which to filter ride types based on ride title.
+ * Initialized with ride types that would adversely effect calculating averages
+ */
 export const rideTitleFilters = writable(["Intervals & Arms", "Cool Down", "Warm Up", "Recovery"]);
 
+/**
+ * Store for the FTP test filter. Used as an inverse filter.
+ */
 export const ftpTestFilter = writable(["FTP Test Ride"]);
 
+/**
+ * Store for option of whether or not to show same day rides.
+ */
 export const showSameDayRides = writable(false);
 
-export const mappedCSVData = derived([csvData, selectedFitnessDiscipline, showSameDayRides, ridesToShow],
-    ([$csvData, $selectedFitnessDiscipline, $showSameDayRides, $ridesToShow]) => {
+/**
+ * Store containing the parsed CSV data, sliced by `ridesToShow` and without same day rides (based on `showSameDayRides`)
+ */
+export const mappedCSVData = derived([csvData, showSameDayRides, ridesToShow],
+    ([$csvData, $showSameDayRides, $ridesToShow]) => {
       if ($csvData) {
-        let mappedData = mapCSVData($csvData, $selectedFitnessDiscipline);
+        let mappedData = mapCSVData($csvData);
         mappedData = sliceArrayByGivenMax(mappedData, $ridesToShow);
         if (!$showSameDayRides) {
           filterSameDayRides(mappedData);
@@ -46,39 +64,74 @@ export const mappedCSVData = derived([csvData, selectedFitnessDiscipline, showSa
       return [];
     });
 
-// Get ride types
+/**
+ * Store with the unique ride types contained within the data set
+ */
 export const rideTypes = derived(mappedCSVData, ($mappedCSVData) => getUniqueRideTypes($mappedCSVData));
 
+/**
+ * Store of filtered ride data (`mappedCSVData` fitlered by `rideTitleFilters`)
+ */
 export const filteredData = derived([mappedCSVData, rideTitleFilters],
     ([$mappedCSVData, $rideTitleFilters]) => filterRidesByTitle($mappedCSVData, $rideTitleFilters));
 
-// get FTP Test Rides
+/**
+ * Store of filtered FTP ride data (`mappedCSVData` inversely fitlered by `ftpTestFilter`)
+ */
 export const ftpTestRides = derived([mappedCSVData, ftpTestFilter],
     ([$mappedCSVData, $ftpTestFilter]) => filterRidesByTitle($mappedCSVData, $ftpTestFilter, true));
 
+/**
+ * Store of total distance of all filtered rides
+ */
 export const totalDistance = derived(filteredData, ($filteredData) => getTotalByAttribute($filteredData, "distance"));
 
+/**
+ * Store of total calories burned in all filtered rides
+ */
 export const totalCalories = derived(filteredData, ($filteredData) => getTotalByAttribute($filteredData, "calories"));
 
+/**
+ * Store of total minutes spent of all filtered rides
+ */
 export const totalMinutes = derived(filteredData, ($filteredData) => getTotalByAttribute($filteredData, "duration"));
-// Get average outputs
+
+/**
+ * Store of average outputs of all rides
+ */
 export const averageOutputs = derived(filteredData, ($filteredData) => getAverageOutputs($filteredData));
 
-// need to store ftpRides somewhere
+/**
+ * Store of all FTP test ride average outputs
+ */
 export const ftpAverageOutputs = derived(ftpTestRides, ($ftpTestRides) => getAverageOutputs($ftpTestRides, energy.WATTS));
 
+/**
+ * Store of the average cadences for all filtered rides
+ */
 export const averageCadence = derived(filteredData, ($filteredData) => getAverageCadence($filteredData));
 
+/**
+ * Store of the average resistances for all filtered rides
+ */
 export const averageResistance = derived(filteredData, ($filteredData) => getAverageResistance($filteredData));
 
+/**
+ * Store of the count of classes taken by each instructor
+ */
 export const classesTakenPerInstructor = derived(filteredData, ($filteredData) => getClassesTakenByInstructor($filteredData));
 
+/**
+ * Store of the average outputs organized by ride type
+ */
 export const averageOutputByRideType = derived(filteredData, ($filteredData) => getAverageOutputByRideType($filteredData));
 
-// Sort rides by time
-export const organizedRidesByLength = derived(filteredData, ($filteredData) => {
+/**
+ * Store of all filtered rides organized by ride duration
+ */
+export const organizedRidesByDuration = derived(filteredData, ($filteredData) => {
   try {
-    return organizeRidesByLength($filteredData);
+    return organizeRidesByDuration($filteredData);
   } catch (e) {
     isError.set(true);
     console.error("Could not parse data to organize the rides by length");
@@ -86,11 +139,17 @@ export const organizedRidesByLength = derived(filteredData, ($filteredData) => {
   }
 });
 
-export const averagesByLength = derived(organizedRidesByLength, ($organizedRidesByLength) => getAverageOutputByRideLength($organizedRidesByLength));
+/**
+ * Store of average outputs by duration
+ */
+export const averageOutputsByDuration = derived(organizedRidesByDuration, ($organizedRidesByDuration) => getAverageOutputByRideDuration($organizedRidesByDuration));
 
-export const organizedRidesSortedByOutput = derived(organizedRidesByLength, ($organizedRidesByLength) => {
+/**
+ * Store of the rides sorted by output within keys of duration
+ */
+export const organizedRidesSortedByOutput = derived(organizedRidesByDuration, ($organizedRidesByDuration) => {
   try {
-    return getOrganizedRidesSortedByOutput($organizedRidesByLength);
+    return getOrganizedRidesSortedByOutput($organizedRidesByDuration);
   } catch (e) {
     isError.set(true);
     console.error("Could not parse data to organize the rides sorted by output");

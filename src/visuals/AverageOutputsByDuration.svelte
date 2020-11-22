@@ -1,5 +1,5 @@
 <script>
-  import {averagesByLength} from "../store/store.js";
+  import {averageOutputsByDuration} from "../store/store.js";
 </script>
 
 <style>
@@ -32,9 +32,9 @@
   }
 </style>
 
-<h3 class="sr-only">Averages By Ride Length</h3>
+<h3 class="sr-only">Average Outputs By Ride Duration</h3>
 <ul>
-  {#each $averagesByLength as average}
+  {#each $averageOutputsByDuration as average}
     <li style="background-color:{average.color}">
       <span>{average.duration} Minute Average</span>
       <span>{average.value}</span>

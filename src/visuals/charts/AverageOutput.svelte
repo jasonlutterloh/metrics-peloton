@@ -3,13 +3,14 @@
   import {averageOutputs} from "../../store/store.js";
   import {getPlotPointsByDate} from "../../utils/chartUtils";
 
+  const CHART_TITLE = "Average Output Per Minute";
   const getDatasets = (data) => {
     const averageData = getPlotPointsByDate(data, "average", "createdAt");
     return {
       datasets: [
         {
           borderColor: "#efefef",
-          label: "Average Output Per Minute",
+          label: CHART_TITLE,
           data: averageData,
           fill: false,
           lineTension: 0,
@@ -23,7 +24,7 @@
   let chartReference;
   let isError = false;
   const ERROR_MESSAGE =
-    "There was an error generating the Average Output chart.";
+    "There was an error generating the "+CHART_TITLE+" chart.";
 
   try {
     datasets = getDatasets($averageOutputs);
@@ -51,9 +52,9 @@
   {#if isError}
     <p>{ERROR_MESSAGE}</p>
   {:else}
-    <h2>Average Output Per Minute</h2>
+    <h2>{CHART_TITLE}</h2>
     <LineChart
-      title="Average Output Per Minute"
+      title=CHART_TITLE
       {datasets}
       isDarkMode = true
       isSimpleDisplay = true

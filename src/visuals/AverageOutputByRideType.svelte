@@ -37,6 +37,7 @@
   .chart-value{
     background: #fff;
     color: #048ba8ff;
+    font-size: 16px;
     position: relative;
   }
   p{

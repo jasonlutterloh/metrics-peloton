@@ -1,9 +1,9 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
-  import {organizedRidesByLength} from "../../store/store.js";
+  import {organizedRidesByDuration} from "../../store/store.js";
   import {getAverageFromArray} from "../../utils/dataUtils.js";
   import {getPlotPointsByDate} from "../../utils/chartUtils";
-  import AveragesByLength from "../AveragesByLength.svelte";
+  import AverageOutputsByDuration from "../AverageOutputsByDuration.svelte";
   import {getColorBasedOnArrayLengthAndIndex} from "../../utils/colorUtils";
 
   const getDatasets = (ridesByDuration) => {
@@ -67,14 +67,14 @@
     "There was an error generating the output over time chart.";
 
   try {
-    datasets = getDatasets($organizedRidesByLength);
-    annotations = getAnnotations($organizedRidesByLength);
+    datasets = getDatasets($organizedRidesByDuration);
+    annotations = getAnnotations($organizedRidesByDuration);
   } catch (e) {
     isError = true;
     console.error(ERROR_MESSAGE, e);
   }
 
-  organizedRidesByLength.subscribe((value) => {
+  organizedRidesByDuration.subscribe((value) => {
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
@@ -112,7 +112,7 @@
         {annotations}
         isSimpleDisplay="true"
         bind:chartReference />
-      <AveragesByLength />
+      <AverageOutputsByDuration />
     {/if}
   </div>
 </section>

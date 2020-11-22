@@ -1,5 +1,10 @@
 import {trimTitle} from "./rideUtils";
 
+/**
+ * Converts a CSV to JSON
+ * @param {string} csv CSV
+ * @return {json} Parsed CSV as JSON
+ */
 export const csvToJson = (csv) => {
   const lines = csv.split("\n");
   const result = [];
@@ -25,6 +30,12 @@ export const csvToJson = (csv) => {
   return result;
 };
 
+/**
+ * Maps the given Peloton Workouts parsed CSV to JSON
+ * @param {array} data parsed Peloton CSV Workout Data as JSON
+ * @param {string} discipline Default: Cycling
+ * @return {array} Cycling Data
+ */
 export const mapCSVData = (data, discipline = "Cycling") => {
   const mappedData = [];
 
@@ -59,6 +70,11 @@ export const mapCSVData = (data, discipline = "Cycling") => {
   return mappedData;
 };
 
+/**
+ * Returns if ride title contains "just ride" or not
+ * @param {string} title
+ * @return {boolean}
+ */
 const isJustRide = (title) => {
   return title.toLowerCase().includes("just ride");
 };

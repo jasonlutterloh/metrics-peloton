@@ -24,6 +24,10 @@ export const colors ={
 //   yaleblue: "#1d4e89ff",
 //   prussianblue: "#012A4A",
 // };
+
+/**
+ * @return {array} The default array of colors for the site
+ */
 export const getDefaultColorArray = () => {
   const keys = Object.keys(colors);
   const array = [];
@@ -33,6 +37,13 @@ export const getDefaultColorArray = () => {
   return array;
 };
 
+/**
+ * Returns a color value based on length of array and a given index.
+ * This is used to generate a proper mix of colors no matter the data input.
+ * @param {number} lengthOfArray Length of data array
+ * @param {number} index Index of the data in lengthOfArray for which you need a color
+ * @return {string} HEX color value
+ */
 export const getColorBasedOnArrayLengthAndIndex = (lengthOfArray, index) => {
   if (index >= lengthOfArray) {
     throw new Error("Index is out of range");
@@ -46,6 +57,13 @@ export const getColorBasedOnArrayLengthAndIndex = (lengthOfArray, index) => {
   return color;
 };
 
+/**
+ * Returns an array of colors based on the length given.
+ * If the length given is greater than the predefined colors,
+ * a neutral gray will be used repeated for the remaining indexes.
+ * @param {number} length Length of array to be returned
+ * @return {array} Array of HEX colors based with the given length
+ */
 export const getColorArrayBasedOnLength = (length) => {
   const array = [];
   for (let index = 0; index < length; index++) {

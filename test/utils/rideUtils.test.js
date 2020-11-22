@@ -1,14 +1,14 @@
 const {
   filterRidesByTitle,
-  getRidesByLength,
-  organizeRidesByLength,
+  getRidesByDuration,
+  organizeRidesByDuration,
   getUniqueRideTypes,
-  getBestRide,
-  getBestRidesByLength,
+  getHighestOutputRide,
+  getHighestOutputRidesByDuration,
   getAverageOutputs,
   filterSameDayRides,
   getDatesWithMultipleRides,
-  getAverageOutputByRideLength,
+  getAverageOutputByRideDuration,
   getClassesTakenByInstructor,
   getAverageCadence,
   getAverageResistance,
@@ -62,24 +62,24 @@ describe("filterRidesByTitle", () => {
   });
 });
 
-describe("getRidesByLength", () => {
+describe("getRidesByDuration", () => {
   it("should return all rides that start with the given length", () => {
     const rideLength = 30;
-    const result = getRidesByLength(sampleData, rideLength);
+    const result = getRidesByDuration(sampleData, rideLength);
     result.forEach((element) => {
       expect(element.title.startsWith(rideLength)).toBe(true);
     });
   });
   it("should return no rides if none match the given length", () => {
     const rideLength = 60;
-    const result = getRidesByLength(sampleData, rideLength);
+    const result = getRidesByDuration(sampleData, rideLength);
     expect(result).toHaveLength(0);
   });
 });
 
-describe("organizeRidesByLength", () => {
+describe("organizeRidesByDuration", () => {
   it("should organize ride arrays in an object by length", () => {
-    const organizedRides = organizeRidesByLength(sampleData);
+    const organizedRides = organizeRidesByDuration(sampleData);
     expect(Object.keys(organizedRides).length).toBe(3);
     expect(organizedRides[20].length).toBe(2);
     expect(organizedRides[30].length).toBe(4);
@@ -91,12 +91,12 @@ describe("organizeRidesByLength", () => {
     });
   });
   it("should handle an empty array gracefully", () => {
-    expect(organizeRidesByLength([])).toMatchObject({});
+    expect(organizeRidesByDuration([])).toMatchObject({});
   });
   it("should throw an error if data does not include duration", () => {
     const badData = [...sampleData, {title: "30 Min I dont have a duration"}];
     expect(() => {
-      organizeRidesByLength(badData);
+      organizeRidesByDuration(badData);
     }).toThrowError();
   });
 });
@@ -117,20 +117,20 @@ describe("getUniqueRideTypes", () => {
   });
 });
 
-describe("getBestRide", () => {
+describe("getHighestOutputRide", () => {
   it("should return the ride object with the highest output", () => {
-    const result = getBestRide(sampleData);
+    const result = getHighestOutputRide(sampleData);
     // Hardcoded the first record has having the highest output
     expect(result).toMatchObject(sampleData[0]);
   });
   it("should return an error if input is empty", () => {
-    expect(() => getBestRide([])).toThrowError();
+    expect(() => getHighestOutputRide([])).toThrowError();
   });
 });
 
-describe("getBestRidesByLength", () => {
+describe("getHighestOutputRidesByDuration", () => {
   it("should return the best rides by length", () => {
-    const result = getBestRidesByLength(organizeRidesByLength(sampleData));
+    const result = getHighestOutputRidesByDuration(organizeRidesByDuration(sampleData));
 
     // 45 Minute Ride
     expect(result[2]).toMatchObject(sampleData[0]);
@@ -220,10 +220,10 @@ describe("filterSameDayRides", () => {
   });
 });
 
-describe("getAverageOutputByRideLength", () => {
+describe("getAverageOutputByRideDuration", () => {
   it("should organize ride arrays in an object by length", () => {
-    const organizedRides = organizeRidesByLength(sampleData);
-    const result = getAverageOutputByRideLength(organizedRides);
+    const organizedRides = organizeRidesByDuration(sampleData);
+    const result = getAverageOutputByRideDuration(organizedRides);
 
     expect(result).toHaveLength(3);
     result.forEach((element) => {
@@ -291,7 +291,7 @@ describe("getAverageResistance", () => {
 
 describe("getOrganizedRidesSortedByOutput", () => {
   it("should return the organized rides sorted by output", () => {
-    const data = organizeRidesByLength(sampleData);
+    const data = organizeRidesByDuration(sampleData);
     const result = getOrganizedRidesSortedByOutput(data);
     const keys = Object.keys(result);
 

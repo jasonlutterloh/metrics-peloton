@@ -1,9 +1,15 @@
 import {getAverageFromArray, sortArrayByAttributeInObject, getUniqueValuesFromDataArrayByAttribute} from "./dataUtils";
 import {getColorBasedOnArrayLengthAndIndex} from "./colorUtils";
 
-// This needs cleanup but had to fix a defect fast. Unit tests coming to help out with this.
-export const filterRidesByTitle = (data, filters, matching = false) => {
-  const filteredData = data.filter((ride) => {
+/**
+ * Filters Peloton Workout data by the given filters on ride titles
+ * @param {array} rideData Array of Peloton ride data
+ * @param {array} filters Array of strings to filter ride titles on
+ * @param {boolean} matching Determins if the filter should be inclusive or exclusive. Default is exclusive.
+ * @return {array} Filtered Peloton Workout data
+ */
+export const filterRidesByTitle = (rideData, filters, matching = false) => {
+  const filteredRideData = rideData.filter((ride) => {
     let isFiltered = false;
     if (ride.title) {
       if (!matching) {
@@ -26,19 +32,30 @@ export const filterRidesByTitle = (data, filters, matching = false) => {
     }
   });
 
-  return filteredData;
+  return filteredRideData;
 };
 
-export const getRidesByLength = (data, length) => {
-  return data.filter((ride) => ride.title.startsWith(length));
+/**
+ * Returns an array of ride objects that begin with the given duration
+ * @param {array} rideData Peloton ride data
+ * @param {string} duration duration of rides to return (ie. 30)
+ * @return {array} Array of ride objects that begin with the given duration
+ */
+export const getRidesByDuration = (rideData, duration) => {
+  return rideData.filter((ride) => ride.title.startsWith(duration));
 };
 
-export const organizeRidesByLength = (data) => {
-  const ridesByLength = {};
+/**
+ * Returns an object containing ride data mapped by duration keys
+ * @param {array} rideData Peloton ride data
+ * @return {object} An object with keys that match the unique ride durations
+ */
+export const organizeRidesByDuration = (rideData) => {
+  const rides = {};
 
   const uniqueRideDurations = [
     ...new Set(
-        data.map((ride) => {
+        rideData.map((ride) => {
           if (ride.duration) {
             return ride.duration;
           }
@@ -48,17 +65,22 @@ export const organizeRidesByLength = (data) => {
   ];
 
   uniqueRideDurations.forEach((duration) => {
-    ridesByLength[duration.toString()] = getRidesByLength(data, duration);
+    rides[duration.toString()] = getRidesByDuration(rideData, duration);
   });
 
-  return ridesByLength;
+  return rides;
 };
 
-export const getUniqueRideTypes = (data) => {
+/**
+ * Parses ride titles to get an array of ride types
+ * @param {array} rideData Peloton ride data
+ * @return {array} Unique ride types
+ */
+export const getUniqueRideTypes = (rideData) => {
   // Relies on ride titles matching similar to "45 Min Tabata Ride" format
   const uniqueRideTypes = [
     ...new Set(
-        data.map((ride) => {
+        rideData.map((ride) => {
           return trimTitle(ride.title);
         }),
     ),
@@ -67,6 +89,11 @@ export const getUniqueRideTypes = (data) => {
   return uniqueRideTypes;
 };
 
+/**
+ * Removes duration information and the "Ride" suffix from a string
+ * @param {string} title Ride Title
+ * @return {string} Trimmed ride title
+ */
 export const trimTitle = (title) => {
   const MIN = "min";
   const originalTitle = title;
@@ -82,10 +109,15 @@ export const trimTitle = (title) => {
   return originalTitle.substring(startIndex, endIndex);
 };
 
-export const getBestRide = (cyclingData) => {
-  if (cyclingData && cyclingData.length > 0) {
-    const bestTotalWork = Math.max(...cyclingData.map((ride) => ride.output), 0);
-    const bestRide = cyclingData.find(function(ride) {
+/**
+ * Returns a best ride by output
+ * @param {array} rideData Peloton ride data
+ * @return {object} Best ride by output
+ */
+export const getHighestOutputRide = (rideData) => {
+  if (rideData && rideData.length > 0) {
+    const bestTotalWork = Math.max(...rideData.map((ride) => ride.output), 0);
+    const bestRide = rideData.find(function(ride) {
       return ride.output == bestTotalWork;
     });
 
@@ -94,11 +126,16 @@ export const getBestRide = (cyclingData) => {
   throw new Error("Bad input");
 };
 
-export const getBestRidesByLength = (data) => {
+/**
+ * Returns an object of duration keys with a best ride by output for each
+ * @param {array} rideData Peloton ride data
+ * @return {object}
+ */
+export const getHighestOutputRidesByDuration = (rideData) => {
   const bestRides = [];
-  if (data) {
-    Object.keys(data).forEach((key, index) => {
-      const ride = getBestRide(data[key]);
+  if (rideData) {
+    Object.keys(rideData).forEach((key, index) => {
+      const ride = getHighestOutputRide(rideData[key]);
       bestRides.push(ride);
     });
   }
@@ -110,9 +147,15 @@ export const energy = {
   KILOJOULES: "kj",
 };
 
-export const getAverageOutputs = (data, units = energy.KILOJOULES) => {
+/**
+ * Get average outputs for all given rides
+ * @param {array} rideData Peloton ride data
+ * @param {energy} units kj (default) or watts
+ * @return {array}  Average Outputs
+ */
+export const getAverageOutputs = (rideData, units = energy.KILOJOULES) => {
   const outputs = [];
-  data.forEach((ride) => {
+  rideData.forEach((ride) => {
     const averageOutputPerMinute = ride.output / ride.duration;
     const output = {};
     output["average"] =
@@ -125,13 +168,17 @@ export const getAverageOutputs = (data, units = energy.KILOJOULES) => {
   return outputs;
 };
 
-
-export const getDatesWithMultipleRides = (data) => {
+/**
+ * Gets an array of dates that had multiple rides
+ * @param {array} rideData Peloton ride data
+ * @return {array} Dates containing multiple rides
+ */
+export const getDatesWithMultipleRides = (rideData) => {
   const datesWithMultipleRides = [];
-  const uniqueDates = getUniqueValuesFromDataArrayByAttribute(data, "date");
+  const uniqueDates = getUniqueValuesFromDataArrayByAttribute(rideData, "date");
   // Determine which dates have multiple rides
   uniqueDates.forEach((date) => {
-    const ridesOnSpecificDate = data.filter((effort) => {
+    const ridesOnSpecificDate = rideData.filter((effort) => {
       return effort.date === date;
     });
 
@@ -142,16 +189,21 @@ export const getDatesWithMultipleRides = (data) => {
   return datesWithMultipleRides;
 };
 
-export const filterSameDayRides = (data) => {
-  if (data) {
-    const datesWithMultipleRides = getDatesWithMultipleRides(data);
+/**
+ * Filters out all but the highest output ride for rides that occurred on the same day.
+ * @param {array} rideData Peloton ride data
+ * @return {array} Peloton ride data
+ */
+export const filterSameDayRides = (rideData) => {
+  if (rideData) {
+    const datesWithMultipleRides = getDatesWithMultipleRides(rideData);
 
     // Find best ride for days with multiple rides
     datesWithMultipleRides.forEach((date) => {
-      const ridesOnSpecificDay = data.filter((effort) => {
+      const ridesOnSpecificDay = rideData.filter((effort) => {
         return date == effort.date;
       });
-      const bestRideForDay = getBestRide(ridesOnSpecificDay);
+      const bestRideForDay = getHighestOutputRide(ridesOnSpecificDay);
 
       // Remove best ride from ones to remove
       const bestRideIndex = ridesOnSpecificDay.indexOf(bestRideForDay);
@@ -159,21 +211,26 @@ export const filterSameDayRides = (data) => {
 
       // Remove all rides for that day
       ridesOnSpecificDay.forEach((rideToRemove) => {
-        const index = data.indexOf(rideToRemove);
-        data.splice(index, 1);
+        const index = rideData.indexOf(rideToRemove);
+        rideData.splice(index, 1);
       });
     });
   }
 
-  return data;
+  return rideData;
 };
 
-export const getAverageOutputByRideLength = (data) => {
+/**
+ * Returns average output by duration lengths
+ * @param {array} rideData Peloton ride data
+ * @return {object} Object with keys (duration) containing information about the average output for each
+ */
+export const getAverageOutputByRideDuration = (rideData) => {
   const averages = [];
-  const durations = Object.keys(data);
+  const durations = Object.keys(rideData);
   for (const [i, duration] of durations.entries()) {
     const average = {};
-    const rides = data[duration];
+    const rides = rideData[duration];
     average["value"] = getAverageFromArray(rides, "output");
     average["color"] = getColorBasedOnArrayLengthAndIndex(durations.length, i);
     average["duration"] = duration;
@@ -182,12 +239,16 @@ export const getAverageOutputByRideLength = (data) => {
   return averages;
 };
 
-
-export const getClassesTakenByInstructor = (data) => {
+/**
+ * Gets a sorted array of instructors and the number of classes taken with each
+ * @param {array} rideData Peloton ride data
+ * @return {array}
+ */
+export const getClassesTakenByInstructor = (rideData) => {
   let classesTakenByInstructor = [];
   try {
     const uniqueInstructors = getUniqueValuesFromDataArrayByAttribute(
-        data,
+        rideData,
         "instructor",
     );
 
@@ -195,7 +256,7 @@ export const getClassesTakenByInstructor = (data) => {
       if (instructor !== "") {
         const value = {};
         value.instructor = instructor;
-        value.count = data.filter(
+        value.count = rideData.filter(
             (ride) => ride.instructor === instructor,
         ).length;
         classesTakenByInstructor.push(value);
@@ -215,9 +276,14 @@ export const getClassesTakenByInstructor = (data) => {
   return classesTakenByInstructor;
 };
 
-export const getAverageCadence = (data) => {
+/**
+ * Gets the average cadence for each ride in the given array of data
+ * @param {array} rideData Peloton ride data
+ * @return {array} Average cadences alongside date
+ */
+export const getAverageCadence = (rideData) => {
   const cadences = [];
-  data.forEach((ride) => {
+  rideData.forEach((ride) => {
     const cadence = {};
     cadence["average"] = ride.averageCadence;
     cadence["createdAt"] = ride.date;
@@ -227,9 +293,14 @@ export const getAverageCadence = (data) => {
   return cadences;
 };
 
-export const getAverageResistance = (data) => {
+/**
+ * Gets the average resistance for each ride in the given array of data
+ * @param {array} rideData Peloton ride data
+ * @return {array} Average resistances alongside date
+ */
+export const getAverageResistance = (rideData) => {
   const resistances = [];
-  data.forEach((ride) => {
+  rideData.forEach((ride) => {
     const resistance = {};
     resistance["average"] = ride.averageResistance;
     resistance["createdAt"] = ride.date;
@@ -238,23 +309,32 @@ export const getAverageResistance = (data) => {
   return resistances;
 };
 
-export const getOrganizedRidesSortedByOutput = (data) => {
+/**
+ * Returns an object with keys (duration) containing rides sorted by output
+ * @param {array} rideData Peloton ride data
+ * @return {object}
+ */
+export const getOrganizedRidesSortedByOutput = (rideData) => {
   const newOrganizedRides = {};
-  const durations = Object.keys(data);
+  const durations = Object.keys(rideData);
 
   // eslint-disable-next-line no-unused-vars
   for (const [i, duration] of durations.entries()) {
     newOrganizedRides[duration] = sortArrayByAttributeInObject(
-        data[duration],
+        rideData[duration],
         "output",
     );
   }
   return newOrganizedRides;
 };
 
-
-export const getAverageOutputByRideType = (data) => {
-  const groupedRides = groupBy(data, "type");
+/**
+ * Returns a sorted array of ride types alongside each's average output
+ * @param {array} rideData Peloton ride data
+ * @return {array} Sorted array of objects containing ride type and average output
+ */
+export const getAverageOutputByRideType = (rideData) => {
+  const groupedRides = groupBy(rideData, "type");
   const averageOutputs = [];
   Object.keys(groupedRides).forEach((key) => {
     const average = getAverageFromArray(groupedRides[key], "averageOutput");
@@ -267,7 +347,13 @@ export const getAverageOutputByRideType = (data) => {
   return sortedAverageOutputs;
 };
 
-// Source: https://stackoverflow.com/questions/14696326/break-array-of-objects-into-separate-arrays-based-on-a-property
+/**
+ * Groups objects in an array by a given attribute
+ * Source: https://stackoverflow.com/questions/14696326/break-array-of-objects-into-separate-arrays-based-on-a-property
+ * @param {array} arr array of objects
+ * @param {string} property attribute within objects to group by
+ * @return {object}
+ */
 const groupBy = (arr, property) => {
   return arr.reduce(function(result, x) {
     if (!result[x[property]]) {
