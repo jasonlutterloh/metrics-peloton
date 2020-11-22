@@ -28,6 +28,7 @@
   .left-label,
   .right-label {
     font-size: 14px;
+    font-weight: bold;
     padding-bottom: 2px;
     display: inline-block;
   }

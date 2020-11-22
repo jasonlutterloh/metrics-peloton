@@ -120,6 +120,7 @@
           Download your Workout CSV from your
           <a
             target="_blank"
+            rel="noopener"
             href="https://members.onepeloton.com/profile/workouts">Peloton
             profile</a>
         </li>

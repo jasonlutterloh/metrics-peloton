@@ -24,6 +24,7 @@
   }
   span{
     flex: 0 1 auto;
+    font-size: 14px;
     text-align: center;
   }
   span:nth-of-type(2){
