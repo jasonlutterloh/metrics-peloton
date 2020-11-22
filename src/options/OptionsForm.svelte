@@ -11,8 +11,9 @@
 </style>
 
 <h2>Options</h2>
-<form>
+
   <RidesToShow />
+<form>
   <ShowSameDayRides />
   <ExcludeRideTypes />
 </form>

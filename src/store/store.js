@@ -23,7 +23,7 @@ export const csvData = writable();
 // Default to Cycling. This just allows for flexibility long term
 export const selectedFitnessDiscipline = writable("Cycling");
 
-export const ridesToShow = writable(100);
+export const ridesToShow = writable(200);
 
 // Initialize filters
 export const rideTitleFilters = writable(["Intervals & Arms", "Cool Down", "Warm Up", "Recovery"]);

@@ -30,22 +30,35 @@ export const mapCSVData = (data, discipline = "Cycling") => {
 
   data.forEach((effort) => {
     if (discipline === effort["Fitness Discipline"]) {
-      const ride = {};
-      const timestamp = effort["Workout Timestamp"];
-      ride.date = timestamp.substr(0, timestamp.indexOf(" "));
-      ride.output = parseInt(effort["Total Output"]);
-      ride.averageOutput = parseInt(effort["Avg. Watts"]);
-      ride.title = effort["Title"];
-      ride.duration = parseInt(effort["Length (minutes)"]);
-      ride.instructor = effort["Instructor Name"];
-      ride.averageCadence = effort["Avg. Cadence (RPM)"];
-      ride.averageResistance = effort["Avg. Resistance"].replace("%", "");
-      ride.distance = parseFloat(effort["Distance (mi)"]);
-      ride.calories = parseFloat(effort["Calories Burned"]);
-      ride.type = trimTitle(effort["Title"]);
-      mappedData.push(ride);
+      const output = parseInt(effort["Total Output"]);
+      const averageWatts = parseInt(effort["Avg. Watts"]);
+      const duration = parseInt(effort["Length (minutes)"]);
+      const distance = parseFloat(effort["Distance (mi)"]);
+      const title = effort["Title"];
+
+      // NaN/Null check for missing data from Peloton and Just Rides
+      if (output && averageWatts && duration && distance && !isJustRide(title)) {
+        const ride = {};
+        const timestamp = effort["Workout Timestamp"];
+        ride.date = timestamp.substr(0, timestamp.indexOf(" "));
+        ride.output = output;
+        ride.averageOutput = averageWatts;
+        ride.title = title;
+        ride.duration = duration;
+        ride.instructor = effort["Instructor Name"];
+        ride.averageCadence = effort["Avg. Cadence (RPM)"];
+        ride.averageResistance = effort["Avg. Resistance"].replace("%", "");
+        ride.distance = distance;
+        ride.calories = parseFloat(effort["Calories Burned"]);
+        ride.type = trimTitle(effort["Title"]);
+        mappedData.push(ride);
+      }
     }
   });
 
   return mappedData;
+};
+
+const isJustRide = (title) => {
+  return title.toLowerCase().includes("just ride");
 };
