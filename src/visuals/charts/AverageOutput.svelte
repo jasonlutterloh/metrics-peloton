@@ -15,6 +15,11 @@
           fill: false,
           lineTension: 0,
           pointBackgroundColor: "#fff",
+          trendlineLinear: {
+            style: "#fff",
+            lineStyle: "dotted",
+            width: 1,
+          },
         },
       ],
     };
@@ -57,7 +62,6 @@
       title=CHART_TITLE
       {datasets}
       isDarkMode = true
-      isSimpleDisplay = true
       bind:chartReference />
   {/if}
 </div>

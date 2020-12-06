@@ -1,6 +1,6 @@
 {
   "name": "peloton-metrics",
-  "version": "2.1.1",
+  "version": "2.2.1",
   "author": {
     "name": "Jason Lutterloh",
     "url": "https://lutterloh.dev"
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "chart.js": "^2.9.3",
-    "chartjs-plugin-annotation": "^0.5.7",
+    "chartjs-plugin-trendline": "^0.2.2",
     "dayjs": "^1.9.5",
     "sirv-cli": "^0.4.4",
     "svelte-simple-modal": "^0.4.2"

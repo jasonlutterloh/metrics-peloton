@@ -1,7 +1,6 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
   import {organizedRidesByDuration} from "../../store/store.js";
-  import {getAverageFromArray} from "../../utils/dataUtils.js";
   import {getPlotPointsByDate} from "../../utils/chartUtils";
   import AverageOutputsByDuration from "../AverageOutputsByDuration.svelte";
   import {getColorBasedOnArrayLengthAndIndex} from "../../utils/colorUtils";
@@ -23,6 +22,11 @@
         fill: false,
         lineTension: 0.2,
         pointBackgroundColor: color,
+        trendlineLinear: {
+          style: color,
+          lineStyle: "dotted",
+          width: 1,
+        },
       };
 
       datasets.push(dataset);
@@ -33,34 +37,7 @@
     };
   };
 
-  const getAnnotations = (ridesByDuration) => {
-    const annotations = [];
-    const durations = Object.keys(ridesByDuration);
-
-    for (const [i, duration] of durations.entries()) {
-      const rides = ridesByDuration[duration];
-      const average = getAverageFromArray(rides, "output");
-      const color = getColorBasedOnArrayLengthAndIndex(durations.length, i);
-
-      const annotation = {
-        type: "line",
-        mode: "horizontal",
-        scaleID: "y-axis-0",
-        value: average,
-        borderColor: color,
-        borderWidth: 0.5,
-      };
-      annotations.push(annotation);
-    }
-
-    return {
-      drawTime: "afterDatasetsDraw",
-      annotations: annotations,
-    };
-  };
-
   let datasets;
-  let annotations;
   let chartReference;
   let isError = false;
   const ERROR_MESSAGE =
@@ -68,7 +45,6 @@
 
   try {
     datasets = getDatasets($organizedRidesByDuration);
-    annotations = getAnnotations($organizedRidesByDuration);
   } catch (e) {
     isError = true;
     console.error(ERROR_MESSAGE, e);
@@ -78,7 +54,6 @@
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
-        chartReference.options.annotation = getAnnotations(value);
         chartReference.options.legend.display = false;
         chartReference.update();
       }
@@ -109,8 +84,6 @@
       <LineChart
         title="Output Over Time"
         {datasets}
-        {annotations}
-        isSimpleDisplay="true"
         bind:chartReference />
       <AverageOutputsByDuration />
     {/if}

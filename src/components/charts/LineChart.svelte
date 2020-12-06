@@ -1,14 +1,12 @@
 <script>
   import {onMount} from "svelte";
   import Chart from "chart.js";
-  import * as ChartAnnotation from "chartjs-plugin-annotation";
+  import chartTrendline from "chartjs-plugin-trendline";
   import {convertStringToID} from "../../utils/stringUtils";
 
   export let title;
   export let datasets;
-  export let annotations = {};
   export let isDarkMode = false;
-  export let isSimpleDisplay = false;
 
   export let chartReference = "";
   const ERROR_MESSAGE = "An error occurred creating the line chart";
@@ -18,9 +16,6 @@
   const config = {
     type: "line",
     options: {
-      // animation: {
-      //   duration: 0,
-      // },
       borderJoinStyle: "round",
       maintainAspectRatio: false,
       legend: {
@@ -36,8 +31,7 @@
         yAxes: [
           {
             gridLines: {
-              drawBorder: false,
-              display: false,
+              zeroLineColor: "rgba(255,255,255,0)",
             },
             ticks: {},
           },
@@ -51,7 +45,9 @@
               unit: "month",
               tooltipFormat: "MMM DD",
             },
-            gridLines: {},
+            gridLines: {
+              zeroLineColor: "rgba(255,255,255,0)",
+            },
             ticks: {},
           },
         ],
@@ -61,21 +57,14 @@
 
   if (isDarkMode) {
     config.options.legend.fontColor = "#efefef";
-    config.options.scales.xAxes[0].gridLines.color = "#efefef";
+    config.options.scales.xAxes[0].gridLines.color = "rgba(239,239,239,.1)";
     config.options.scales.xAxes[0].ticks.fontColor = "#efefef";
-    config.options.scales.yAxes[0].gridLines.color = "#efefef";
+    config.options.scales.yAxes[0].gridLines.color = "rgba(239,239,239,.1)";
     config.options.scales.yAxes[0].ticks.fontColor = "#efefef";
   }
-  if (isSimpleDisplay) {
-    config.options.legend.display = false;
-    config.options.scales.xAxes[0].gridLines.display = false;
-  }
+
   try {
     config.data = datasets;
-    if (annotations) {
-      config.plugins = [ChartAnnotation];
-      config.options.annotation = annotations;
-    }
   } catch (e) {
     isError = true;
     console.error(ERROR_MESSAGE, e);
@@ -83,6 +72,7 @@
 
   onMount(async () => {
     try {
+      Chart.plugins.register(chartTrendline);
       const ctx = document.getElementById(chartID);
       chartReference = new Chart(ctx, config);
     } catch (e) {
