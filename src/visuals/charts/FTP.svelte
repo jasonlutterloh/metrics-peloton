@@ -22,6 +22,11 @@
           fill: false,
           lineTension: 0,
           pointBackgroundColor: "#fff",
+          trendlineLinear: {
+            style: "#fff",
+            lineStyle: "dotted",
+            width: 1,
+          },
         },
       ],
     };
@@ -70,7 +75,6 @@
         <LineChart
           title="Function Threshold Power (FTP) Over Time"
           {datasets}
-          isSimpleDisplay=true
           isDarkMode=true
           bind:chartReference />
       {/if}

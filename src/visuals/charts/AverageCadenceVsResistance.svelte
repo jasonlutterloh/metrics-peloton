@@ -24,6 +24,11 @@
           fill: false,
           lineTension: 0,
           pointBackgroundColor: "#A9D6E5",
+          trendlineLinear: {
+            style: "#A9D6E5",
+            lineStyle: "dotted",
+            width: 1,
+          },
         },
         {
           borderColor: "#3FC1C0",
@@ -32,6 +37,11 @@
           fill: false,
           lineTension: 0,
           pointBackgroundColor: "#3FC1C0",
+          trendlineLinear: {
+            style: "#3FC1C0",
+            lineStyle: "dotted",
+            width: 1,
+          },
         },
       ],
     };
@@ -84,7 +94,6 @@
       title="Average Cadence vs Resistance"
       {datasets}
       isDarkMode=true
-      isSimpleDisplay=true
       bind:chartReference />
   {/if}
 </div>
