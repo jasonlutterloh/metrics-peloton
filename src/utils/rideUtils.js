@@ -1,5 +1,6 @@
 import {getAverageFromArray, sortArrayByAttributeInObject, getUniqueValuesFromDataArrayByAttribute} from "./dataUtils";
 import {getColorBasedOnArrayLengthAndIndex} from "./colorUtils";
+import {isDateSameOrAfterGivenDate, isDateSameOrBeforeGivenDate} from "./dateUtils";
 
 /**
  * Filters Peloton Workout data by the given filters on ride titles
@@ -33,6 +34,21 @@ export const filterRidesByTitle = (rideData, filters, matching = false) => {
   });
 
   return filteredRideData;
+};
+
+/**
+ * Filters Rides By Date
+ * @param {array} rideData Peloton ride data
+ * @param {object} dateFilters Object containing `startDate` and `endDate`
+ * @return {array} filtered data
+ */
+export const filterRidesByDate = (rideData, dateFilters) => {
+  if (dateFilters && dateFilters.hasOwnProperty("startDate") && dateFilters.hasOwnProperty("endDate")) {
+    return rideData.filter((ride) => {
+      return isDateSameOrAfterGivenDate(ride.date, dateFilters.startDate) && isDateSameOrBeforeGivenDate(ride.date, dateFilters.endDate);
+    });
+  }
+  return rideData;
 };
 
 /**

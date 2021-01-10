@@ -8,8 +8,8 @@
 </script>
 
 <style>
-  form {
-    margin-left: 10px;
+  div{
+    margin-bottom: 20px;
   }
   .option-label, button{
     display: inline-block;
@@ -19,13 +19,18 @@
   }
 </style>
 
-<form on:submit|preventDefault={updateRidesShown}>
-<label class="option-label">
-  Max Rides To Show
-  <input
-    type="number"
-    bind:value={ridesShown}
-    class="option-field" />
-</label>
-<button type="submit">Set</button>
-</form>
+<div>
+  <h3>Set Max Rides To Show</h3>
+  <p>This controls the max number of rides to display, beginning with the most recent date (ie. If value was 50, last 50 rides would show). This will potentially override the date filter.</p>
+  <form on:submit|preventDefault={updateRidesShown}>
+    <label class="option-label">
+      Max Rides To Show
+      <input
+        type="number"
+        bind:value={ridesShown}
+        class="option-field" />
+    </label>
+    <button type="submit">Set</button>
+    </form>
+</div>
+

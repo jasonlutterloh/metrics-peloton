@@ -27,6 +27,7 @@
   }
 </style>
 
+<div>
 <h3>Exclude Ride Types</h3>
 <div>
   {#each $rideTypes as type}
@@ -39,4 +40,5 @@
       {type}
     </label>
   {/each}
+</div>
 </div>

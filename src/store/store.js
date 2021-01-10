@@ -7,6 +7,7 @@ import {
   getUniqueRideTypes,
   getAverageOutputByRideDuration,
   filterSameDayRides,
+  filterRidesByDate,
   getClassesTakenByInstructor,
   getAverageCadence,
   getAverageResistance,
@@ -35,7 +36,7 @@ export const ridesToShow = writable(200);
  * Store for the strings from which to filter ride types based on ride title.
  * Initialized with ride types that would adversely effect calculating averages
  */
-export const rideTitleFilters = writable(["Intervals & Arms", "Cool Down", "Warm Up", "Recovery"]);
+export const rideTitleFilters = writable(["Intervals & Arms", "Cool Down", "Warm Up", "Recovery", "Low Impact"]);
 
 /**
  * Store for the FTP test filter. Used as an inverse filter.
@@ -47,6 +48,8 @@ export const ftpTestFilter = writable(["FTP Test Ride"]);
  */
 export const showSameDayRides = writable(false);
 
+export const dateFilter = writable({});
+
 /**
  * Store containing the parsed CSV data, sliced by `ridesToShow` and without same day rides (based on `showSameDayRides`)
  */
@@ -57,6 +60,12 @@ export const mappedCSVData = derived([csvData, showSameDayRides, ridesToShow],
         mappedData = sliceArrayByGivenMax(mappedData, $ridesToShow);
         if (!$showSameDayRides) {
           filterSameDayRides(mappedData);
+        }
+        // Set date filters
+        if (mappedData.length >= 2) {
+          const startDate = mappedData[0].date;
+          const endDate = mappedData[mappedData.length - 1].date;
+          dateFilter.set({startDate, endDate});
         }
 
         return mappedData;
@@ -72,8 +81,12 @@ export const rideTypes = derived(mappedCSVData, ($mappedCSVData) => getUniqueRid
 /**
  * Store of filtered ride data (`mappedCSVData` fitlered by `rideTitleFilters`)
  */
-export const filteredData = derived([mappedCSVData, rideTitleFilters],
-    ([$mappedCSVData, $rideTitleFilters]) => filterRidesByTitle($mappedCSVData, $rideTitleFilters));
+export const filteredData = derived([mappedCSVData, rideTitleFilters, dateFilter],
+    ([$mappedCSVData, $rideTitleFilters, $dateFilter]) => {
+      let data = filterRidesByTitle($mappedCSVData, $rideTitleFilters);
+      data = filterRidesByDate(data, $dateFilter);
+      return data;
+    });
 
 /**
  * Store of filtered FTP ride data (`mappedCSVData` inversely fitlered by `ftpTestFilter`)

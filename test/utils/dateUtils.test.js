@@ -1,4 +1,4 @@
-const {getReadableDate, getFriendlyDate} = require("../../src/utils/dateUtils");
+const {getReadableDate, getFriendlyDate, isDateSameOrBeforeGivenDate, isDateSameOrAfterGivenDate} = require("../../src/utils/dateUtils");
 
 describe("getReadableDate", () => {
   it("should return a date in the following format \"YYYY-MM-DD", () => {
@@ -17,5 +17,29 @@ describe("getFriendlyDate", () => {
   it("should return \"Invalid Date\" on a non-date string or null", () => {
     expect(getFriendlyDate("badData")).toBe("Invalid Date");
     expect(getFriendlyDate(null)).toBe("Invalid Date");
+  });
+});
+
+describe("isDateSameOrBeforeGivenDate", () => {
+  it("should return true if date is same or before a given date", () => {
+    expect(isDateSameOrBeforeGivenDate("2020-01-01", "2020-01-10")).toBe(true);
+    expect(isDateSameOrBeforeGivenDate("2019-01-01", "2020-01-10")).toBe(true);
+    expect(isDateSameOrBeforeGivenDate("2020-01-10", "2020-01-10")).toBe(true);
+  });
+  it("should return false if date is after a given date", () => {
+    expect(isDateSameOrBeforeGivenDate("2020-01-01", "2019-01-10")).toBe(false);
+    expect(isDateSameOrBeforeGivenDate("2020-01-02", "2020-01-01")).toBe(false);
+  });
+});
+
+describe("isDateSameOrAfterGivenDate", () => {
+  it("should return false if date is before a given date", () => {
+    expect(isDateSameOrAfterGivenDate("2020-01-01", "2020-01-10")).toBe(false);
+    expect(isDateSameOrAfterGivenDate("2019-01-01", "2020-01-10")).toBe(false);
+  });
+  it("should return false if date is same or after a given date", () => {
+    expect(isDateSameOrAfterGivenDate("2020-01-10", "2020-01-10")).toBe(true);
+    expect(isDateSameOrAfterGivenDate("2020-01-01", "2019-01-10")).toBe(true);
+    expect(isDateSameOrAfterGivenDate("2020-01-02", "2020-01-01")).toBe(true);
   });
 });
