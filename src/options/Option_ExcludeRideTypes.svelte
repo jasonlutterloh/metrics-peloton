@@ -14,13 +14,8 @@
 </script>
 
 <style>
-  div {
+  .columns {
     column-count: 2;
-  }
-  @media only screen and (max-width: 768px) {
-    div {
-      column-count: 1;
-    }
   }
   .option-label {
     margin-bottom: 10px;
@@ -29,7 +24,7 @@
 
 <div>
 <h3>Exclude Ride Types</h3>
-<div>
+<div class="columns">
   {#each $rideTypes as type}
     <label class="option-label">
       <input

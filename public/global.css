@@ -73,6 +73,32 @@ input, button, select, textarea {
 	margin: 0 auto;
 	padding: 60px 10px;
 }
+.normal-button {
+	background-color: #013a63;
+	border: 0;
+	border-radius: 30px;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 13px;
+	display: block;
+	padding: 10px;
+	transition: 0.5s all;
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto 20px;
+	cursor: pointer;
+}
+.normal-button:hover,
+.normal-button:focus {
+	background-color: #04a6c2;
+	outline: 0;
+}
+.normal-button:active {
+	background-color: #20bac5;
+	color: #fff;
+}
+
 .footer-button{
 	flex: 0 1 auto;
 	background: #fff;
