@@ -87,13 +87,17 @@
   }
   .left{
     margin: 0 auto;
-  }
-  .left{
     padding: 30px 20px;
+  }
+  .left h2{
+    color:rgb(1, 58, 99);
   }
   @media only screen and (max-width: 768px) {
     .section-wrapper{
       flex-direction: column;
+    }
+    .left{
+      padding: 0;
     }
   }
 </style>

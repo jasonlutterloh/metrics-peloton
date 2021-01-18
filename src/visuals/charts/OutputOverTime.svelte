@@ -68,7 +68,7 @@
   .section-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 10px;
+    padding: 30px 10px 60px;
   }
   h2{
     color: rgb(1, 58, 99);
