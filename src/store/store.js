@@ -65,6 +65,7 @@ export const mappedCSVData = derived([csvData, showSameDayRides, ridesToShow],
         if (mappedData.length >= 2) {
           const startDate = mappedData[0].date;
           const endDate = mappedData[mappedData.length - 1].date;
+
           dateFilter.set({startDate, endDate});
         }
 

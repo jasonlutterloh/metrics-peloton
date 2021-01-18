@@ -1,11 +1,5 @@
 <script>
-  import {getContext} from "svelte";
-  import OptionsForm from "./OptionsForm.svelte";
-
-  const {open} = getContext("simple-modal");
-  const showModal = () => {
-    open(OptionsForm);
-  };
+  export let sidebar = false;
 </script>
 
 <style>
@@ -31,6 +25,6 @@
 </style>
 
 
-  <button type="button" on:click={showModal}><span
+  <button type="button" on:click={() => sidebar = !sidebar}><span
       class="sr-only">Options</span></button>
 

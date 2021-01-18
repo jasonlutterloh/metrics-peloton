@@ -74,31 +74,7 @@
   label {
     margin: 20px 0;
   }
-  button {
-    background-color: #013a63;
-    border: 0;
-    border-radius: 30px;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 13px;
-    display: block;
-    padding: 10px;
-    transition: 0.5s all;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto 20px;
-    cursor: pointer;
-  }
-  button:hover,
-  button:focus {
-    background-color: #04a6c2;
-    outline: 0;
-  }
-  button:active {
-    background-color: #20bac5;
-    color: #fff;
-  }
+
   @media only screen and (max-width: 768px) {
     .section-wrapper {
       flex-direction: column;
@@ -131,7 +107,7 @@
       <h2>CSV Upload</h2>
       <form on:submit|preventDefault={upload}>
         <label> CSV Upload: <input required type="file" bind:files /> </label>
-        <div><button type="submit">See My Metrics</button></div>
+        <div><button class="normal-button" type="submit">See My Metrics</button></div>
         <p>
           Note: Your data is not sent anywhere or stored remotely. This app runs
           in the browser and uses local storage on your device.
