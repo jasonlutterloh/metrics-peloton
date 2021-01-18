@@ -21,7 +21,7 @@
         margin: 0;
         position: relative;
         max-width: 100vw;
-        padding: 60px 10px;
+        padding: 20px 10px;
     }
     .section-wrapper {
         max-width: 800px;
@@ -36,7 +36,7 @@
         flex: 1 1 auto;
         text-align: center;
         box-sizing: border-box;
-        padding: 20px;
+        padding: 10px;
     }
     span {
         display: block;

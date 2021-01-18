@@ -1,11 +1,15 @@
 <script>
     import Options from "../options/Options.svelte";
+    import {mappedCSVData} from "../store/store.js";
 </script>
 <style>
   header {
     width: 100%;
     display: flex;
     background: #013A63;
+    position: fixed;
+    z-index: 99999;
+    box-shadow: 2px 0px 5px #013A63;
   }
   div{
     flex: 0 1 auto;
@@ -30,6 +34,8 @@
   <h1><span>Peloton</span> Metrics</h1>
 </div>
   <div>
+    {#if $mappedCSVData.length > 0}
   <Options />
+  {/if}
 </div>
 </header>

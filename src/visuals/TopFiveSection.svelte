@@ -18,21 +18,24 @@
     margin-bottom: 20px;
   }
   .top-five-container {
-    margin: 60px 10px;
+    margin: 30px 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .section-wrapper{
+    padding: 0 10px;
   }
   .top-five-card {
+    flex: 1 1 500px;
+    margin: 30px;
     max-width: 600px;
-    margin: 0 auto 30px;
-  }
-  .section-wrapper {
-    padding: 20px 0;
   }
   @media only screen and (max-width: 768px) {
-    .top-five-container {
-      flex-direction: column;
-    }
     .top-five-card {
-      margin: 0;
+      margin: 20px;
     }
   }
 </style>

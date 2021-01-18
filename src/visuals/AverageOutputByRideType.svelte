@@ -25,7 +25,7 @@
   }
   .chart-wrapper{
     display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   grid-gap: 1rem;
   margin-bottom: 30px;
   }
@@ -48,10 +48,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
+  font-size: 14px;
   }
   span{
     display: block;
     font-weight: 100;
-    font-size: 36px;
+    font-size: 24px;
   }
 </style>

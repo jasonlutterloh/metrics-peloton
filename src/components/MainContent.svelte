@@ -16,6 +16,7 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
 <style>
   main {
     margin: 0 auto;
+    padding-top: 52px;
   }
 </style>
 
