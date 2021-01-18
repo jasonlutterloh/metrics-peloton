@@ -5,11 +5,11 @@
   import OptionDates from "./Option_Dates.svelte";
   import {fly} from "svelte/transition";
 
-  export let open = false;
+  export let isSidebarOpen = false;
 </script>
 
-{#if open}
-<aside transition:fly="{{x: 200, duration: 500}}" class:open>
+{#if isSidebarOpen}
+<aside transition:fly="{{x: 200, duration: 500}}" class:open = {isSidebarOpen}>
   <div>
     <h2>Options</h2>
       <OptionDates />
@@ -20,13 +20,12 @@
     </form>
   </div>
 </aside>
-<div class="overlay" on:click={() => open = !open}></div>
+<div class="overlay" on:click={() => isSidebarOpen = !isSidebarOpen}></div>
 {/if}
 
 <style>
   aside{
     top: 0;
-    /* transition: left 0.3s ease-in-out; */
     height: 100vh;
     width: 30vw;
     position: fixed;

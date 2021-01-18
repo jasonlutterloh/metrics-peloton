@@ -2,7 +2,7 @@
     import OptionsButton from "../options/OptionsButton.svelte";
     import {mappedCSVData} from "../store/store.js";
 
-    export let sidebar = false;
+    export let isSidebarOpen = false;
 </script>
 <style>
   header {
@@ -37,7 +37,7 @@
 </div>
   <div>
     {#if $mappedCSVData.length > 0}
-      <OptionsButton bind:sidebar />
+      <OptionsButton bind:isSidebarOpen />
   {/if}
 </div>
 </header>

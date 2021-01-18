@@ -4,10 +4,10 @@
 	import Sidebar from "./options/Sidebar.svelte";
 	import MainContent from "./components/MainContent.svelte";
 
-	let open = false;
+	let isSidebarOpen = false;
 </script>
 
-<Header bind:sidebar = {open}/>
-<Sidebar bind:open />
+<Header bind:isSidebarOpen />
+<Sidebar bind:isSidebarOpen />
 <MainContent />
 <Footer />

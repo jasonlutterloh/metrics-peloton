@@ -1,5 +1,5 @@
 <script>
-  export let sidebar = false;
+  export let isSidebarOpen = false;
 </script>
 
 <style>
@@ -25,6 +25,6 @@
 </style>
 
 
-  <button type="button" on:click={() => sidebar = !sidebar}><span
+  <button type="button" on:click={() => isSidebarOpen = !isSidebarOpen}><span
       class="sr-only">Options</span></button>
 
