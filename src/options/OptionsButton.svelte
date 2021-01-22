@@ -20,11 +20,14 @@
   }
   button:hover,
   button:focus {
-    transform: rotate(90deg);
+    transform: rotate(30deg);
+  }
+  button.isSidebarOpen{
+    transform: rotate(-90deg);
   }
 </style>
 
 
-  <button type="button" on:click={() => isSidebarOpen = !isSidebarOpen}><span
+  <button type="button" on:click={() => isSidebarOpen = !isSidebarOpen} class:isSidebarOpen><span
       class="sr-only">Options</span></button>
 
