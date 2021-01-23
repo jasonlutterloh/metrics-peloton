@@ -303,6 +303,7 @@ export const getAverageCadence = (rideData) => {
     const cadence = {};
     cadence["average"] = ride.averageCadence;
     cadence["createdAt"] = ride.date;
+    cadence["title"] = ride.title;
     cadences.push(cadence);
   });
 
@@ -320,6 +321,7 @@ export const getAverageResistance = (rideData) => {
     const resistance = {};
     resistance["average"] = ride.averageResistance;
     resistance["createdAt"] = ride.date;
+    resistance["title"] = ride.title;
     resistances.push(resistance);
   });
   return resistances;

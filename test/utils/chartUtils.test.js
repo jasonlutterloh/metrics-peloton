@@ -1,9 +1,9 @@
 import {createPlotPoint, getPlotPointsByDate, calculateFTP} from "../../src/utils/chartUtils";
 describe("createPlotPoint", () => {
   it("should return the first var as x and second as y", () => {
-    expect(createPlotPoint("first", "second")).toStrictEqual({x: "first", y: "second"});
-    expect(createPlotPoint({a: "a"}, {b: "b"})).toStrictEqual({x: {a: "a"}, y: {b: "b"}});
-    expect(createPlotPoint(0, 0)).toStrictEqual({x: 0, y: 0});
+    expect(createPlotPoint("first", "second", "title")).toStrictEqual({x: "first", y: "second", title: "title"});
+    expect(createPlotPoint({a: "a"}, {b: "b"})).toStrictEqual({x: {a: "a"}, y: {b: "b"}, title: undefined});
+    expect(createPlotPoint(0, 0)).toStrictEqual({x: 0, y: 0, title: undefined});
   });
 });
 

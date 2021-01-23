@@ -52,6 +52,14 @@
           },
         ],
       },
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem, data) {
+            const item = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+            return item.title + ": " + item.y;
+          },
+        },
+      },
     },
   };
 
