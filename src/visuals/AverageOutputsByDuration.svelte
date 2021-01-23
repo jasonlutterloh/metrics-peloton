@@ -3,42 +3,47 @@
 </script>
 
 <style>
+  div{
+    margin-top: 30px;
+  }
+  h3{
+    color: rgb(1, 58, 99);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 0 20px;
+  }
   ul {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin: 20px 0 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
   }
   li {
     flex: 1 1 auto;
+    font-size: 1.2em;
     color: #fff;
     font-weight: bold;
     padding: 10px;
     text-align: center;
-    text-shadow: 0 0 1px #222;
-    display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 3px;
   }
-  span{
-    flex: 0 1 auto;
-    font-size: 14px;
-    text-align: center;
-  }
-  span:nth-of-type(2){
-    font-size: 3em;
-    font-weight: 200;
-  }
+
 </style>
 
-<h3 class="sr-only">Average Outputs By Ride Duration</h3>
+<div>
+<h3>Average Outputs By Ride Duration</h3>
 <ul>
   {#each $averageOutputsByDuration as average}
     <li style="background-color:{average.color}">
-      <span>{average.duration} Minute Average</span>
-      <span>{average.value}</span>
+      <span class="sr-only">{average.duration} Minute Average:</span> {average.value}
     </li>
   {/each}
 </ul>
+</div>

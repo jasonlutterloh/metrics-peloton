@@ -8,7 +8,8 @@
     return data.map((ride) => {
       const ftpValue = calculateFTP(ride.average);
       const date = getReadableDate(ride.createdAt);
-      return createPlotPoint(date, ftpValue);
+      const title = ride.title;
+      return createPlotPoint(date, ftpValue, title);
     });
   };
 

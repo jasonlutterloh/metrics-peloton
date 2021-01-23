@@ -82,6 +82,9 @@
     .left{
       margin-bottom: 60px;
     }
+    .right{
+      padding: 0 20px;
+    }
   }
 </style>
 
