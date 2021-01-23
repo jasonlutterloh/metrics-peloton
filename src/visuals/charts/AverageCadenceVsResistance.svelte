@@ -18,6 +18,7 @@
     return {
       datasets: [
         {
+          borderWidth: 2,
           borderColor: "#A9D6E5",
           label: "Average Cadence",
           data: cadenceData,
@@ -31,6 +32,7 @@
           },
         },
         {
+          borderWidth: 2,
           borderColor: "#3FC1C0",
           label: "Average Resistance (%)",
           data: resistanceData,

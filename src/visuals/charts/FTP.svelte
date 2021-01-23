@@ -17,6 +17,7 @@
     return {
       datasets: [
         {
+          borderWidth: 2,
           borderColor: "#fff",
           label: "FTP Tests",
           data: getPlotPoints(data),

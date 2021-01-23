@@ -9,6 +9,7 @@
     return {
       datasets: [
         {
+          borderWidth: 1,
           borderColor: "#efefef",
           label: CHART_TITLE,
           data: averageData,
