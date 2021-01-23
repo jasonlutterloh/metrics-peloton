@@ -38,7 +38,7 @@
 </style>
 
 <div>
-<h3>Average Outputs By Ride Duration</h3>
+<h3>Average Outputs By Ride Length</h3>
 <ul>
   {#each $averageOutputsByDuration as average}
     <li style="background-color:{average.color}">
