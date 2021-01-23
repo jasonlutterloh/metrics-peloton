@@ -9,12 +9,10 @@
     return {
       datasets: [
         {
-          borderWidth: 1,
           borderColor: "#efefef",
           label: CHART_TITLE,
           data: averageData,
           fill: false,
-          lineTension: 0,
           pointBackgroundColor: "#fff",
           trendlineLinear: {
             style: "#fff",

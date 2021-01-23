@@ -17,11 +17,9 @@
 
       const dataset = {
         borderColor: color,
-        borderWidth: 2,
         label: label,
         data: workouts,
         fill: false,
-        lineTension: 0,
         pointBackgroundColor: color,
         trendlineLinear: {
           style: color,

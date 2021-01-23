@@ -18,12 +18,10 @@
     return {
       datasets: [
         {
-          borderWidth: 1,
           borderColor: "#A9D6E5",
           label: "Average Cadence",
           data: cadenceData,
           fill: false,
-          lineTension: 0,
           pointBackgroundColor: "#A9D6E5",
           trendlineLinear: {
             style: "#A9D6E5",
@@ -32,12 +30,10 @@
           },
         },
         {
-          borderWidth: 1,
           borderColor: "#3FC1C0",
           label: "Average Resistance (%)",
           data: resistanceData,
           fill: false,
-          lineTension: 0,
           pointBackgroundColor: "#3FC1C0",
           trendlineLinear: {
             style: "#3FC1C0",

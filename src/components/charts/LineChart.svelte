@@ -12,7 +12,7 @@
   const ERROR_MESSAGE = "An error occurred creating the line chart";
   const chartID = "chart-" + convertStringToID(title);
   let isError = false;
-
+  let screenWidth = 0;
   const config = {
     type: "line",
     options: {
@@ -24,6 +24,14 @@
           fontSize: 16,
           fontColor: "#222",
           padding: 20,
+        },
+      },
+      elements: {
+        point: {
+          pointStyle: "circle",
+        },
+        line: {
+          tension: 0.1,
         },
       },
       responsive: true,
@@ -82,6 +90,10 @@
     try {
       Chart.plugins.register(chartTrendline);
       const ctx = document.getElementById(chartID);
+      if (screenWidth < 768) {
+        config.options.elements.point.radius = 0;
+        config.options.elements.line.borderWidth = 2;
+      }
       chartReference = new Chart(ctx, config);
     } catch (e) {
       isError = true;
@@ -89,7 +101,7 @@
     }
   });
 </script>
-
+<svelte:window bind:innerWidth={screenWidth}/>
 {#if isError}
   <p>{ERROR_MESSAGE}</p>
 {:else}

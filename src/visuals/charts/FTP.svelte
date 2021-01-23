@@ -17,12 +17,10 @@
     return {
       datasets: [
         {
-          borderWidth: 2,
           borderColor: "#fff",
           label: "FTP Tests",
           data: getPlotPoints(data),
           fill: false,
-          lineTension: 0,
           pointBackgroundColor: "#fff",
           trendlineLinear: {
             style: "#fff",
