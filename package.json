@@ -39,7 +39,7 @@
     "svelte-jester": "^1.1.5"
   },
   "dependencies": {
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "chartjs-plugin-trendline": "^0.2.2",
     "dayjs": "^1.9.5",
     "sirv-cli": "^0.4.4"
