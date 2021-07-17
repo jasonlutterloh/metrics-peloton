@@ -5,16 +5,15 @@
 
 <section>
   <div class="section-wrapper">
-    <h2>Average Output By Ride Type</h2>
-    <div class="chart-wrapper">
-      {#each $averageOutputByRideType as rideType}
-        <div class="chart-value">
-          <p>
+    <h2>Top 8 Average Outputs By Ride Type</h2>
+    <ul class="chart-wrapper">
+      {#each $averageOutputByRideType.slice(0, 8) as rideType}
+        <li class="chart-value">
             {rideType.type}
-            <span>{rideType.averageOutput}</span></p>
-        </div>
+            <span>{rideType.averageOutput}</span>
+          </li>
       {/each}
-    </div>
+      </ul>
   </div>
 </section>
 
@@ -24,35 +23,21 @@
     color: #fff;
   }
   .chart-wrapper{
-    display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  grid-gap: 1rem;
-  margin-bottom: 30px;
+    padding: 0;
+    max-width: 480px;
+    margin: 0 auto;
   }
-  .chart-wrapper > div::before {
-  content: "";
-  padding-bottom: 100%;
-  display: block;
-}
   .chart-value{
     background: #fff;
     color: #048ba8ff;
     font-size: 16px;
-    position: relative;
-  }
-  p{
-    text-align: center;
-    position: absolute;
-  max-width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  font-size: 14px;
+    padding: 1em 1.4em;
+    line-height: 24px;
+    margin-bottom: 10px;
   }
   span{
-    display: block;
     font-weight: 100;
     font-size: 24px;
+    float: right;
   }
 </style>

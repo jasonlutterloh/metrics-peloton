@@ -101,7 +101,7 @@
             target="_blank"
             rel="noopener"
             href="https://members.onepeloton.com/profile/workouts">Peloton
-            profile</a>
+            profile</a> from a browser. It's not available via the app.
         </li>
         <li>Upload the CSV file</li>
       </ol>

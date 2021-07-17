@@ -25,7 +25,7 @@
   }
   li {
     flex: 1 1 auto;
-    font-size: 1.2em;
+    font-size: 1.6em;
     color: #fff;
     font-weight: bold;
     padding: 10px;
@@ -34,7 +34,12 @@
     align-items: center;
     margin: 3px;
   }
-
+  span{
+    display: block;
+    text-align: center;
+    font-weight: lighter;
+    font-size: .9em;
+  }
 </style>
 
 <div>
@@ -42,7 +47,7 @@
 <ul>
   {#each $averageOutputsByDuration as average}
     <li style="background-color:{average.color}">
-      <span class="sr-only">{average.duration} Minute Average:</span> {average.value}
+      <span>{average.duration} Min</span><span class="sr-only">:</span> {average.value}
     </li>
   {/each}
 </ul>
