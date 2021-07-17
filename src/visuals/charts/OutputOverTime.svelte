@@ -21,16 +21,10 @@
         data: workouts,
         fill: false,
         pointBackgroundColor: color,
-        trendlineLinear: {
-          style: color,
-          lineStyle: "dotted",
-          width: 1,
-        },
       };
 
       datasets.push(dataset);
     }
-
     return {
       datasets: datasets,
     };
@@ -53,7 +47,6 @@
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
-        chartReference.options.legend.display = false;
         chartReference.update();
       }
     } catch (e) {

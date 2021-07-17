@@ -13,12 +13,7 @@
           label: CHART_TITLE,
           data: averageData,
           fill: false,
-          pointBackgroundColor: "#fff",
-          trendlineLinear: {
-            style: "#fff",
-            lineStyle: "dotted",
-            width: 1,
-          },
+          pointBackgroundColor: "#fff"
         },
       ],
     };
@@ -41,7 +36,7 @@
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
-        chartReference.options.legend.display = false;
+        // chartReference.options.legend.display = false;
         chartReference.update();
       }
     } catch (e) {

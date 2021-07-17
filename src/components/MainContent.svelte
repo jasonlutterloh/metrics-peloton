@@ -27,6 +27,7 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
     </ErrorMessage>
   {:else}
     {#if $mappedCSVData.length > 0}
+      <!-- <TotalsSection /> TODO: revamp this section before returning -->
       <OutputOverTime />
       <AverageOutput />
       <FTP />
@@ -34,10 +35,11 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
       <AverageCadenceVsResistance />
       <AverageOutputByRideType />
       <TopFiveSection />
-      <TotalsSection />
+      
       {:else}
       <InfoMessage>Upload your Peloton rides to see your output over time, averages, top rides, and more!</InfoMessage>
+      <CSVUpload />
     {/if}
   {/if}
-  <CSVUpload />
+  
 </main>
