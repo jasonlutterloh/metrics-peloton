@@ -6,7 +6,7 @@
 <section>
   <div class="section-wrapper">
     <h2>Top 8 Average Outputs By Ride Type</h2>
-    <ul class="chart-wrapper">
+    <ul class="list-wrapper">
       {#each $averageOutputByRideType.slice(0, 8) as rideType}
         <li class="chart-value">
             {rideType.type}
@@ -22,7 +22,7 @@
     background: #048ba8ff;
     color: #fff;
   }
-  .chart-wrapper{
+  .list-wrapper{
     padding: 0;
     max-width: 480px;
     margin: 0 auto;

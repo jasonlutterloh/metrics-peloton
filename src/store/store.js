@@ -36,7 +36,7 @@ export const ridesToShow = writable(200);
  * Store for the strings from which to filter ride types based on ride title.
  * Initialized with ride types that would adversely effect calculating averages
  */
-export const rideTitleFilters = writable(["Intervals & Arms", "Cool Down", "Warm Up", "Recovery", "Low Impact"]);
+export const rideTitleFilters = writable(["Intervals & Arms", "Cool Down", "Warm Up", "Recovery", "Low Impact", "Bike Bootcamp: Upper Body"]);
 
 /**
  * Store for the FTP test filter. Used as an inverse filter.

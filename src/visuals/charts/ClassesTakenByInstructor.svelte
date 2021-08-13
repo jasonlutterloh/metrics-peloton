@@ -89,9 +89,7 @@
     margin: 0 auto;
     padding: 30px 20px;
   }
-  .left h2{
-    color:rgb(1, 58, 99);
-  }
+
   @media only screen and (max-width: 768px) {
     .section-wrapper{
       flex-direction: column;

@@ -62,9 +62,6 @@
     margin: 0 auto;
     padding: 30px 10px 60px;
   }
-  h2{
-    color: rgb(1, 58, 99);
-  }
 </style>
 
 <section>
