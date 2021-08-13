@@ -34,17 +34,25 @@
       plugins:{
         legend:{
           display: false
-        }
-      },
-      maintainAspectRatio: false,
-      tooltips: {
-        callbacks: {
-          label: function(tooltipItem, data) {
-            const item = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-            return item.title + ": " + item.y;
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              let rideTitle = context.dataset.data[context.dataIndex].title
+              var label = rideTitle || '';
+
+                if (label) {
+                    label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                    label += context.parsed.y
+                }
+                return label;
+            },
           },
         },
       },
+      maintainAspectRatio: false,
     },
   };
 
