@@ -29,7 +29,7 @@
     padding: 0 10px;
   }
   .top-five-card {
-    flex: 1 1 500px;
+    flex: 1 1 300px;
     margin: 30px;
     max-width: 600px;
   }
@@ -41,7 +41,7 @@
 </style>
 
 <section class="top-five-container">
-  {#each durations as duration, i}
+  {#each durations.reverse() as duration, i}
     <div class="top-five-card">
       <div class="section-wrapper">
         <h2

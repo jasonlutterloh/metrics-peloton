@@ -17,7 +17,7 @@
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins:{
+      plugins: {
         legend: {
           position: "bottom",
         },

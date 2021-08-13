@@ -13,7 +13,7 @@
           label: CHART_TITLE,
           data: averageData,
           fill: false,
-          pointBackgroundColor: "#fff"
+          pointBackgroundColor: "#fff",
         },
       ],
     };
@@ -36,7 +36,6 @@
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
-        // chartReference.options.legend.display = false;
         chartReference.update();
       }
     } catch (e) {

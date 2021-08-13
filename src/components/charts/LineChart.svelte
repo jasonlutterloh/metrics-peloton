@@ -1,8 +1,7 @@
 <script>
   import {onMount} from "svelte";
   import Chart from "chart.js/auto";
-  import chartTrendline from "chartjs-plugin-trendline";
-  import 'chartjs-adapter-moment';
+  import "chartjs-adapter-moment";
   import {convertStringToID} from "../../utils/stringUtils";
 
   export let title;
@@ -19,35 +18,35 @@
     options: {
       scales: {
         xAxis: {
-          grid:{},
-          ticks:{},
-          type: 'time',
+          grid: {},
+          ticks: {},
+          type: "time",
           time: {
             tooltipFormat: "MMM DD YYYY",
           },
         },
-        yAxis:{
-          grid:{},
-          ticks:{},
-        }
+        yAxis: {
+          grid: {},
+          ticks: {},
+        },
       },
-      plugins:{
-        legend:{
-          display: false
+      plugins: {
+        legend: {
+          display: false,
         },
         tooltip: {
           callbacks: {
             label: function(context) {
-              let rideTitle = context.dataset.data[context.dataIndex].title
-              var label = rideTitle || '';
+              const rideTitle = context.dataset.data[context.dataIndex].title;
+              let label = rideTitle || "";
 
-                if (label) {
-                    label += ': ';
-                }
-                if (context.parsed.y !== null) {
-                    label += context.parsed.y
-                }
-                return label;
+              if (label) {
+                label += ": ";
+              }
+              if (context.parsed.y !== null) {
+                label += context.parsed.y;
+              }
+              return label;
             },
           },
         },

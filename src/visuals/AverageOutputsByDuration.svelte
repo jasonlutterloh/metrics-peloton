@@ -29,7 +29,7 @@
     display: block;
     text-align: center;
     font-weight: lighter;
-    font-size: .9em;
+    font-size: .8em;
   }
 </style>
 
