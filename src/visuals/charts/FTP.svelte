@@ -59,8 +59,8 @@
     color: #fff;
   }
 </style>
-
-{#if $ftpAverageOutputs.length > 0}
+<!-- Need more than one for this to show up properly -->
+{#if $ftpAverageOutputs.length > 1} 
   <section>
     <div class="section-wrapper">
       {#if isError}
