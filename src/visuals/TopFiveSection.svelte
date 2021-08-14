@@ -45,7 +45,7 @@
     <div class="top-five-card">
       <div class="section-wrapper">
         <h2
-          style="color:{getColorBasedOnArrayLengthAndIndex(durations.length, (durations.length-1)-i)}"> <!--This is done to match color pattern elsewhere-->
+          style="color:{getColorBasedOnArrayLengthAndIndex(durations.length, i)}">
           Top
           {duration}
           Min Rides
@@ -53,7 +53,7 @@
         <div>
           <TopFiveRides
             rides={$organizedRidesSortedByOutput[duration].slice(0, 5)}
-            color={getColorBasedOnArrayLengthAndIndex(durations.length, (durations.length-1)-i)} />
+            color={getColorBasedOnArrayLengthAndIndex(durations.length, i)} />
         </div>
       </div>
     </div>
