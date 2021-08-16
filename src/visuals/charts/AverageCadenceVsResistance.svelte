@@ -23,6 +23,11 @@
           data: cadenceData,
           fill: false,
           pointBackgroundColor: "#A9D6E5",
+          trendlineLinear: {
+            style: "#A9D6E5",
+            lineStyle: "dotted",
+            width: 1,
+          },
         },
         {
           borderColor: "#3FC1C0",
@@ -30,6 +35,11 @@
           data: resistanceData,
           fill: false,
           pointBackgroundColor: "#3FC1C0",
+          trendlineLinear: {
+            style: "#3FC1C0",
+            lineStyle: "dotted",
+            width: 1,
+          },
         },
       ],
     };

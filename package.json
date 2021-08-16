@@ -44,13 +44,14 @@
   "dependencies": {
     "chart.js": "^3.4.1",
     "chartjs-adapter-moment": "^1.0.0",
+    "chartjs-plugin-trendline": "github:jasonlutterloh/chartjs-plugin-trendline",
     "dayjs": "^1.10.6",
     "moment": "^2.29.1",
     "sirv-cli": "^1.0.12"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint test/** src/** && npm run build && npm test"
+      "pre-commit": "eslint test/** src/** --fix && npm run build && npm test"
     }
   }
 }

@@ -22,6 +22,11 @@
           data: getPlotPoints(data),
           fill: false,
           pointBackgroundColor: "#fff",
+          trendlineLinear: {
+            style: "#fff",
+            lineStyle: "dotted",
+            width: 1,
+          },
         },
       ],
     };

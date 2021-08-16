@@ -14,6 +14,11 @@
           data: averageData,
           fill: false,
           pointBackgroundColor: "#fff",
+          trendlineLinear: {
+            style: "#fff",
+            lineStyle: "dotted",
+            width: 1,
+          },
         },
       ],
     };

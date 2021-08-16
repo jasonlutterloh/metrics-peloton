@@ -2,6 +2,7 @@
   import {onMount} from "svelte";
   import Chart from "chart.js/auto";
   import "chartjs-adapter-moment";
+  import chartTrendline from "chartjs-plugin-trendline";
   import {convertStringToID} from "../../utils/stringUtils";
 
   export let title;
@@ -71,6 +72,9 @@
 
   onMount(async () => {
     try {
+      Chart.register({
+        chartTrendline
+      });
       const ctx = document.getElementById(chartID);
       if (screenWidth < 768) {
         Chart.defaults.elements.point.radius = 0;

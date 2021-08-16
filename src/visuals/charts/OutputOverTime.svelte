@@ -21,6 +21,11 @@
         data: workouts,
         fill: false,
         pointBackgroundColor: color,
+        trendlineLinear: {
+          style: color,
+          lineStyle: "dotted",
+          width: 1,
+        },
       };
 
       datasets.push(dataset);
