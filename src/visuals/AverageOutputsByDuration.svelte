@@ -6,15 +6,6 @@
   div{
     margin-top: 30px;
   }
-  h3{
-    color: rgb(1, 58, 99);
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 18px;
-    text-align: center;
-    margin: 0 0 20px;
-  }
   ul {
     display: flex;
     flex-wrap: wrap;
@@ -38,12 +29,12 @@
     display: block;
     text-align: center;
     font-weight: lighter;
-    font-size: .9em;
+    font-size: .8em;
   }
 </style>
 
 <div>
-<h3>Average Outputs By Ride Length</h3>
+<h2>Average Outputs By Ride Length</h2>
 <ul>
   {#each $averageOutputsByDuration as average}
     <li style="background-color:{average.color}">

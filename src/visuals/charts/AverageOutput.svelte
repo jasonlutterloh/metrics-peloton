@@ -41,7 +41,6 @@
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
-        chartReference.options.legend.display = false;
         chartReference.update();
       }
     } catch (e) {

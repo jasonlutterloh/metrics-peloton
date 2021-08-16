@@ -1,6 +1,6 @@
 <script>
   import {onMount} from "svelte";
-  import Chart from "chart.js";
+  import Chart from "chart.js/auto";
   import {convertStringToID} from "../../utils/stringUtils";
 
   export let title;
@@ -17,8 +17,10 @@
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      legend: {
-        position: "bottom",
+      plugins: {
+        legend: {
+          position: "bottom",
+        },
       },
     },
   };

@@ -1,6 +1,7 @@
 <script>
   import {onMount} from "svelte";
-  import Chart from "chart.js";
+  import Chart from "chart.js/auto";
+  import "chartjs-adapter-moment";
   import chartTrendline from "chartjs-plugin-trendline";
   import {convertStringToID} from "../../utils/stringUtils";
 
@@ -16,67 +17,50 @@
   const config = {
     type: "line",
     options: {
-      borderJoinStyle: "round",
-      maintainAspectRatio: false,
-      legend: {
-        display: false,
-        labels: {
-          fontSize: 16,
-          fontColor: "#222",
-          padding: 20,
-        },
-      },
-      elements: {
-        point: {
-          pointStyle: "circle",
-        },
-        line: {
-          tension: 0.1,
-        },
-      },
-      responsive: true,
       scales: {
-        yAxes: [
-          {
-            gridLines: {
-              zeroLineColor: "rgba(255,255,255,0)",
-            },
-            ticks: {},
+        xAxis: {
+          grid: {},
+          ticks: {},
+          type: "time",
+          time: {
+            tooltipFormat: "MMM DD YYYY",
           },
-        ],
-        xAxes: [
-          {
-            type: "time",
-            distribution: "linear",
-            bounds: "data",
-            time: {
-              unit: "month",
-              tooltipFormat: "MMM DD",
-            },
-            gridLines: {
-              zeroLineColor: "rgba(255,255,255,0)",
-            },
-            ticks: {},
-          },
-        ],
+        },
+        yAxis: {
+          grid: {},
+          ticks: {},
+        },
       },
-      tooltips: {
-        callbacks: {
-          label: function(tooltipItem, data) {
-            const item = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-            return item.title + ": " + item.y;
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const rideTitle = context.dataset.data[context.dataIndex].title;
+              let label = rideTitle || "";
+
+              if (label) {
+                label += ": ";
+              }
+              if (context.parsed.y !== null) {
+                label += context.parsed.y;
+              }
+              return label;
+            },
           },
         },
       },
+      maintainAspectRatio: false,
     },
   };
 
   if (isDarkMode) {
-    config.options.legend.fontColor = "#efefef";
-    config.options.scales.xAxes[0].gridLines.color = "rgba(239,239,239,.1)";
-    config.options.scales.xAxes[0].ticks.fontColor = "#efefef";
-    config.options.scales.yAxes[0].gridLines.color = "rgba(239,239,239,.1)";
-    config.options.scales.yAxes[0].ticks.fontColor = "#efefef";
+    config.options.scales.xAxis.grid["color"] = "rgba(239,239,239,.1)";
+    config.options.scales.xAxis.ticks["color"] = "#efefef";
+    config.options.scales.yAxis.grid["color"] = "rgba(239,239,239,.1)";
+    config.options.scales.yAxis.ticks["color"] = "#efefef";
   }
 
   try {
@@ -88,12 +72,15 @@
 
   onMount(async () => {
     try {
-      Chart.plugins.register(chartTrendline);
+      Chart.register({
+        chartTrendline,
+      });
       const ctx = document.getElementById(chartID);
       if (screenWidth < 768) {
-        config.options.elements.point.radius = 0;
-        config.options.elements.line.borderWidth = 2;
+        Chart.defaults.elements.point.radius = 0;
+        Chart.defaults.elements.line.borderWidth = 2;
       }
+
       chartReference = new Chart(ctx, config);
     } catch (e) {
       isError = true;

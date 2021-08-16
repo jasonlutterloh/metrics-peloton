@@ -6,7 +6,7 @@ html, body {
 
 body {
 	background: #fff;
-	color: #222;
+	color: #444;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -24,11 +24,10 @@ main{
 
 h2{
 	font-weight: bold;
-	text-transform: uppercase;
 	letter-spacing: 1px;
-	font-size: 20px;
+	font-size: 30px;
 	text-align: center;
-	margin: 0 0 30px;
+	margin: 0 0 20px;
 }
 
 a {
@@ -128,5 +127,8 @@ input, button, select, textarea {
 @media only screen and (max-width: 768px) {
 	.chart-wrapper{
 		min-height: 50vh;
+	}
+	h2{
+		font-size: 24px;
 	}
 }

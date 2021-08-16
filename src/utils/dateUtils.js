@@ -1,7 +1,7 @@
-const dayjs = require("dayjs");
-const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
+import dayjs from "dayjs";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 dayjs.extend(isSameOrBefore);
-const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 dayjs.extend(isSameOrAfter);
 
 /**

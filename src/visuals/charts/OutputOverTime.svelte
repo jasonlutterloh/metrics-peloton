@@ -30,7 +30,6 @@
 
       datasets.push(dataset);
     }
-
     return {
       datasets: datasets,
     };
@@ -53,7 +52,6 @@
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
-        chartReference.options.legend.display = false;
         chartReference.update();
       }
     } catch (e) {
@@ -68,9 +66,6 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 30px 10px 60px;
-  }
-  h2{
-    color: rgb(1, 58, 99);
   }
 </style>
 

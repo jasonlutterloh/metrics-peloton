@@ -21,7 +21,6 @@
   }
   h1 {
     letter-spacing: 1px;
-    text-transform: lowercase;
     line-height: 52px;
     font-weight: 300;
     font-size: 18px;
