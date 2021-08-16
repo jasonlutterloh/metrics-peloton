@@ -73,7 +73,7 @@
   onMount(async () => {
     try {
       Chart.register({
-        chartTrendline
+        chartTrendline,
       });
       const ctx = document.getElementById(chartID);
       if (screenWidth < 768) {
