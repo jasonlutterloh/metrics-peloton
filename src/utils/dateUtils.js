@@ -44,3 +44,13 @@ export const isDateSameOrBeforeGivenDate = (date, givenDate) => {
 export const isDateSameOrAfterGivenDate = (date, givenDate) => {
   return dayjs(date).isSameOrAfter(dayjs(givenDate));
 };
+
+/**
+ * Returns date 6 months from date given
+ * @param {string} date Date
+ * @param {number} monthsToSubtract Months to Subtract
+ * @return {string}
+ */
+export const subtractNMonthsFromDate = (date, monthsToSubtract) => {
+  return dayjs(date).subtract(monthsToSubtract, "months").format("YYYY-MM-DD");
+};

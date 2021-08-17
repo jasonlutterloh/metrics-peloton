@@ -34,6 +34,7 @@
 
 <div class="option-wrapper">
   <h3>Filter By Date</h3>
+  <p>Start Date defaults to 6 months from the latest ride. Note: If you go too far back, the amount of rides may render the chart unreadable.</p>
   <form on:submit|preventDefault={updateDateFilters}>
     <div class="label-container">
       <label class="option-label">
