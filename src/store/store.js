@@ -14,7 +14,8 @@ import {
   getOrganizedRidesSortedByOutput,
   getAverageOutputByRideType,
 } from "../utils/rideUtils";
-import {sliceArrayByGivenMax, getTotalByAttribute} from "../utils/dataUtils";
+import {getTotalByAttribute} from "../utils/dataUtils";
+import {subtractNMonthsFromDate} from "../utils/dateUtils";
 import {mapCSVData} from "../utils/fileUtils";
 
 /**
@@ -26,11 +27,6 @@ export const isError = writable(false);
  * Store for uploaded CSV data
  */
 export const csvData = writable();
-
-/**
- * Store for the number of rides to filter/show within the app
- */
-export const ridesToShow = writable(200);
 
 /**
  * Store for the strings from which to filter ride types based on ride title.
@@ -51,21 +47,19 @@ export const showSameDayRides = writable(false);
 export const dateFilter = writable({});
 
 /**
- * Store containing the parsed CSV data, sliced by `ridesToShow` and without same day rides (based on `showSameDayRides`)
+ * Store containing the parsed CSV data and without same day rides (based on `showSameDayRides`)
  */
-export const mappedCSVData = derived([csvData, showSameDayRides, ridesToShow],
-    ([$csvData, $showSameDayRides, $ridesToShow]) => {
+export const mappedCSVData = derived([csvData, showSameDayRides],
+    ([$csvData, $showSameDayRides]) => {
       if ($csvData) {
         let mappedData = mapCSVData($csvData);
-        mappedData = sliceArrayByGivenMax(mappedData, $ridesToShow);
         if (!$showSameDayRides) {
-          filterSameDayRides(mappedData);
+          mappedData = filterSameDayRides(mappedData);
         }
         // Set date filters
         if (mappedData.length >= 2) {
-          const startDate = mappedData[0].date;
           const endDate = mappedData[mappedData.length - 1].date;
-
+          const startDate = subtractNMonthsFromDate(endDate, 9);
           dateFilter.set({startDate, endDate});
         }
 

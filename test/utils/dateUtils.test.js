@@ -1,4 +1,4 @@
-const {getReadableDate, getFriendlyDate, isDateSameOrBeforeGivenDate, isDateSameOrAfterGivenDate} = require("../../src/utils/dateUtils");
+const {getReadableDate, getFriendlyDate, isDateSameOrBeforeGivenDate, isDateSameOrAfterGivenDate, subtractNMonthsFromDate} = require("../../src/utils/dateUtils");
 
 describe("getReadableDate", () => {
   it("should return a date in the following format \"YYYY-MM-DD", () => {
@@ -41,5 +41,15 @@ describe("isDateSameOrAfterGivenDate", () => {
     expect(isDateSameOrAfterGivenDate("2020-01-10", "2020-01-10")).toBe(true);
     expect(isDateSameOrAfterGivenDate("2020-01-01", "2019-01-10")).toBe(true);
     expect(isDateSameOrAfterGivenDate("2020-01-02", "2020-01-01")).toBe(true);
+  });
+});
+
+
+describe("subtractNMonthsFromDate", () => {
+  it("should return a date n months from the given date", () => {
+    expect(subtractNMonthsFromDate("2021-07-01", 6)).toBe("2021-01-01");
+  });
+  it("should handle 31st dates well", () => {
+    expect(subtractNMonthsFromDate("2021-07-31", 1)).toBe("2021-06-30");
   });
 });
