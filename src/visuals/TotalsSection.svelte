@@ -52,6 +52,12 @@
         text-align: center;
         margin-top: 0;
     }
+    @media only screen and (max-width: 768px) {
+        .wrapper div{
+            flex-basis: 50%;
+            padding: 20px 0;
+        }
+    }
 </style>
 
 <section>
