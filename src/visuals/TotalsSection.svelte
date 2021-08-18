@@ -4,15 +4,10 @@
       totalCalories,
       filteredData,
       totalMinutes,
-      dateFilter
+      dateFilter,
     } from "../store/store";
     import {getFriendlyDate} from "../utils/dateUtils";
     import {formatNumberWithCommas} from "../utils/numberUtils";
-
-    const beginDate = getFriendlyDate($filteredData[0].date);
-    const endDate = getFriendlyDate(
-        $filteredData[$filteredData.length - 1].date,
-    );
 </script>
 
 <style>
