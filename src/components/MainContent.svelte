@@ -8,7 +8,7 @@
   import ErrorMessage from "../components/ErrorMessage.svelte";
   import {mappedCSVData, isError} from "../store/store.js";
   import TopFiveSection from "../visuals/TopFiveSection.svelte";
-  // import TotalsSection from "../visuals/TotalsSection.svelte";
+  import TotalsSection from "../visuals/TotalsSection.svelte";
 import InfoMessage from "./InfoMessage.svelte";
 import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
 </script>
@@ -27,7 +27,7 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
     </ErrorMessage>
   {:else}
     {#if $mappedCSVData.length > 0}
-      <!-- <TotalsSection /> TODO: revamp this section before returning -->
+      <TotalsSection /> 
       <OutputOverTime />
       <AverageOutput />
       <FTP />

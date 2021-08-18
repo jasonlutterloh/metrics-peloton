@@ -24,6 +24,7 @@
     flex-direction: column;
     align-items: center;
     margin: 3px;
+    border-radius: 8px;
   }
   span{
     display: block;
