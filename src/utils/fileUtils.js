@@ -1,4 +1,3 @@
-import {distanceUnit} from "../store/store";
 import {trimTitle} from "./rideUtils";
 
 /**
@@ -35,28 +34,26 @@ export const csvToJson = (csv) => {
  * @param {Array} data Array of data
  * @return {String} "mi" or "km"
  */
-const getDistanceUnits = (data = []) => {
+export const getDistanceUnit = (data = []) => {
   let isKm = undefined;
   if (data.length > 1) {
     const keys = Object.keys(data[0]);
     isKm = keys.find((value) => value === "Distance (km)");
   }
   if (isKm) {
-    distanceUnit.set("km");
     return "km";
   }
-  distanceUnit.set("mi");
   return "mi"; // Defaulting to miles
 };
 
 /**
  * Maps the given Peloton Workouts parsed CSV to JSON
  * @param {array} data parsed Peloton CSV Workout Data as JSON
+ * @param {string} distanceUnit "mi" or "km"
  * @param {string} discipline Default: Cycling
  * @return {array} Cycling Data
  */
-export const mapCSVData = (data, discipline = "Cycling") => {
-  const distanceUnit = getDistanceUnits(data);
+export const mapCSVData = (data, distanceUnit = "mi", discipline = "Cycling") => {
   const mappedData = [];
 
   data.forEach((effort) => {

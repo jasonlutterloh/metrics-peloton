@@ -54,10 +54,10 @@ export const distanceUnit = writable("mi");
 /**
  * Store containing the parsed CSV data and without same day rides (based on `showSameDayRides`)
  */
-export const mappedCSVData = derived([csvData, showSameDayRides],
-    ([$csvData, $showSameDayRides]) => {
+export const mappedCSVData = derived([csvData, showSameDayRides, distanceUnit],
+    ([$csvData, $showSameDayRides, $distanceUnit]) => {
       if ($csvData) {
-        let mappedData = mapCSVData($csvData);
+        let mappedData = mapCSVData($csvData, $distanceUnit);
         if (!$showSameDayRides) {
           mappedData = filterSameDayRides(mappedData);
         }
