@@ -1,3 +1,4 @@
+import {distanceUnit} from "../store/store";
 import {trimTitle} from "./rideUtils";
 
 /**
@@ -23,11 +24,29 @@ export const csvToJson = (csv) => {
     for (let j = 0; j < headers.length; j++) {
       obj[headers[j]] = currentline[j];
     }
-
     result.push(obj);
   }
-
   return result;
+};
+
+/**
+ * Determines if distance is in miles or km.
+ * I'm not thrilled with how this is done but needed a quick fix.
+ * @param {Array} data Array of data
+ * @return {String} "mi" or "km"
+ */
+const getDistanceUnits = (data = []) => {
+  let isKm = undefined;
+  if (data.length > 1) {
+    const keys = Object.keys(data[0]);
+    isKm = keys.find((value) => value === "Distance (km)");
+  }
+  if (isKm) {
+    distanceUnit.set("km");
+    return "km";
+  }
+  distanceUnit.set("mi");
+  return "mi"; // Defaulting to miles
 };
 
 /**
@@ -37,6 +56,7 @@ export const csvToJson = (csv) => {
  * @return {array} Cycling Data
  */
 export const mapCSVData = (data, discipline = "Cycling") => {
+  const distanceUnit = getDistanceUnits(data);
   const mappedData = [];
 
   data.forEach((effort) => {
@@ -44,7 +64,7 @@ export const mapCSVData = (data, discipline = "Cycling") => {
       const output = parseInt(effort["Total Output"]);
       const averageWatts = parseInt(effort["Avg. Watts"]);
       const duration = parseInt(effort["Length (minutes)"]);
-      const distance = parseFloat(effort["Distance (mi)"]);
+      const distance = parseFloat(effort["Distance ("+ distanceUnit +")"]);
       const title = effort["Title"];
 
       // NaN/Null check for missing data from Peloton and Just Rides

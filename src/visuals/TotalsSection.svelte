@@ -5,6 +5,7 @@
       filteredData,
       totalMinutes,
       dateFilter,
+      distanceUnit
     } from "../store/store";
     import {getFriendlyDate} from "../utils/dateUtils";
     import {formatNumberWithCommas} from "../utils/numberUtils";
@@ -79,7 +80,7 @@
             <div>
                 <p>
                     <span>{formatNumberWithCommas($totalDistance)}</span>
-                    miles traveled
+                    {$distanceUnit === "km" ? "km" : "miles"} traveled
                 </p>
             </div>
             <div>

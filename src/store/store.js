@@ -47,6 +47,11 @@ export const showSameDayRides = writable(false);
 export const dateFilter = writable({});
 
 /**
+ * Distance unit. Defaults to miles.
+ */
+export const distanceUnit = writable("mi");
+
+/**
  * Store containing the parsed CSV data and without same day rides (based on `showSameDayRides`)
  */
 export const mappedCSVData = derived([csvData, showSameDayRides],
@@ -62,7 +67,6 @@ export const mappedCSVData = derived([csvData, showSameDayRides],
           const startDate = subtractNMonthsFromDate(endDate, 9);
           dateFilter.set({startDate, endDate});
         }
-
         return mappedData;
       }
       return [];
