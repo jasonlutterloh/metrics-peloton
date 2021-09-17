@@ -14,6 +14,7 @@ const {
   getAverageResistance,
   getOrganizedRidesSortedByOutput,
   getAverageOutputByRideType,
+  getAverageOutputByInstructor,
 } = require("../../src/utils/rideUtils");
 import {sampleData1} from "./sampleData";
 
@@ -314,5 +315,16 @@ describe("getAverageOutputByRideType", ()=> {
       expect(item).toHaveProperty("type");
       expect(item).toHaveProperty("averageOutput");
     });
+  });
+});
+
+describe("getAverageOutputByInstructor", () => {
+  it("should return an array of objects containing instructors and an avergae output number", () => {
+    const result = getAverageOutputByInstructor(sampleData);
+    result.forEach((item) => {
+      expect(item).toHaveProperty("instructor");
+      expect(item).toHaveProperty("averageOutput");
+    });
+    expect(result.length).toBe(3);
   });
 });

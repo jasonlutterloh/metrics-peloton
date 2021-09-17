@@ -1,14 +1,14 @@
 <script>
-  import DoughnutChart from "../../components/charts/DoughnutChart.svelte";
-  import {classesTakenPerInstructor} from "../../store/store.js";
+  import PolarArea from "../../components/charts/PolarArea.svelte";
+  import {averageOutputByInstructor} from "../../store/store.js";
   import {getColorArrayBasedOnLength} from "../../utils/colorUtils";
 
-  const getCounts = (data) => {
+  const getOutputs = (data) => {
     return data.map((item) => {
-      return item.count;
+      return item.averageOutput;
     });
   };
-  const getCountsLabels = (data) => {
+  const getLabels = (data) => {
     return data.map((item) => {
       return item.instructor;
     });
@@ -16,8 +16,8 @@
 
   const getDatasets = (instructorsData) => {
     const backgroundColor = getColorArrayBasedOnLength(instructorsData.length);
-    const data = getCounts(instructorsData);
-    const labels = getCountsLabels(instructorsData);
+    const data = getOutputs(instructorsData);
+    const labels = getLabels(instructorsData);
     return {
       datasets: [
         {
@@ -36,13 +36,13 @@
     "There was an error generating the output over time chart.";
 
   try {
-    datasets = getDatasets($classesTakenPerInstructor);
+    datasets = getDatasets($averageOutputByInstructor);
   } catch (e) {
     isError = true;
     console.error(ERROR_MESSAGE, e);
   }
 
-  classesTakenPerInstructor.subscribe((value) => {
+  averageOutputByInstructor.subscribe((value) => {
     try {
       if (chartReference) {
         chartReference.data = getDatasets(value);
@@ -58,15 +58,15 @@
 <section>
   <div class="section-wrapper">
     <div class="left">
-      <h2>Classes Taken Per Instructor</h2>
+      <h2>Average Output by Instructor</h2>
     </div>
     
     <div class="right">
   {#if isError}
     <p>{ERROR_MESSAGE}</p>
   {:else}
-    <DoughnutChart
-      title="Classes Taken Per Instructor"
+    <PolarArea
+      title="Average Output by Instructor"
       {datasets}
       bind:chartReference={chartReference} />
   {/if}
@@ -78,9 +78,10 @@
   .section-wrapper{
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 10px 0;
+    padding: 60px 10px;
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
   }
   .left, .right{
     flex: 0 1 50%;

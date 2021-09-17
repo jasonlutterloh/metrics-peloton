@@ -13,6 +13,7 @@ import {
   getAverageResistance,
   getOrganizedRidesSortedByOutput,
   getAverageOutputByRideType,
+  getAverageOutputByInstructor,
 } from "../utils/rideUtils";
 import {getTotalByAttribute} from "../utils/dataUtils";
 import {subtractNMonthsFromDate} from "../utils/dateUtils";
@@ -137,6 +138,11 @@ export const classesTakenPerInstructor = derived(filteredData, ($filteredData) =
  * Store of the average outputs organized by ride type
  */
 export const averageOutputByRideType = derived(filteredData, ($filteredData) => getAverageOutputByRideType($filteredData));
+
+/**
+ * Store of the average outputs by instructor
+ */
+export const averageOutputByInstructor = derived(filteredData, ($filteredData) => getAverageOutputByInstructor($filteredData));
 
 /**
  * Store of all filtered rides organized by ride duration

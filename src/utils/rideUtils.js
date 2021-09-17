@@ -288,7 +288,6 @@ export const getClassesTakenByInstructor = (rideData) => {
     console.error("Error creating the instructor chart");
   }
 
-  // Reverse so highest number is first
   return classesTakenByInstructor;
 };
 
@@ -363,6 +362,34 @@ export const getAverageOutputByRideType = (rideData) => {
   });
   const sortedAverageOutputs = sortArrayByAttributeInObject(averageOutputs, "averageOutput");
   return sortedAverageOutputs;
+};
+
+/**
+ * Returns a sorted array of average outputs by instructor
+ * @param {array} rideData Peloton ride data
+ * @return {array} Sorted array of objects containing average output by instructor
+ */
+export const getAverageOutputByInstructor = (rideData) => {
+  let outputs = [];
+  const uniqueInstructors = getUniqueValuesFromDataArrayByAttribute(rideData, "instructor");
+
+  uniqueInstructors.forEach((instructor) => {
+    if (instructor !== "") {
+      const output = {};
+      output.instructor = instructor;
+      const ridesByInstructor = rideData.filter((ride) => ride.instructor === instructor);
+      output.averageOutput = getAverageFromArray(ridesByInstructor, "averageOutput");
+      outputs.push(output);
+    }
+  });
+
+  // Sort by count
+  outputs = sortArrayByAttributeInObject(
+      outputs,
+      "averageOutput",
+  );
+
+  return outputs;
 };
 
 /**
