@@ -288,7 +288,6 @@ export const getClassesTakenByInstructor = (rideData) => {
     console.error("Error creating the instructor chart");
   }
 
-  // Reverse so highest number is first
   return classesTakenByInstructor;
 };
 
@@ -389,7 +388,6 @@ export const getAverageOutputByInstructor = (rideData) => {
       outputs,
       "averageOutput",
   );
-  console.log(outputs);
 
   return outputs;
 };
