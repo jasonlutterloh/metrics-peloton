@@ -8,7 +8,7 @@
       return item.averageOutput;
     });
   };
-  const getCountsLabels = (data) => {
+  const getLabels = (data) => {
     return data.map((item) => {
       return item.instructor;
     });
@@ -17,7 +17,7 @@
   const getDatasets = (instructorsData) => {
     const backgroundColor = getColorArrayBasedOnLength(instructorsData.length);
     const data = getOutputs(instructorsData);
-    const labels = getCountsLabels(instructorsData);
+    const labels = getLabels(instructorsData);
     return {
       datasets: [
         {
