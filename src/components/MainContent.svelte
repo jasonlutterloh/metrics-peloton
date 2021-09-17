@@ -4,6 +4,7 @@
   import FTP from "../visuals/charts/FTP.svelte";
   import AverageOutput from "../visuals/charts/AverageOutput.svelte";
   import AverageCadenceVsResistance from "../visuals/charts/AverageCadenceVsResistance.svelte";
+  import AverageOutputByInstructor from "../visuals/charts/AverageOutputByInstructor.svelte";
   import ClassesTakenByInstructor from "../visuals/charts/ClassesTakenByInstructor.svelte";
   import ErrorMessage from "../components/ErrorMessage.svelte";
   import {mappedCSVData, isError} from "../store/store.js";
@@ -32,6 +33,7 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
       <AverageOutput />
       <FTP />
       <ClassesTakenByInstructor />
+      <AverageOutputByInstructor />
       <AverageCadenceVsResistance />
       <AverageOutputByRideType />
       <TopFiveSection />
