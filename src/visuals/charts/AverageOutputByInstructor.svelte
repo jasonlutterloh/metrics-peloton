@@ -23,6 +23,7 @@
         {
           data,
           backgroundColor,
+          metadata: instructorsData,
         },
       ],
       labels,
@@ -58,7 +59,7 @@
 <section>
   <div class="section-wrapper">
     <div class="left">
-      <h2>Average Output by Instructor</h2>
+      <h2>Average Output (During Rides) by Instructor</h2>
     </div>
     
     <div class="right">

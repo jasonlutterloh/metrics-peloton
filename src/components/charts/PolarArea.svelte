@@ -21,6 +21,25 @@
         legend: {
           position: "bottom",
         },
+        tooltip: { // This needs to be updated if another chart wants to use polar area since it's specific to average output by instructor
+          callbacks: {
+            label: function(context) {
+              const instructor = context.dataset.metadata[context.dataIndex].instructor;
+              const count = context.dataset.metadata[context.dataIndex].count;
+              let label = instructor || "";
+
+              if (label) {
+                label += ": ";
+              }
+              if (context.parsed.r !== null) {
+                label += context.parsed.r;
+                label += " out of " + count + " ride" + (count > 1 ? "s" : "");
+              }
+  
+              return label;
+            },
+          },
+        },
       },
     },
   };

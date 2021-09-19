@@ -378,6 +378,7 @@ export const getAverageOutputByInstructor = (rideData) => {
       const output = {};
       output.instructor = instructor;
       const ridesByInstructor = rideData.filter((ride) => ride.instructor === instructor);
+      output.count = ridesByInstructor.length;
       output.averageOutput = getAverageFromArray(ridesByInstructor, "averageOutput");
       outputs.push(output);
     }
@@ -388,7 +389,6 @@ export const getAverageOutputByInstructor = (rideData) => {
       outputs,
       "averageOutput",
   );
-
   return outputs;
 };
 
