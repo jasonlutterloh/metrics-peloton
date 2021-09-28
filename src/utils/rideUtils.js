@@ -393,6 +393,44 @@ export const getAverageOutputByInstructor = (rideData) => {
 };
 
 /**
+ * Returns a sorted array of average total outputs by instructor
+ * @param {array} rideData Peloton ride data
+ * @return {array} Sorted array of objects containing average output by instructor
+ */
+export const getAverageTotalOutputByInstructor = (rideData) => {
+  let outputs = [];
+  const uniqueInstructors = getUniqueValuesFromDataArrayByAttribute(rideData, "instructor");
+
+  uniqueInstructors.forEach((instructor) => {
+    if (instructor !== "") {
+      const output = {};
+      output.instructor = instructor;
+      const ridesByInstructor = rideData.filter((ride) => ride.instructor === instructor);
+      output.count = ridesByInstructor.length;
+      output.averageTotalOutput = getAverageFromArray(ridesByInstructor, "output");
+      outputs.push(output);
+    }
+  });
+  // Sort by count
+  outputs = sortArrayByAttributeInObject(
+      outputs,
+      "averageTotalOutput",
+  );
+  return outputs;
+};
+
+export const getAverageTotalOutputByDurationAndInstructor = (rideData) => {
+  const newOrganizedRides = {};
+  const durations = Object.keys(rideData);
+
+  // eslint-disable-next-line no-unused-vars
+  for (const [i, duration] of durations.entries()) {
+    newOrganizedRides[duration] = getAverageTotalOutputByInstructor(rideData[duration]);
+  }
+  return newOrganizedRides;
+};
+
+/**
  * Groups objects in an array by a given attribute
  * Source: https://stackoverflow.com/questions/14696326/break-array-of-objects-into-separate-arrays-based-on-a-property
  * @param {array} arr array of objects

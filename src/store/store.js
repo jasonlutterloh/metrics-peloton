@@ -14,6 +14,7 @@ import {
   getOrganizedRidesSortedByOutput,
   getAverageOutputByRideType,
   getAverageOutputByInstructor,
+  getAverageTotalOutputByDurationAndInstructor,
 } from "../utils/rideUtils";
 import {getTotalByAttribute} from "../utils/dataUtils";
 import {subtractNMonthsFromDate} from "../utils/dateUtils";
@@ -174,3 +175,13 @@ export const organizedRidesSortedByOutput = derived(organizedRidesByDuration, ($
     return {};
   }
 });
+
+export const averageTotalOutputByDurationAndInstructor = derived(organizedRidesByDuration, ($organizedRidesByDuration) => {
+  try {
+    return getAverageTotalOutputByDurationAndInstructor($organizedRidesByDuration);
+  } catch (e) {
+    console.error("Could not parse data");
+    return {};
+  }
+});
+// TODO: hide this graph if no rides
