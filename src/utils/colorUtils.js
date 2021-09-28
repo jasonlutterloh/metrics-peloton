@@ -84,7 +84,10 @@ export const getColorArrayBasedOnLength = (length) => {
  * @return {number} opacity valye
  */
 export const getOpacityByIndex = (index) => {
-  let opacity = 1 - (index*(.1));
-  opacity = opacity > .5 ? opacity : .5;
+  let opacity = .5; // Default. Any lighter and text is too hard to read.
+  if (typeof index === "number" && index >= 0) {
+    opacity = 1 - (index*(.1));
+    opacity = opacity > .5 ? opacity : .5;
+  }
   return opacity;
 };

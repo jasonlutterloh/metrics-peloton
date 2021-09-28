@@ -4,6 +4,7 @@ import {
   getDefaultColorArray,
   getColorBasedOnArrayLengthAndIndex,
   getColorArrayBasedOnLength,
+  getOpacityByIndex,
 } from "../../src/utils/colorUtils";
 
 describe("getDefaultColorArray", () => {
@@ -34,5 +35,19 @@ describe("getColorArrayBasedOnLength", () => {
     expect(longArray[12]).toBe(GREY);
     expect(longArray[13]).toBe(GREY);
     expect(longArray[14]).toBe(GREY);
+  });
+});
+
+
+describe("getOpacityByIndex", () => {
+  it("should return an opacity value for a given index", () => {
+    expect(getOpacityByIndex(0)).toBe(1);
+    expect(getOpacityByIndex(1)).toBe(.9);
+    expect(getOpacityByIndex(2)).toBe(.8);
+    expect(getOpacityByIndex(3)).toBe(.7);
+    expect(getOpacityByIndex(4)).toBe(.6);
+    expect(getOpacityByIndex(5)).toBe(.5);
+    expect(getOpacityByIndex(100)).toBe(.5);
+    expect(getOpacityByIndex(-1)).toBe(.5);
   });
 });
