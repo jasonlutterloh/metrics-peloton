@@ -77,3 +77,17 @@ export const getColorArrayBasedOnLength = (length) => {
   }
   return array;
 };
+
+/**
+ * Returns an opacity value based on index. Never will return less than .5.
+ * @param {number} index number to determine opacity with. 0 index will be 1 opacity.
+ * @return {number} opacity valye
+ */
+export const getOpacityByIndex = (index) => {
+  let opacity = .5; // Default. Any lighter and text is too hard to read.
+  if (typeof index === "number" && index >= 0) {
+    opacity = 1 - (index*(.1));
+    opacity = opacity > .5 ? opacity : .5;
+  }
+  return opacity;
+};
