@@ -113,3 +113,6 @@ public/build
 # Service Worker
 **/workbox*
 **/sw*
+
+# Firebase Config
+src/firebase.config.js
