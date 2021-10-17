@@ -1,6 +1,6 @@
 {
   "name": "peloton-metrics",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "author": {
     "name": "Jason Lutterloh",
     "url": "https://lutterloh.dev"
@@ -44,7 +44,7 @@
   "dependencies": {
     "chart.js": "^3.4.1",
     "chartjs-adapter-moment": "^1.0.0",
-    "chartjs-plugin-trendline": "github:jasonlutterloh/chartjs-plugin-trendline",
+    "chartjs-plugin-trendline": "^1.0.0",
     "dayjs": "^1.10.6",
     "firebase": "^9.1.1",
     "moment": "^2.29.1",
