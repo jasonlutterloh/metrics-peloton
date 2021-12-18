@@ -25,7 +25,7 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
 <main>
   {#if $isError}
     <ErrorMessage>
-      Sorry, an error occurred while processing the data. Please try again.
+      Sorry, an error occurred while processing your file. Please try again.
     </ErrorMessage>
     {/if}
 
