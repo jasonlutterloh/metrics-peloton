@@ -31,17 +31,16 @@
     }
   };
 
-  const verifyData = json => {
+  const verifyData = (json) => {
     if (json.length <= 0) {
       throw new Error("Bad input: data length is 0");
     }
-    json.forEach(record => {
-      if (!("Title" in record) || !("Total Output" in record)){ //TODO: Add more
-        throw new Error("Record did not include necessary data.")
+    json.forEach((record) => {
+      if (!("Title" in record) || !("Total Output" in record)) { // TODO: Add more
+        throw new Error("Record did not include necessary data.");
       }
     });
-    
-  }
+  };
 
   const upload = () => {
     if (files && files.length > 0) {
