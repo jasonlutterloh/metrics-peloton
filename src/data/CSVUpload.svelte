@@ -15,10 +15,6 @@
     }
   });
 
-  const handleClick = () => {
-    window.open("https://members.onepeloton.com/profile/workouts", "_blank");
-  };
-
   const updateData = (json) => {
     localStorage.clear();
     csvData.set();
@@ -91,15 +87,6 @@
   label {
     margin: 20px 0;
   }
-  button.peloton-link{
-    background: none;
-    margin: 0;
-    padding: 0;
-    border: none;
-    cursor: pointer;
-    color: #013A63;
-    text-decoration: underline;
-  }
 
   @media only screen and (max-width: 768px) {
     .section-wrapper {
@@ -123,8 +110,11 @@
       <ol>
         <li>
           Download your Workout CSV from your
-          <button class="peloton-link" on:click={handleClick}>Peloton
-            profile</button> from a browser. It's not available via the app.
+          <a
+            target="_blank"
+            rel="noopener"
+            href="https://members.onepeloton.com/profile/workouts">Peloton
+            profile</a> from a browser. It's not available via the app.
         </li>
         <li>Upload the CSV file</li>
       </ol>
