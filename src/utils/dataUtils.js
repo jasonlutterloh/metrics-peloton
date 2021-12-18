@@ -67,10 +67,10 @@ export const getUniqueValuesFromDataArrayByAttribute = (array, attribute) => {
             }
             console.error("Attribute (" + attribute + ") for the following item returned null or undefined", item);
             throw new Error(
-                "Error getting values for '" + attribute + "'",
+                "Error getting values for '" + attribute + "'"
             );
-          }),
-  ),
+          })
+  )
   ];
   return values;
 };

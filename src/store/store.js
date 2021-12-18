@@ -14,7 +14,7 @@ import {
   getOrganizedRidesSortedByOutput,
   getAverageOutputByRideType,
   getAverageOutputByInstructor,
-  getAverageTotalOutputByDurationAndInstructor,
+  getAverageTotalOutputByDurationAndInstructor
 } from "../utils/rideUtils";
 import {getTotalByAttribute} from "../utils/dataUtils";
 import {subtractNMonthsFromDate} from "../utils/dateUtils";

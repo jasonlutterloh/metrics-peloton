@@ -3,7 +3,7 @@ import {
   sortArrayByAttributeInObject,
   sliceArrayByGivenMax,
   getUniqueValuesFromDataArrayByAttribute,
-  getTotalByAttribute,
+  getTotalByAttribute
 } from "../../src/utils/dataUtils";
 import {sampleData1} from "./sampleData";
 
@@ -19,7 +19,7 @@ describe("getAverageFromArray", () => {
       {output: 10},
       {output: 10},
       {output: 10},
-      {output: 10},
+      {output: 10}
     ];
     expect(getAverageFromArray(testData, "output")).toBe(10);
   });
@@ -32,7 +32,7 @@ describe("sortArrayByAttributeInObject", () => {
   const data = [
     {count: 1, value: "least"},
     {count: 5, value: "most"},
-    {count: 3, value: "middle"},
+    {count: 3, value: "middle"}
   ];
   it("should sort an array given the attribute value", () => {
     const result = sortArrayByAttributeInObject(data, "count");
@@ -60,7 +60,7 @@ describe("getUniqueValuesFromDataArrayByAttribute", () => {
     {date: "2020-11-01"},
     {date: "2020-11-01"},
     {date: "2020-11-02"},
-    {date: "2020-11-02"},
+    {date: "2020-11-02"}
   ];
   it("should return an array of unique dates", () => {
     const result = getUniqueValuesFromDataArrayByAttribute(data, "date");

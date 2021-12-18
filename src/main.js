@@ -1,7 +1,7 @@
 import App from "./App.svelte";
 
 const app = new App({
-  target: document.body,
+  target: document.body
 });
 
 // Remove service worker functionality from local development

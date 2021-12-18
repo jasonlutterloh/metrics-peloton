@@ -20,6 +20,7 @@
     csvData.set();
     isError.set(false);
     try {
+      verifyData(json);
       distanceUnit.set(getDistanceUnit(json)); // There's a better way to do this
       csvData.set(json);
       y = 0;
@@ -29,6 +30,18 @@
       isError.set(true);
     }
   };
+
+  const verifyData = json => {
+    if (json.length <= 0) {
+      throw new Error("Bad input: data length is 0");
+    }
+    json.forEach(record => {
+      if (!("Title" in record) || !("Total Output" in record)){ //TODO: Add more
+        throw new Error("Record did not include necessary data.")
+      }
+    });
+    
+  }
 
   const upload = () => {
     if (files && files.length > 0) {

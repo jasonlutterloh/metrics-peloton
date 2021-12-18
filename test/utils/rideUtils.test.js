@@ -14,7 +14,7 @@ const {
   getAverageResistance,
   getOrganizedRidesSortedByOutput,
   getAverageOutputByRideType,
-  getAverageOutputByInstructor,
+  getAverageOutputByInstructor
 } = require("../../src/utils/rideUtils");
 import {sampleData1} from "./sampleData";
 
@@ -43,7 +43,7 @@ describe("filterRidesByTitle", () => {
       "Climb",
       "HIIT",
       "XOXO Cody",
-      "30 min Ministry of Sound: I Love Ibiza",
+      "30 min Ministry of Sound: I Love Ibiza"
     ];
     const result = filterRidesByTitle(sampleData, filteredRides);
     expect(result).toHaveLength(0);
@@ -112,8 +112,8 @@ describe("getUniqueRideTypes", () => {
           "HIIT",
           "Climb",
           "XOXO Cody",
-          "Ministry of Sound: I Love Ibiza",
-        ]),
+          "Ministry of Sound: I Love Ibiza"
+        ])
     );
   });
 });
@@ -147,34 +147,34 @@ describe("getAverageOutputs", () => {
     const result = getAverageOutputs(sampleData);
     expect(result).toHaveLength(sampleData.length);
     expect(result[0].average).toBe(
-        sampleData[0].output / sampleData[0].duration,
+        sampleData[0].output / sampleData[0].duration
     );
     expect(result[1].average).toBe(
-        sampleData[1].output / sampleData[1].duration,
+        sampleData[1].output / sampleData[1].duration
     );
     expect(result[2].average).toBe(
-        sampleData[2].output / sampleData[2].duration,
+        sampleData[2].output / sampleData[2].duration
     );
     expect(result[3].average).toBe(
-        sampleData[3].output / sampleData[3].duration,
+        sampleData[3].output / sampleData[3].duration
     );
     expect(result[4].average).toBe(
-        sampleData[4].output / sampleData[4].duration,
+        sampleData[4].output / sampleData[4].duration
     );
     expect(result[5].average).toBe(
-        sampleData[5].output / sampleData[5].duration,
+        sampleData[5].output / sampleData[5].duration
     );
     expect(result[6].average).toBe(
-        sampleData[6].output / sampleData[6].duration,
+        sampleData[6].output / sampleData[6].duration
     );
     expect(result[7].average).toBe(
-        sampleData[7].output / sampleData[7].duration,
+        sampleData[7].output / sampleData[7].duration
     );
     expect(result[8].average).toBe(
-        sampleData[8].output / sampleData[8].duration,
+        sampleData[8].output / sampleData[8].duration
     );
     expect(result[9].average).toBe(
-        sampleData[9].output / sampleData[9].duration,
+        sampleData[9].output / sampleData[9].duration
     );
 
     expect(result[0].title).toBe(sampleData[0].title);
@@ -197,7 +197,7 @@ describe("getDatesWithMultipleRides", () => {
     {date: "2020-11-01"},
     {date: "2020-11-02"},
     {date: "2020-11-02"},
-    {date: "2020-11-03"},
+    {date: "2020-11-03"}
   ];
   it("should return dates with multiple rides", () => {
     const result = getDatesWithMultipleRides(data);
@@ -259,7 +259,7 @@ describe("getAverageCadence", () => {
     const data = [
       {averageCadence: 100, date: "2020-01-01"},
       {averageCadence: 100, date: "2020-01-01"},
-      {averageCadence: 100, date: "2020-01-01"},
+      {averageCadence: 100, date: "2020-01-01"}
     ];
     const result = getAverageCadence(data);
     expect(result).toHaveLength(3);
@@ -277,7 +277,7 @@ describe("getAverageResistance", () => {
     const data = [
       {averageResistance: 100, date: "2020-01-01"},
       {averageResistance: 100, date: "2020-01-01"},
-      {averageResistance: 100, date: "2020-01-01"},
+      {averageResistance: 100, date: "2020-01-01"}
     ];
     const result = getAverageResistance(data);
     expect(result).toHaveLength(3);

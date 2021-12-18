@@ -23,17 +23,17 @@
           ticks: {},
           type: "time",
           time: {
-            tooltipFormat: "MMM DD YYYY",
-          },
+            tooltipFormat: "MMM DD YYYY"
+          }
         },
         yAxis: {
           grid: {},
-          ticks: {},
-        },
+          ticks: {}
+        }
       },
       plugins: {
         legend: {
-          display: false,
+          display: false
         },
         tooltip: {
           callbacks: {
@@ -48,12 +48,12 @@
                 label += context.parsed.y;
               }
               return label;
-            },
-          },
-        },
+            }
+          }
+        }
       },
-      maintainAspectRatio: false,
-    },
+      maintainAspectRatio: false
+    }
   };
 
   if (isDarkMode) {
@@ -73,7 +73,7 @@
   onMount(async () => {
     try {
       Chart.register({
-        chartTrendline,
+        chartTrendline
       });
       const ctx = document.getElementById(chartID);
       if (screenWidth < 768) {

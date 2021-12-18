@@ -9,7 +9,7 @@ export const colors ={
   princetonorange: "#E87C24",
   burntsienna: "#ee6c4dff",
   radicalred: "#FF1654",
-  vividburgundy: "#9e0031ff",
+  vividburgundy: "#9e0031ff"
 };
 // export const colors = {
 //   // maximumbluegreen: "#3fc1c0ff",

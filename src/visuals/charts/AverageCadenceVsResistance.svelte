@@ -7,12 +7,12 @@
     const cadenceData = getPlotPointsByDate(
         averageCadence,
         "average",
-        "createdAt",
+        "createdAt"
     );
     const resistanceData = getPlotPointsByDate(
         averageResistance,
         "average",
-        "createdAt",
+        "createdAt"
     );
 
     return {
@@ -26,8 +26,8 @@
           trendlineLinear: {
             style: "#A9D6E5",
             lineStyle: "dotted",
-            width: 1,
-          },
+            width: 1
+          }
         },
         {
           borderColor: "#3FC1C0",
@@ -38,10 +38,10 @@
           trendlineLinear: {
             style: "#3FC1C0",
             lineStyle: "dotted",
-            width: 1,
-          },
-        },
-      ],
+            width: 1
+          }
+        }
+      ]
     };
   };
 

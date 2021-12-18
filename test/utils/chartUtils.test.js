@@ -13,7 +13,7 @@ describe("getPlotPointsByDate", () => {
     const sampleData = [
       {output: 100, date: "2020-09-25"},
       {output: 100, date: "2020-09-25"},
-      {output: 100, date: "2020-09-25"},
+      {output: 100, date: "2020-09-25"}
     ];
 
     const yAxis = "output";
@@ -30,7 +30,7 @@ describe("getPlotPointsByDate", () => {
     const sampleData = [
       {average: 100, createdAt: "2020-09-25"},
       {average: 100, createdAt: "2020-09-25"},
-      {average: 100, createdAt: "2020-09-25"},
+      {average: 100, createdAt: "2020-09-25"}
     ];
 
     const yAxis = "average";
@@ -47,7 +47,7 @@ describe("getPlotPointsByDate", () => {
     const sampleData = [
       {average: 100, createdAt: "2020-09-25"},
       {average: 100, createdAt: "2020-09-25"},
-      {average: 100, createdAt: "2020-09-25"},
+      {average: 100, createdAt: "2020-09-25"}
     ];
 
     console.error = jest.fn();

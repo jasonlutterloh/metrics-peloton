@@ -23,10 +23,10 @@
         {
           data,
           backgroundColor,
-          metadata: instructorsData,
-        },
+          metadata: instructorsData
+        }
       ],
-      labels,
+      labels
     };
   };
 

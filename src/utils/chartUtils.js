@@ -40,7 +40,7 @@ export const getPlotPointsByDate = (data, yAttribute, dateAttribute, titleAttrib
     }
     console.error(`One or more of the given attributes '${yAttribute}', '${dateAttribute}' was null or empty for the following object: `, object);
     throw new Error(
-        "Data does not match given parameters to generate plot points",
+        "Data does not match given parameters to generate plot points"
     );
   });
 };

@@ -19,10 +19,10 @@
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          position: "bottom",
-        },
-      },
-    },
+          position: "bottom"
+        }
+      }
+    }
   };
 
   try {

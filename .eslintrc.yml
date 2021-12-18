@@ -17,5 +17,6 @@ overrides: [
 ]
 rules: {
   quotes: ['error', 'double'],
-  max-len: 0
+  max-len: 0,
+  comma-dangle: ["error", "never"],
 }

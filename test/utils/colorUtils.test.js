@@ -4,7 +4,7 @@ import {
   getDefaultColorArray,
   getColorBasedOnArrayLengthAndIndex,
   getColorArrayBasedOnLength,
-  getOpacityByIndex,
+  getOpacityByIndex
 } from "../../src/utils/colorUtils";
 
 describe("getDefaultColorArray", () => {

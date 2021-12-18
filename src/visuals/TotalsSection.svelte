@@ -5,7 +5,7 @@
       filteredData,
       totalMinutes,
       dateFilter,
-      distanceUnit,
+      distanceUnit
     } from "../store/store";
     import {getFriendlyDate} from "../utils/dateUtils";
     import {formatNumberWithCommas} from "../utils/numberUtils";

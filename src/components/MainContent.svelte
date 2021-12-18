@@ -27,7 +27,8 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
     <ErrorMessage>
       Sorry, an error occurred while processing the data. Please try again.
     </ErrorMessage>
-  {:else}
+    {/if}
+
     {#if $mappedCSVData.length > 0}
       <TotalsSection /> 
       <OutputOverTime />
@@ -43,7 +44,7 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
       {:else}
       <InfoMessage>Upload your Peloton rides to see your output over time, averages, top rides, and more!</InfoMessage>
       <CSVUpload />
+
     {/if}
-  {/if}
   
 </main>

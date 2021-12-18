@@ -17,10 +17,10 @@
           trendlineLinear: {
             style: "#fff",
             lineStyle: "dotted",
-            width: 1,
-          },
-        },
-      ],
+            width: 1
+          }
+        }
+      ]
     };
   };
 

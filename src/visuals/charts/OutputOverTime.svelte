@@ -24,14 +24,14 @@
         trendlineLinear: {
           style: color,
           lineStyle: "dotted",
-          width: 1,
-        },
+          width: 1
+        }
       };
 
       datasets.push(dataset);
     }
     return {
-      datasets: datasets,
+      datasets: datasets
     };
   };
 

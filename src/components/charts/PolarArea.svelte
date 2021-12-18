@@ -19,7 +19,7 @@
       maintainAspectRatio: false,
       plugins: {
         legend: {
-          position: "bottom",
+          position: "bottom"
         },
         tooltip: { // This needs to be updated if another chart wants to use polar area since it's specific to average output by instructor
           callbacks: {
@@ -37,11 +37,11 @@
               }
   
               return label;
-            },
-          },
-        },
-      },
-    },
+            }
+          }
+        }
+      }
+    }
   };
 
   try {

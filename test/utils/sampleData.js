@@ -5,7 +5,7 @@ export const sampleData1 = [
     duration: 45,
     date: "2020-02-21",
     instructor: "Ben Alldis",
-    distance: 15.5,
+    distance: 15.5
   },
   {
     title: "45 min Tabata Ride",
@@ -13,7 +13,7 @@ export const sampleData1 = [
     duration: 45,
     date: "2020-02-21",
     instructor: "Ben Alldis",
-    distance: 15,
+    distance: 15
   },
   {
     title: "30 Min Climb Ride",
@@ -21,7 +21,7 @@ export const sampleData1 = [
     duration: 30,
     date: "2020-02-20",
     instructor: "Ben Alldis",
-    distance: 10,
+    distance: 10
   },
   {
     title: "45 min HIIT Ride",
@@ -29,7 +29,7 @@ export const sampleData1 = [
     duration: 45,
     date: "2020-02-19",
     instructor: "Ben Alldis",
-    distance: 15,
+    distance: 15
   },
   {
     title: "30 min Tabata Ride",
@@ -37,7 +37,7 @@ export const sampleData1 = [
     duration: 30,
     date: "2020-02-18",
     instructor: "Ben Alldis",
-    distance: 10,
+    distance: 10
   },
   {
     title: "20 min Climb Ride",
@@ -45,7 +45,7 @@ export const sampleData1 = [
     duration: 20,
     date: "2020-02-17",
     instructor: "Robin Arzon",
-    distance: 10,
+    distance: 10
   },
   {
     title: "45 min Tabata Ride",
@@ -53,7 +53,7 @@ export const sampleData1 = [
     duration: 45,
     date: "2020-02-16",
     instructor: "Robin Arzon",
-    distance: 15,
+    distance: 15
   },
   {
     title: "30 min Ministry of Sound: I Love Ibiza",
@@ -61,7 +61,7 @@ export const sampleData1 = [
     duration: 30,
     date: "2020-02-15",
     instructor: "Robin Arzon",
-    distance: 10,
+    distance: 10
   },
   {
     title: "30 min Tabata Ride: Live From Home",
@@ -69,7 +69,7 @@ export const sampleData1 = [
     duration: 30,
     date: "2020-02-14",
     instructor: "Robin Arzon",
-    distance: 10,
+    distance: 10
   },
   {
     title: "20 min XOXO Cody",
@@ -77,6 +77,6 @@ export const sampleData1 = [
     duration: 20,
     date: "2020-02-13",
     instructor: "Alex Touisant",
-    distance: 10,
-  },
+    distance: 10
+  }
 ];

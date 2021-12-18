@@ -22,10 +22,10 @@
       datasets: [
         {
           data,
-          backgroundColor,
-        },
+          backgroundColor
+        }
       ],
-      labels,
+      labels
     };
   };
 

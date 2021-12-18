@@ -76,8 +76,8 @@ export const organizeRidesByDuration = (rideData) => {
             return ride.duration;
           }
           throw new Error("One or more rides did not include duration.");
-        }),
-    ),
+        })
+    )
   ];
 
   uniqueRideDurations.forEach((duration) => {
@@ -98,8 +98,8 @@ export const getUniqueRideTypes = (rideData) => {
     ...new Set(
         rideData.map((ride) => {
           return trimTitle(ride.title);
-        }),
-    ),
+        })
+    )
   ];
 
   return uniqueRideTypes;
@@ -160,7 +160,7 @@ export const getHighestOutputRidesByDuration = (rideData) => {
 
 export const energy = {
   WATTS: "watts",
-  KILOJOULES: "kj",
+  KILOJOULES: "kj"
 };
 
 /**
@@ -265,7 +265,7 @@ export const getClassesTakenByInstructor = (rideData) => {
   try {
     const uniqueInstructors = getUniqueValuesFromDataArrayByAttribute(
         rideData,
-        "instructor",
+        "instructor"
     );
 
     uniqueInstructors.forEach((instructor) => {
@@ -273,7 +273,7 @@ export const getClassesTakenByInstructor = (rideData) => {
         const value = {};
         value.instructor = instructor;
         value.count = rideData.filter(
-            (ride) => ride.instructor === instructor,
+            (ride) => ride.instructor === instructor
         ).length;
         classesTakenByInstructor.push(value);
       }
@@ -282,7 +282,7 @@ export const getClassesTakenByInstructor = (rideData) => {
     // Sort by count
     classesTakenByInstructor = sortArrayByAttributeInObject(
         classesTakenByInstructor,
-        "count",
+        "count"
     );
   } catch (e) {
     console.error("Error creating the instructor chart");
@@ -339,7 +339,7 @@ export const getOrganizedRidesSortedByOutput = (rideData) => {
   for (const [i, duration] of durations.entries()) {
     newOrganizedRides[duration] = sortArrayByAttributeInObject(
         rideData[duration],
-        "output",
+        "output"
     );
   }
   return newOrganizedRides;
@@ -387,7 +387,7 @@ export const getAverageOutputByInstructor = (rideData) => {
   // Sort by count
   outputs = sortArrayByAttributeInObject(
       outputs,
-      "averageOutput",
+      "averageOutput"
   );
   return outputs;
 };
@@ -414,7 +414,7 @@ export const getAverageTotalOutputByInstructor = (rideData) => {
   // Sort by count
   outputs = sortArrayByAttributeInObject(
       outputs,
-      "averageTotalOutput",
+      "averageTotalOutput"
   );
   return outputs;
 };
