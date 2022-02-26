@@ -10,10 +10,36 @@
   import {mappedCSVData, isError} from "../store/store.js";
   import TopFiveSection from "../visuals/TopFiveSection.svelte";
   import TotalsSection from "../visuals/TotalsSection.svelte";
-import InfoMessage from "./InfoMessage.svelte";
-import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
+  import InfoMessage from "./InfoMessage.svelte";
+  import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
   import AverageTotalOutputByInstructor from "../visuals/charts/AverageTotalOutputByInstructor.svelte";
 </script>
+
+<main>
+  {#if $isError}
+    <ErrorMessage>
+      Sorry, an error occurred while processing the file. Please try again.
+    </ErrorMessage>
+  {/if}
+  {#if $mappedCSVData.length > 0}
+    <TotalsSection />
+    <OutputOverTime />
+    <AverageOutput />
+    <FTP />
+    <ClassesTakenByInstructor />
+    <!-- <AverageOutputByInstructor /> Hiding this for now-->
+    <AverageTotalOutputByInstructor />
+    <AverageCadenceVsResistance />
+    <AverageOutputByRideType />
+    <TopFiveSection />
+  {:else}
+    <InfoMessage
+      >Upload your Peloton rides to see your output over time, averages, top
+      rides, and more!</InfoMessage
+    >
+    <CSVUpload />
+  {/if}
+</main>
 
 <style>
   main {
@@ -21,29 +47,3 @@ import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
     padding-top: 50px;
   }
 </style>
-
-<main>
-  {#if $isError}
-    <ErrorMessage>
-      Sorry, an error occurred while processing the data. Please try again.
-    </ErrorMessage>
-  {:else}
-    {#if $mappedCSVData.length > 0}
-      <TotalsSection /> 
-      <OutputOverTime />
-      <AverageOutput />
-      <FTP />
-      <ClassesTakenByInstructor />
-      <!-- <AverageOutputByInstructor /> Hiding this for now-->
-      <AverageTotalOutputByInstructor />
-      <AverageCadenceVsResistance />
-      <AverageOutputByRideType />
-      <TopFiveSection />
-      
-      {:else}
-      <InfoMessage>Upload your Peloton rides to see your output over time, averages, top rides, and more!</InfoMessage>
-      <CSVUpload />
-    {/if}
-  {/if}
-  
-</main>

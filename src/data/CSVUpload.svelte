@@ -1,7 +1,7 @@
 <script>
   import {onMount} from "svelte";
   import {csvData, isError, distanceUnit} from "../store/store.js";
-  import {csvToJson, getDistanceUnit} from "../utils/fileUtils";
+  import {csvToJson, getDistanceUnit, validateCSV} from "../utils/fileUtils";
 
   let files;
   // let errorStatus = false;
@@ -20,6 +20,7 @@
     csvData.set();
     isError.set(false);
     try {
+      validateCSV(json);
       distanceUnit.set(getDistanceUnit(json)); // There's a better way to do this
       csvData.set(json);
       y = 0;
