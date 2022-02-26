@@ -29,6 +29,25 @@ export const csvToJson = (csv) => {
 };
 
 /**
+ * Determines if file is valid or not.
+ * This could be done a lot cleaner and thoroughly.
+ * @param {Array} data Array of data
+ * @return {Boolean} result result of validation
+ */
+export const validateCSV = (data = []) => {
+  if (data.length > 1) {
+    const keys = Object.keys(data[0]);
+
+    if (keys.find((value) => value === "Workout Timestamp") &&
+    keys.find((value) => value === "Total Output") &&
+    keys.find((value) => value === "Fitness Discipline")) {
+      return true;
+    }
+  }
+  throw new Error("CSV is not valid");
+};
+
+/**
  * Determines if distance is in miles or km.
  * I'm not thrilled with how this is done but needed a quick fix.
  * @param {Array} data Array of data
