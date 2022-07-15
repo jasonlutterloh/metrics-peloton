@@ -45,7 +45,7 @@
     "chartjs-adapter-moment": "^1.0.0",
     "chartjs-plugin-trendline": "^1.0.0",
     "dayjs": "^1.10.6",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "sirv-cli": "^1.0.12"
   },
   "husky": {
