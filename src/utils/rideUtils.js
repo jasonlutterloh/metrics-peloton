@@ -1,6 +1,7 @@
 import {getAverageFromArray, sortArrayByAttributeInObject, getUniqueValuesFromDataArrayByAttribute} from "./dataUtils";
 import {getColorBasedOnArrayLengthAndIndex} from "./colorUtils";
 import {isDateSameOrAfterGivenDate, isDateSameOrBeforeGivenDate} from "./dateUtils";
+import {trimTitle} from "./stringUtils";
 
 /**
  * Filters Peloton Workout data by the given filters on ride titles
@@ -97,32 +98,12 @@ export const getUniqueRideTypes = (rideData) => {
   const uniqueRideTypes = [
     ...new Set(
         rideData.map((ride) => {
-          return trimTitle(ride.title);
+          return trimTitle(ride.title, true);
         }),
     ),
   ];
 
   return uniqueRideTypes;
-};
-
-/**
- * Removes duration information and the "Ride" suffix from a string
- * @param {string} title Ride Title
- * @return {string} Trimmed ride title
- */
-export const trimTitle = (title) => {
-  const MIN = "min";
-  const originalTitle = title;
-  const startIndex = originalTitle.toLowerCase().indexOf(MIN) + MIN.length + 1; // 1 for space
-  let endIndex = originalTitle.toLowerCase().indexOf("ride") - 1; // 1 for space
-  if (endIndex < 0) {
-    endIndex = originalTitle.toLowerCase().indexOf("home") - 1; // Fixes an issue with Live From Home rides
-  }
-
-  if (endIndex < 0) {
-    endIndex = originalTitle.length;
-  }
-  return originalTitle.substring(startIndex, endIndex);
 };
 
 /**

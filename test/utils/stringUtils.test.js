@@ -1,12 +1,21 @@
-import {trimRideTitle, convertStringToID} from "../../src/utils/stringUtils";
+import {trimTitle, convertStringToID} from "../../src/utils/stringUtils";
 
-describe("trimRideTitle", () => {
+describe("trimTitle", () => {
   it("should trim \"min\" from the ride title", () => {
-    expect(trimRideTitle("30 min Tabata Ride")).toBe("Tabata Ride");
-    expect(trimRideTitle("45 min Together We Go Far")).toBe(
+    expect(trimTitle("30 min Tabata Ride")).toBe("Tabata Ride");
+    expect(trimTitle("45 min Together We Go Far")).toBe(
         "Together We Go Far",
     );
-    expect(trimRideTitle("Tabata Ride")).toBe("Tabata Ride");
+    expect(trimTitle("Tabata Ride")).toBe("Tabata Ride");
+    expect(trimTitle("Extra 10: Climb Ride")).toBe("Climb Ride");
+    expect(trimTitle("30 min XOXO, Cody: Festive Fantasy")).toBe("XOXO, Cody: Festive Fantasy");
+    expect(trimTitle("30 min HIIT & Hills Ride: Live from LA")).toBe("HIIT & Hills Ride");
+    expect(trimTitle("30 min Ministry of Sound: 30th Birthday")).toBe("Ministry of Sound: 30th Birthday");
+  });
+  it("should trim \"min\" from the ride title and Ride suffix", () => {
+    // With flag true
+    expect(trimTitle("30 min Tabata Ride", true)).toBe("Tabata");
+    expect(trimTitle("Extra 10: Climb Ride", true)).toBe("Climb");
   });
 });
 

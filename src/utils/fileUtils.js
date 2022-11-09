@@ -1,4 +1,4 @@
-import {trimTitle} from "./rideUtils";
+import {trimTitle} from "./stringUtils";
 
 /**
  * Converts a CSV to JSON
@@ -97,7 +97,7 @@ export const mapCSVData = (data, distanceUnit = "mi", discipline = "Cycling") =>
         ride.averageResistance = effort["Avg. Resistance"].replace("%", "");
         ride.distance = distance;
         ride.calories = parseFloat(effort["Calories Burned"]);
-        ride.type = trimTitle(effort["Title"]);
+        ride.type = trimTitle(effort["Title"], true);
         mappedData.push(ride);
       }
     }
