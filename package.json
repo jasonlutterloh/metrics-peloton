@@ -1,6 +1,6 @@
 {
   "name": "peloton-metrics",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "author": {
     "name": "Jason Lutterloh",
     "url": "https://lutterloh.dev"
@@ -20,28 +20,25 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
-    "@rollup/plugin-commonjs": "^19.0.1",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.2",
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser":"^0.4.3",
+    "@rollup/plugin-json":"^6.0.0",
     "babel-jest": "^27.0.6",
     "eslint": "^7.30.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-svelte3": "^3.2.0",
-    "husky": "^7.0.1",
+    "husky": "^8.0.3",
     "jest": "^27.0.6",
     "rollup": "^2.53.2",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-css-only": "^4.3.0",
     "rollup-plugin-livereload": "^2.0.5",
-    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^7.1.0",
-    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-workbox": "^6.1.1",
     "svelte": "^3.49.0"
   },
   "dependencies": {
-    "chart.js": "^3.4.1",
+    "chart.js": "^3.9.1",
     "chartjs-adapter-moment": "^1.0.0",
     "chartjs-plugin-trendline": "^1.0.0",
     "dayjs": "^1.10.6",

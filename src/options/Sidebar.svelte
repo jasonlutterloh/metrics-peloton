@@ -5,6 +5,8 @@
   import {fly} from "svelte/transition";
 
   export let isSidebarOpen = false;
+
+  const handleSidebar = () => isSidebarOpen = !isSidebarOpen;
 </script>
 
 {#if isSidebarOpen}
@@ -18,7 +20,7 @@
     </form>
   </div>
 </aside>
-<div class="overlay" on:click={() => isSidebarOpen = !isSidebarOpen}></div>
+<div class="overlay" on:click={handleSidebar} on:keypress={handleSidebar}></div>
 {/if}
 
 <style>
