@@ -1,6 +1,6 @@
 {
   "name": "peloton-metrics",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "author": {
     "name": "Jason Lutterloh",
     "url": "https://lutterloh.dev"
@@ -11,29 +11,29 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "dev": "rollup -c -w --bundleConfigAsCjs",
     "start": "sirv public",
-    "firebase-start": "rollup -c && firebase serve",
+    "firebase-start": "rollup -c --bundleConfigAsCjs && firebase serve",
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
+    "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.14.7",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-terser":"^0.4.3",
     "@rollup/plugin-json":"^6.0.0",
-    "babel-jest": "^27.0.6",
+    "babel-jest": "^29.5.0",
     "eslint": "^7.30.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-svelte3": "^3.2.0",
     "husky": "^8.0.3",
     "jest": "^27.0.6",
-    "rollup": "^2.53.2",
+    "rollup": "^3.26.0",
     "rollup-plugin-css-only": "^4.3.0",
     "rollup-plugin-livereload": "^2.0.5",
-    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-svelte": "^7.1.6",
     "rollup-plugin-workbox": "^6.1.1",
     "svelte": "^3.49.0"
   },
