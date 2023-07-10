@@ -43,7 +43,7 @@
     "chartjs-plugin-trendline": "^1.0.0",
     "dayjs": "^1.11.9",
     "moment": "^2.29.4",
-    "sirv-cli": "^1.0.12"
+    "sirv-cli": "^2.0.2"
   },
   "husky": {
     "hooks": {
