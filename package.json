@@ -24,7 +24,7 @@
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-terser":"^0.4.3",
     "@rollup/plugin-json":"^6.0.0",
-    "babel-jest": "^29.5.0",
+    "babel-jest": "^29.6.1",
     "eslint": "^7.30.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-svelte3": "^3.2.0",
