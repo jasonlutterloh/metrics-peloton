@@ -13,7 +13,7 @@ To start locally, run the following commands:
     npm run dev
 ```  
 
-The app should be available at [http://localhost:5000](http://localhost:5000).
+The app should be available at [http://localhost:5000](http://localhost:5000) or [http://localhost:8080](http://localhost:8080). View the console output to confirm.
 
 ### Production Deploy
 
