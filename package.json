@@ -27,7 +27,7 @@
     "babel-jest": "^29.6.1",
     "eslint": "^8.44.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-svelte3": "^3.2.0",
+    "eslint-plugin-svelte3": "^4.0.0",
     "husky": "^8.0.3",
     "jest": "^27.0.6",
     "rollup": "^3.26.0",
