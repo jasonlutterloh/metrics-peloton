@@ -38,7 +38,7 @@
     "svelte": "^4.0.5"
   },
   "dependencies": {
-    "chart.js": "^3.9.1",
+    "chart.js": "^4.3.3",
     "chartjs-adapter-moment": "^1.0.0",
     "chartjs-plugin-trendline": "^2.0.3",
     "dayjs": "^1.11.9",
