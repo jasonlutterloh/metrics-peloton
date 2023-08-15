@@ -20,7 +20,7 @@
     </form>
   </div>
 </aside>
-<div class="overlay" on:click={handleSidebar} on:keypress={handleSidebar}></div>
+<div role="none" class="overlay" on:click={handleSidebar} on:keypress={handleSidebar}></div>
 {/if}
 
 <style>

@@ -14,21 +14,31 @@
   const chartID = "chart-" + convertStringToID(title);
   let isError = false;
   let screenWidth = 0;
+  const gridColor = isDarkMode ? "rgba(239,239,239,.1)" : "#e5e5e5";
+  const tickColor = isDarkMode ? "#efefef" : "#444";
   const config = {
     type: "line",
     options: {
       scales: {
-        xAxis: {
-          grid: {},
-          ticks: {},
+        x: {
+          grid: {
+            color: gridColor,
+          },
+          ticks: {
+            color: tickColor,
+          },
           type: "time",
           time: {
-            tooltipFormat: "MMM DD YYYY",
+            tooltipFormat: "MMM DD, YYYY",
           },
         },
-        yAxis: {
-          grid: {},
-          ticks: {},
+        y: {
+          grid: {
+            color: gridColor,
+          },
+          ticks: {
+            color: tickColor,
+          },
         },
       },
       plugins: {
@@ -55,13 +65,6 @@
       maintainAspectRatio: false,
     },
   };
-
-  if (isDarkMode) {
-    config.options.scales.xAxis.grid["color"] = "rgba(239,239,239,.1)";
-    config.options.scales.xAxis.ticks["color"] = "#efefef";
-    config.options.scales.yAxis.grid["color"] = "rgba(239,239,239,.1)";
-    config.options.scales.yAxis.ticks["color"] = "#efefef";
-  }
 
   try {
     config.data = datasets;
