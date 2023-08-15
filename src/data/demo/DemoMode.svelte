@@ -5,17 +5,17 @@ import demoData from "./demoData.json";
 let y = 0;
 
 const updateData = (json) => {
-      try {
-        csvData.set(json);
-        y = 0;
-        localStorage.setItem("savedData", JSON.stringify(json));
-      } catch (error) {
-        errorStatus = true;
-      }
+  try {
+    csvData.set(json);
+    y = 0;
+    localStorage.setItem("savedData", JSON.stringify(json));
+  } catch (error) {
+    errorStatus = true;
+  }
 };
 
 const loadDemoMode = () =>{
-      updateData(demoData);
+  updateData(demoData);
 };
 </script>
 <svelte:window bind:scrollY={y} />

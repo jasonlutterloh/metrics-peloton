@@ -63,6 +63,6 @@
   <DemoMode />
   <ClearData />
 </div>
-  
+
 </div>
 </footer>

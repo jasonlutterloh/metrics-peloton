@@ -35,7 +35,7 @@
           //       label += context.parsed.r;
           //       label += " out of " + count + " ride" + (count > 1 ? "s" : "");
           //     }
-  
+
           //     return label;
           //   },
           // },

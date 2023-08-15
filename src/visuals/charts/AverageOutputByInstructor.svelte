@@ -61,7 +61,7 @@
     <div class="left">
       <h2>Average Output (During Rides) by Instructor</h2>
     </div>
-    
+
     <div class="right">
   {#if isError}
     <p>{ERROR_MESSAGE}</p>

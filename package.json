@@ -1,6 +1,6 @@
 {
   "name": "peloton-metrics",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "author": {
     "name": "Jason Lutterloh",
     "url": "https://lutterloh.dev"
@@ -26,7 +26,7 @@
     "babel-jest": "^29.6.2",
     "eslint": "^8.47.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-svelte3": "^4.0.0",
+    "eslint-plugin-svelte": "^2.32.4",
     "husky": "^8.0.3",
     "jest": "^29.6.2",
     "rollup": "^3.26.3",

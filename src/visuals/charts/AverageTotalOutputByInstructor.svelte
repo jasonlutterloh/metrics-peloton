@@ -9,7 +9,7 @@
   const getCells = (instructor) => {
     let output = "";
     const durations = Object.keys($averageTotalOutputByDurationAndInstructor);
-  
+
     durations.forEach((duration, durationsIndex) => {
       const color = getColorBasedOnArrayLengthAndIndex(durations.length, durationsIndex);
       const outputs = $averageTotalOutputByDurationAndInstructor[duration];

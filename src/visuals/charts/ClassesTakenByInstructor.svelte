@@ -60,7 +60,7 @@
     <div class="left">
       <h2>Classes Taken Per Instructor</h2>
     </div>
-    
+
     <div class="right">
   {#if isError}
     <p>{ERROR_MESSAGE}</p>

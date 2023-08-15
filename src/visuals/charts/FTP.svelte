@@ -65,7 +65,7 @@
   }
 </style>
 <!-- Need more than one for this to show up properly -->
-{#if $ftpAverageOutputs.length > 1} 
+{#if $ftpAverageOutputs.length > 1}
   <section>
     <div class="section-wrapper">
       {#if isError}

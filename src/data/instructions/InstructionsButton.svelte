@@ -4,8 +4,8 @@
 
     const {open} = getContext("simple-modal");
     const showModal = () => {
-  open(InstructionsContent);
-};
+      open(InstructionsContent);
+    };
 </script>
 
 <div>

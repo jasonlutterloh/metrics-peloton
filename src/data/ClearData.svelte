@@ -4,7 +4,7 @@
     const clearData = () => {
       localStorage.clear();
       csvData.set();
-};
+    };
 </script>
 
 <button class="footer-button" type="button" on:click={clearData}>Clear My Data</button>
