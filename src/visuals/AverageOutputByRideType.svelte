@@ -24,8 +24,7 @@
   }
   .list-wrapper{
     padding: 0;
-    max-width: 480px;
-    margin: 0 auto;
+    margin: 0 40px;
   }
   .chart-value{
     background: #fff;
@@ -39,5 +38,12 @@
     font-weight: 100;
     font-size: 24px;
     float: right;
+  }
+  @media only screen and (min-width: 768px) {
+    .list-wrapper{
+      column-count: 2;
+      column-gap: 20px;
+    }
+    
   }
 </style>

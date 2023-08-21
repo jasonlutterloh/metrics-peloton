@@ -89,7 +89,9 @@
     margin: 0 auto;
     padding: 30px 20px;
   }
-
+  h2{
+    text-align: center;
+  }
   @media only screen and (max-width: 768px) {
     .section-wrapper{
       flex-direction: column;

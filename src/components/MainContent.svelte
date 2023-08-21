@@ -22,7 +22,7 @@
     </ErrorMessage>
   {/if}
   {#if $mappedCSVData.length > 0}
-    <TotalsSection />
+    
     <OutputOverTime />
     <AverageOutput />
     <FTP />
@@ -32,6 +32,7 @@
     <AverageCadenceVsResistance />
     <AverageOutputByRideType />
     <TopFiveSection />
+    <TotalsSection />
   {:else}
     <InfoMessage
       >Upload your Peloton rides to see your output over time, averages, top
