@@ -28,7 +28,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-svelte": "^2.32.4",
     "husky": "^8.0.3",
-    "jest": "^29.6.2",
+    "jest": "^29.6.4",
     "rollup": "^3.26.3",
     "rollup-plugin-css-only": "^4.3.0",
     "rollup-plugin-livereload": "^2.0.5",
