@@ -50,8 +50,8 @@ export const filterRidesByTitle = (rideData, filters, matching = false) => {
 export const filterRidesByDate = (rideData, dateFilters) => {
   if (
     dateFilters &&
-    dateFilters.hasOwnProperty("startDate") &&
-    dateFilters.hasOwnProperty("endDate")
+    Object.hasOwn(dateFilters, "startDate") &&
+    Object.hasOwn(dateFilters, "endDate")
   ) {
     return rideData.filter((ride) => {
       return (
@@ -142,7 +142,7 @@ export const getHighestOutputRide = (rideData) => {
 export const getHighestOutputRidesByDuration = (rideData) => {
   const bestRides = [];
   if (rideData) {
-    Object.keys(rideData).forEach((key, index) => {
+    Object.keys(rideData).forEach((key) => {
       const ride = getHighestOutputRide(rideData[key]);
       bestRides.push(ride);
     });

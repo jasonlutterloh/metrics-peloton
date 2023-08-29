@@ -5,7 +5,8 @@
 
 import { build, files, version } from "$service-worker";
 
-const sw = /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self));
+// TODO: Figure out what this does... weird copy paste
+/** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self));
 
 // Create a unique cache name for this deployment
 const CACHE = `cache-${version}`;
