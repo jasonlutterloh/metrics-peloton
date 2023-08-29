@@ -122,4 +122,5 @@ coverage
 
 # Build
 build
+public
 .svelte-kit

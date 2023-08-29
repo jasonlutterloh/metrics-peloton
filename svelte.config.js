@@ -9,8 +9,8 @@ const config = {
     adapter: adapter({
       // default options are shown. On some platforms
       // these options are set automatically — see below
-      pages: "build",
-      assets: "build",
+      pages: "public",
+      assets: "public",
       fallback: "app.html",
       precompress: false,
       strict: true
