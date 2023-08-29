@@ -1,7 +1,13 @@
-const {getReadableDate, getFriendlyDate, isDateSameOrBeforeGivenDate, isDateSameOrAfterGivenDate, subtractNMonthsFromDate} = require("../../src/utils/dateUtils");
+const {
+  getReadableDate,
+  getFriendlyDate,
+  isDateSameOrBeforeGivenDate,
+  isDateSameOrAfterGivenDate,
+  subtractNMonthsFromDate
+} = require("../../src/routes/utils/dateUtils");
 
 describe("getReadableDate", () => {
-  it("should return a date in the following format \"YYYY-MM-DD", () => {
+  it('should return a date in the following format "YYYY-MM-DD', () => {
     const date = getReadableDate("2020-02-05 09:22 (CDT)");
     expect(date).toContain("2020-02-05");
   });
@@ -14,7 +20,7 @@ describe("getFriendlyDate", () => {
     expect(getFriendlyDate("2020-12-31")).toBe("Dec 31, 2020");
   });
 
-  it("should return \"Invalid Date\" on a non-date string or null", () => {
+  it('should return "Invalid Date" on a non-date string or null', () => {
     expect(getFriendlyDate("badData")).toBe("Invalid Date");
     expect(getFriendlyDate(null)).toBe("Invalid Date");
   });
@@ -43,7 +49,6 @@ describe("isDateSameOrAfterGivenDate", () => {
     expect(isDateSameOrAfterGivenDate("2020-01-02", "2020-01-01")).toBe(true);
   });
 });
-
 
 describe("subtractNMonthsFromDate", () => {
   it("should return a date n months from the given date", () => {

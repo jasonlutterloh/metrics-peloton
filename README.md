@@ -1,24 +1,38 @@
-# Peloton Metrics
+# create-svelte
 
-Visualize your Peloton cycling output over time and other metrics. [Production App / Live Demo](https://peloton.lutterloh.dev).
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-## Getting Started
+## Creating a project
 
-### Running Locally
-
-To start locally, run the following commands:
+If you're seeing this, you've probably already done this step. Congrats!
 
 ```bash
-    npm install
-    npm run dev
-```  
+# create a new project in the current directory
+npm create svelte@latest
 
-The app should be available at [http://localhost:5000](http://localhost:5000) or [http://localhost:8080](http://localhost:8080). View the console output to confirm.
+# create a new project in my-app
+npm create svelte@latest my-app
+```
 
-### Production Deploy
+## Developing
 
-If looking to deploy, make sure to use `npm run build` and then deploy the `/public` folder (This will compile the code and create the service worker for the PWA). You can test the production build using `npm run start`.
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-## Technical Details
+```bash
+npm run dev
 
-This project is built using the [Svelte](https://svelte.dev/) framework and relies on [ChartJS](https://www.chartjs.org/).
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
