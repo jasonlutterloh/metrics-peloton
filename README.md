@@ -2,22 +2,24 @@
 
 Visualize your Peloton cycling output over time and other metrics. [Production App / Live Demo](https://peloton.lutterloh.dev).
 
-## Getting Started
+## Developing
 
-### Running Locally
-
-To start locally, run the following commands:
+Once you've cloned the project and installed dependencies with `npm install`, start a development server:
 
 ```bash
-    npm install
-    npm run dev
-```  
+npm run dev
 
-The app should be available at [http://localhost:5000](http://localhost:5000) or [http://localhost:8080](http://localhost:8080). View the console output to confirm.
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
 
-### Production Deploy
+## Building
 
-If looking to deploy, make sure to use `npm run build` and then deploy the `/public` folder (This will compile the code and create the service worker for the PWA). You can test the production build using `npm run start`.
+To create a production version of the app:
+
+```bash
+npm run build
+```
 
 ## Technical Details
 

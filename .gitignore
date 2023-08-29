@@ -116,3 +116,11 @@ public/build
 
 # Firebase Config
 src/firebase.config.js
+
+# Test Coverage
+coverage
+
+# Build
+build
+public
+.svelte-kit

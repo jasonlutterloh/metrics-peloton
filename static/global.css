@@ -1,0 +1,148 @@
+html,
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  color: #444;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    "Helvetica Neue", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  width: 100vw;
+}
+
+h2 {
+  font-weight: bold;
+  letter-spacing: -1px;
+  font-size: 30px;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+a {
+  color: rgb(0, 100, 200);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: rgb(0, 80, 160);
+}
+
+label {
+  display: block;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 6px;
+  margin: 0 0 5px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.section-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 10px;
+}
+.normal-button {
+  background-color: #013a63;
+  border: 0;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+  display: block;
+  padding: 10px;
+  transition: 0.5s all;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 20px;
+  cursor: pointer;
+}
+.normal-button:hover,
+.normal-button:focus {
+  background-color: #04a6c2;
+  outline: 0;
+}
+.normal-button:active {
+  background-color: #20bac5;
+  color: #fff;
+}
+
+.footer-button {
+  flex: 0 1 auto;
+  background: #fff;
+  border: 0;
+  color: #013a63;
+  border-radius: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+  display: block;
+  padding: 10px;
+  transition: 0.5s all;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 20px;
+  cursor: pointer;
+}
+.footer-button:hover,
+.footer-button:focus {
+  background-color: #04a6c2;
+  outline: 0;
+}
+
+.chart-wrapper {
+  min-height: 70vh;
+}
+
+.cell {
+  text-align: center;
+  padding: 0.5em 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  .chart-wrapper {
+    min-height: 50vh;
+  }
+  h2 {
+    font-size: 24px;
+  }
+}

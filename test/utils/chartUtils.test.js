@@ -1,19 +1,31 @@
-import {createPlotPoint, getPlotPointsByDate, calculateFTP} from "../../src/utils/chartUtils";
+import {
+  createPlotPoint,
+  getPlotPointsByDate,
+  calculateFTP
+} from "../../src/routes/utils/chartUtils";
+
 describe("createPlotPoint", () => {
   it("should return the first var as x and second as y", () => {
-    expect(createPlotPoint("first", "second", "title")).toStrictEqual({x: "first", y: "second", title: "title"});
-    expect(createPlotPoint({a: "a"}, {b: "b"})).toStrictEqual({x: {a: "a"}, y: {b: "b"}, title: undefined});
+    expect(createPlotPoint("first", "second", "title")).toStrictEqual({
+      x: "first",
+      y: "second",
+      title: "title"
+    });
+    expect(createPlotPoint({a: "a"}, {b: "b"})).toStrictEqual({
+      x: {a: "a"},
+      y: {b: "b"},
+      title: undefined
+    });
     expect(createPlotPoint(0, 0)).toStrictEqual({x: 0, y: 0, title: undefined});
   });
 });
-
 
 describe("getPlotPointsByDate", () => {
   it("should return plot points given the data", () => {
     const sampleData = [
       {output: 100, date: "2020-09-25"},
       {output: 100, date: "2020-09-25"},
-      {output: 100, date: "2020-09-25"},
+      {output: 100, date: "2020-09-25"}
     ];
 
     const yAxis = "output";
@@ -30,7 +42,7 @@ describe("getPlotPointsByDate", () => {
     const sampleData = [
       {average: 100, createdAt: "2020-09-25"},
       {average: 100, createdAt: "2020-09-25"},
-      {average: 100, createdAt: "2020-09-25"},
+      {average: 100, createdAt: "2020-09-25"}
     ];
 
     const yAxis = "average";
@@ -47,11 +59,11 @@ describe("getPlotPointsByDate", () => {
     const sampleData = [
       {average: 100, createdAt: "2020-09-25"},
       {average: 100, createdAt: "2020-09-25"},
-      {average: 100, createdAt: "2020-09-25"},
+      {average: 100, createdAt: "2020-09-25"}
     ];
 
     console.error = jest.fn();
-    expect(()=>{
+    expect(() => {
       getPlotPointsByDate(sampleData, "output", "date");
     }).toThrowError();
     expect(console.error).toHaveBeenCalled();
