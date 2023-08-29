@@ -1,7 +1,7 @@
 <script>
   import DoughnutChart from "../../components/charts/DoughnutChart.svelte";
-  import { classesTakenPerInstructor } from "../../store/store.js";
-  import { getColorArrayBasedOnLength } from "../../utils/colorUtils";
+  import {classesTakenPerInstructor} from "../../store/store.js";
+  import {getColorArrayBasedOnLength} from "../../utils/colorUtils";
 
   const getCounts = (data) => {
     return data.map((item) => {

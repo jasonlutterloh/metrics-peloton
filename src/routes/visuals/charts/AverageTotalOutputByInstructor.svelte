@@ -1,7 +1,7 @@
 <script>
-  import { averageTotalOutputByDurationAndInstructor, filteredData } from "../../store/store.js";
-  import { getColorBasedOnArrayLengthAndIndex, getOpacityByIndex } from "../../utils/colorUtils";
-  import { getUniqueValuesFromDataArrayByAttribute } from "../../utils/dataUtils";
+  import {averageTotalOutputByDurationAndInstructor, filteredData} from "../../store/store.js";
+  import {getColorBasedOnArrayLengthAndIndex, getOpacityByIndex} from "../../utils/colorUtils";
+  import {getUniqueValuesFromDataArrayByAttribute} from "../../utils/dataUtils";
 
   const uniqueInstructors = getUniqueValuesFromDataArrayByAttribute($filteredData, "instructor");
 

@@ -1,4 +1,4 @@
-import { trimTitle, convertStringToID } from "../../src/routes/utils/stringUtils";
+import {trimTitle, convertStringToID} from "../../src/routes/utils/stringUtils";
 
 describe("trimTitle", () => {
   it('should trim "min" from the ride title', () => {

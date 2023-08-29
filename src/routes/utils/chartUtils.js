@@ -1,5 +1,5 @@
-import { getReadableDate } from "../utils/dateUtils";
-import { getRoundNumber } from "../utils/numberUtils";
+import {getReadableDate} from "../utils/dateUtils";
+import {getRoundNumber} from "../utils/numberUtils";
 
 /**
  * Returns a plot point for ChartJS graph
@@ -9,7 +9,7 @@ import { getRoundNumber } from "../utils/numberUtils";
  * @return {object}
  */
 export const createPlotPoint = (x, y, title) => {
-  return { x: x, y: y, title };
+  return {x: x, y: y, title};
 };
 
 /**

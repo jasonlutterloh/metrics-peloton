@@ -1,9 +1,9 @@
 <script>
-  import { onMount } from "svelte";
+  import {onMount} from "svelte";
   import Chart from "chart.js/auto";
   import "chartjs-adapter-moment";
   import chartTrendline from "chartjs-plugin-trendline";
-  import { convertStringToID } from "../../utils/stringUtils";
+  import {convertStringToID} from "../../utils/stringUtils";
 
   export let title;
   export let datasets;

@@ -1,5 +1,5 @@
 <script>
-  import { averageOutputByRideType } from "../store/store";
+  import {averageOutputByRideType} from "../store/store";
 </script>
 
 <section>

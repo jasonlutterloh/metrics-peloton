@@ -1,7 +1,7 @@
 <script>
   import PolarArea from "../../components/charts/PolarArea.svelte";
-  import { averageOutputByInstructor } from "../../store/store.js";
-  import { getColorArrayBasedOnLength } from "../../utils/colorUtils";
+  import {averageOutputByInstructor} from "../../store/store.js";
+  import {getColorArrayBasedOnLength} from "../../utils/colorUtils";
 
   const getOutputs = (data) => {
     return data.map((item) => {

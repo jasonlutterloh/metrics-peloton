@@ -1,5 +1,5 @@
 <script>
-  import { averageOutputsByDuration } from "../store/store.js";
+  import {averageOutputsByDuration} from "../store/store.js";
 </script>
 
 <div>

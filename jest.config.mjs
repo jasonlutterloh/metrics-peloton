@@ -176,7 +176,7 @@ const config = {
   // A map from regular expressions to paths to transformers
   transform: {
     "^.+\\.js$": "babel-jest",
-    "^.+\\.svelte$": ["svelte-jester", { preprocess: true }]
+    "^.+\\.svelte$": ["svelte-jester", {preprocess: true}]
   }
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

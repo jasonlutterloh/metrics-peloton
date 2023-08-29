@@ -1,5 +1,5 @@
 <script>
-  import { showSameDayRides } from "../store/store.js";
+  import {showSameDayRides} from "../store/store.js";
 </script>
 
 <div>

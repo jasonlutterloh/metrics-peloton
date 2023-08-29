@@ -1,11 +1,11 @@
 <script>
-  import { dateFilter } from "../store/store.js";
+  import {dateFilter} from "../store/store.js";
 
   let startDate = $dateFilter.startDate;
   let endDate = $dateFilter.endDate;
 
   const updateDateFilters = () => {
-    dateFilter.set({ startDate, endDate });
+    dateFilter.set({startDate, endDate});
   };
 </script>
 

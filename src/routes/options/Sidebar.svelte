@@ -2,7 +2,7 @@
   import ExcludeRideTypes from "./Option_ExcludeRideTypes.svelte";
   import ShowSameDayRides from "./Option_ShowSameDayRides.svelte";
   import OptionDates from "./Option_Dates.svelte";
-  import { fly } from "svelte/transition";
+  import {fly} from "svelte/transition";
 
   export let isSidebarOpen = false;
 
@@ -10,7 +10,7 @@
 </script>
 
 {#if isSidebarOpen}
-  <aside transition:fly={{ x: 200, duration: 500 }} class:open={isSidebarOpen}>
+  <aside transition:fly={{x: 200, duration: 500}} class:open={isSidebarOpen}>
     <div>
       <h2>Options</h2>
       <OptionDates />

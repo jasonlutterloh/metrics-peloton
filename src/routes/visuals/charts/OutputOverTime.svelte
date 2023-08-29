@@ -1,9 +1,9 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
-  import { organizedRidesByDuration } from "../../store/store.js";
-  import { getPlotPointsByDate } from "../../utils/chartUtils";
+  import {organizedRidesByDuration} from "../../store/store.js";
+  import {getPlotPointsByDate} from "../../utils/chartUtils";
   import AverageOutputsByDuration from "../AverageOutputsByDuration.svelte";
-  import { getColorBasedOnArrayLengthAndIndex } from "../../utils/colorUtils";
+  import {getColorBasedOnArrayLengthAndIndex} from "../../utils/colorUtils";
 
   const getDatasets = (ridesByDuration) => {
     const datasets = [];

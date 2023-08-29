@@ -5,7 +5,7 @@ import {
   getUniqueValuesFromDataArrayByAttribute,
   getTotalByAttribute
 } from "../../src/routes/utils/dataUtils";
-import { sampleData1 } from "./sampleData";
+import {sampleData1} from "./sampleData";
 
 let sampleData;
 
@@ -14,13 +14,7 @@ beforeEach(() => {
 });
 describe("getAverageFromArray", () => {
   it("should return an average of the given data", () => {
-    const testData = [
-      { output: 10 },
-      { output: 10 },
-      { output: 10 },
-      { output: 10 },
-      { output: 10 }
-    ];
+    const testData = [{output: 10}, {output: 10}, {output: 10}, {output: 10}, {output: 10}];
     expect(getAverageFromArray(testData, "output")).toBe(10);
   });
   it("should handle an empty input by return a zero", () => {
@@ -30,9 +24,9 @@ describe("getAverageFromArray", () => {
 
 describe("sortArrayByAttributeInObject", () => {
   const data = [
-    { count: 1, value: "least" },
-    { count: 5, value: "most" },
-    { count: 3, value: "middle" }
+    {count: 1, value: "least"},
+    {count: 5, value: "most"},
+    {count: 3, value: "middle"}
   ];
   it("should sort an array given the attribute value", () => {
     const result = sortArrayByAttributeInObject(data, "count");
@@ -57,10 +51,10 @@ describe("sliceArrayByGivenMax", () => {
 
 describe("getUniqueValuesFromDataArrayByAttribute", () => {
   const data = [
-    { date: "2020-11-01" },
-    { date: "2020-11-01" },
-    { date: "2020-11-02" },
-    { date: "2020-11-02" }
+    {date: "2020-11-01"},
+    {date: "2020-11-01"},
+    {date: "2020-11-02"},
+    {date: "2020-11-02"}
   ];
   it("should return an array of unique dates", () => {
     const result = getUniqueValuesFromDataArrayByAttribute(data, "date");
@@ -69,7 +63,7 @@ describe("getUniqueValuesFromDataArrayByAttribute", () => {
     expect(result).toContain(data[2].date);
   });
   it("should log an error and throw an error if an object does not include a dates", () => {
-    const badData = data.push({ notDate: "bad" });
+    const badData = data.push({notDate: "bad"});
     console.error = jest.fn();
     expect(() => {
       getUniqueValuesFromDataArrayByAttribute(badData, "date");

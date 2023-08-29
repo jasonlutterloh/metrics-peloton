@@ -7,8 +7,8 @@
     dateFilter,
     distanceUnit
   } from "../store/store";
-  import { getFriendlyDate } from "../utils/dateUtils";
-  import { formatNumberWithCommas } from "../utils/numberUtils";
+  import {getFriendlyDate} from "../utils/dateUtils";
+  import {formatNumberWithCommas} from "../utils/numberUtils";
   import IconStat from "./IconStat.svelte";
 </script>
 

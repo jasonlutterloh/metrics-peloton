@@ -1,7 +1,7 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
-  import { averageOutputs } from "../../store/store.js";
-  import { getPlotPointsByDate } from "../../utils/chartUtils";
+  import {averageOutputs} from "../../store/store.js";
+  import {getPlotPointsByDate} from "../../utils/chartUtils";
 
   const CHART_TITLE = "Average Output Per Minute";
   const getDatasets = (data) => {

@@ -1,8 +1,8 @@
 <script>
-  import { getContext } from "svelte";
+  import {getContext} from "svelte";
   import InstructionsContent from "./InstructionsContent.svelte";
 
-  const { open } = getContext("simple-modal");
+  const {open} = getContext("simple-modal");
   const showModal = () => {
     open(InstructionsContent);
   };

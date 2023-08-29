@@ -1,4 +1,4 @@
-import { trimTitle } from "./stringUtils";
+import {trimTitle} from "./stringUtils";
 
 /**
  * Converts a CSV to JSON

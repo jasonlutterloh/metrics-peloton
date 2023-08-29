@@ -1,7 +1,7 @@
 <script>
-  import { onMount } from "svelte";
-  import { csvData, isError, distanceUnit } from "../store/store.js";
-  import { csvToJson, getDistanceUnit, validateCSV } from "../utils/fileUtils";
+  import {onMount} from "svelte";
+  import {csvData, isError, distanceUnit} from "../store/store.js";
+  import {csvToJson, getDistanceUnit, validateCSV} from "../utils/fileUtils";
 
   let files;
   // let errorStatus = false;

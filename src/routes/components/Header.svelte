@@ -1,6 +1,6 @@
 <script>
   import OptionsButton from "../options/OptionsButton.svelte";
-  import { mappedCSVData } from "../store/store.js";
+  import {mappedCSVData} from "../store/store.js";
 
   export let isSidebarOpen = false;
 </script>

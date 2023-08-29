@@ -1,4 +1,4 @@
-import { writable, derived } from "svelte/store";
+import {writable, derived} from "svelte/store";
 import {
   filterRidesByTitle,
   organizeRidesByDuration,
@@ -16,9 +16,9 @@ import {
   getAverageOutputByInstructor,
   getAverageTotalOutputByDurationAndInstructor
 } from "../utils/rideUtils";
-import { getTotalByAttribute } from "../utils/dataUtils";
-import { subtractNMonthsFromDate } from "../utils/dateUtils";
-import { mapCSVData } from "../utils/fileUtils";
+import {getTotalByAttribute} from "../utils/dataUtils";
+import {subtractNMonthsFromDate} from "../utils/dateUtils";
+import {mapCSVData} from "../utils/fileUtils";
 
 /**
  * Store boolean for whether or not an error has occurred.
@@ -75,7 +75,7 @@ export const mappedCSVData = derived(
       if (mappedData.length >= 2) {
         const endDate = mappedData[mappedData.length - 1].date;
         const startDate = subtractNMonthsFromDate(endDate, 9);
-        dateFilter.set({ startDate, endDate });
+        dateFilter.set({startDate, endDate});
       }
       return mappedData;
     }

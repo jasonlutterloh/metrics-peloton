@@ -1,7 +1,7 @@
 <script>
   import LineChart from "../../components/charts/LineChart.svelte";
-  import { averageResistance, averageCadence } from "../../store/store.js";
-  import { getPlotPointsByDate } from "../../utils/chartUtils";
+  import {averageResistance, averageCadence} from "../../store/store.js";
+  import {getPlotPointsByDate} from "../../utils/chartUtils";
 
   const getDatasets = (averageCadence, averageResistance) => {
     const cadenceData = getPlotPointsByDate(averageCadence, "average", "createdAt");

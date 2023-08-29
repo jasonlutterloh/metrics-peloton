@@ -1,5 +1,5 @@
 <script>
-  import { rideTypes, rideTitleFilters } from "../store/store.js";
+  import {rideTypes, rideTitleFilters} from "../store/store.js";
 
   const handleChange = (filter, value) => {
     if (value) {

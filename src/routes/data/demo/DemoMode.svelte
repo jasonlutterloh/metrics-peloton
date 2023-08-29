@@ -1,5 +1,5 @@
 <script>
-  import { csvData } from "../../store/store.js";
+  import {csvData} from "../../store/store.js";
   import demoData from "./demoData.json";
 
   let y = 0;

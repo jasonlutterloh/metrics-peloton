@@ -3,7 +3,7 @@
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
 
-import { build, files, version } from "$service-worker";
+import {build, files, version} from "$service-worker";
 
 // TODO: Figure out what this does... weird copy paste
 /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self));

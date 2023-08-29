@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { csvToJson, mapCSVData } = require("../../src/routes/utils/fileUtils");
+const {csvToJson, mapCSVData} = require("../../src/routes/utils/fileUtils");
 
 let csv = "";
 

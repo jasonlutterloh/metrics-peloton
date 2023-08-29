@@ -3,9 +3,9 @@ import {
   sortArrayByAttributeInObject,
   getUniqueValuesFromDataArrayByAttribute
 } from "./dataUtils";
-import { getColorBasedOnArrayLengthAndIndex } from "./colorUtils";
-import { isDateSameOrAfterGivenDate, isDateSameOrBeforeGivenDate } from "./dateUtils";
-import { trimTitle } from "./stringUtils";
+import {getColorBasedOnArrayLengthAndIndex} from "./colorUtils";
+import {isDateSameOrAfterGivenDate, isDateSameOrBeforeGivenDate} from "./dateUtils";
+import {trimTitle} from "./stringUtils";
 
 /**
  * Filters Peloton Workout data by the given filters on ride titles
