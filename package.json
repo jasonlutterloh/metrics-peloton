@@ -43,7 +43,7 @@
   "dependencies": {
     "chart.js": "^4.4.0",
     "chartjs-adapter-moment": "^1.0.1",
-    "chartjs-plugin-trendline": "^2.0.3",
+    "chartjs-plugin-trendline": "^2.0.5",
     "dayjs": "^1.11.9",
     "moment": "^2.29.4"
   }
