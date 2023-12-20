@@ -4,7 +4,7 @@ import {
   sliceArrayByGivenMax,
   getUniqueValuesFromDataArrayByAttribute,
   getTotalByAttribute
-} from "../../src/routes/utils/dataUtils";
+} from "../../src/lib/utils/dataUtils";
 import {sampleData1} from "./sampleData";
 
 let sampleData;
@@ -78,5 +78,9 @@ describe("getTotalByAttribute", () => {
   it("should return a sum of the given attribute", () => {
     const result = getTotalByAttribute(sampleData, "distance");
     expect(result).toBe(121);
+  });
+  it("should return 0 if array is undefined", () => {
+    const result = getTotalByAttribute(undefined, "distance");
+    expect(result).toBe(0);
   });
 });

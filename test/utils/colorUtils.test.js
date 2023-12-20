@@ -5,7 +5,7 @@ import {
   getColorBasedOnArrayLengthAndIndex,
   getColorArrayBasedOnLength,
   getOpacityByIndex
-} from "../../src/routes/utils/colorUtils";
+} from "../../src/lib/utils/colorUtils";
 
 describe("getDefaultColorArray", () => {
   it("should return the colors", () => {

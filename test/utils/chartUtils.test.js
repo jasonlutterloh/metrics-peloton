@@ -2,7 +2,7 @@ import {
   createPlotPoint,
   getPlotPointsByDate,
   calculateFTP
-} from "../../src/routes/utils/chartUtils";
+} from "../../src/lib/utils/chartUtils";
 
 describe("createPlotPoint", () => {
   it("should return the first var as x and second as y", () => {

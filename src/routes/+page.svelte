@@ -1,12 +1,9 @@
 <script>
-  import Header from "./components/Header.svelte";
-  import Footer from "./components/Footer.svelte";
-  import Sidebar from "./options/Sidebar.svelte";
+  import Header from "./components/navigation/Header.svelte";
+  import Footer from "./components/navigation/Footer.svelte";
   import MainContent from "./components/MainContent.svelte";
-  let isSidebarOpen = false;
 </script>
 
-<Header bind:isSidebarOpen />
-<Sidebar bind:isSidebarOpen />
+<Header />
 <MainContent />
 <Footer />

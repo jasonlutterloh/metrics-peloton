@@ -1,4 +1,4 @@
-import {trimTitle, convertStringToID} from "../../src/routes/utils/stringUtils";
+import {trimTitle, convertStringToID, removeLiveRideTitleSequence, findIndexOfTimeUnit} from "../../src/lib/utils/stringUtils";
 
 describe("trimTitle", () => {
   it('should trim "min" from the ride title', () => {
@@ -25,5 +25,22 @@ describe("convertStringToID", () => {
     expect(convertStringToID("Oneword")).toBe("oneword");
     expect(convertStringToID("This is my string with 123")).toBe("this-is-my-string-with-123");
     expect(convertStringToID("123456")).toBe("123456");
+  });
+});
+
+describe("removeLiveRideTitleSequence", () => {
+  it("should remove the Live ride title sequences", () => {
+    expect(removeLiveRideTitleSequence("30 min HIIT & Hills Ride: Live from Home")).toBe("30 min HIIT & Hills Ride");
+    expect(removeLiveRideTitleSequence("30 min HIIT & Hills Ride: Live From LA")).toBe("30 min HIIT & Hills Ride");
+    expect(removeLiveRideTitleSequence("30 min HIIT & Hills Ride: Live From Home")).toBe("30 min HIIT & Hills Ride");
+    expect(removeLiveRideTitleSequence("30 min HIIT & Hills Ride: From Home")).toBe("30 min HIIT & Hills Ride");
+  });
+});
+
+describe("findIndexOfTimeUnit", () => {
+  it("should return the index of the last time unit seen", () => {
+    expect(findIndexOfTimeUnit("30 min HIIT & Hills Ride")).toBe(3);
+    expect(findIndexOfTimeUnit("30 sec HIIT & Hills Ride")).toBe(3);
+    expect(findIndexOfTimeUnit("30 min 45 sec Tabata Ride")).toBe(10);
   });
 });

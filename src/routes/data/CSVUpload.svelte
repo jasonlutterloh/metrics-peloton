@@ -1,7 +1,7 @@
 <script>
   import {onMount} from "svelte";
-  import {csvData, isError, distanceUnit} from "../store/store.js";
-  import {csvToJson, getDistanceUnit, validateCSV} from "../utils/fileUtils";
+  import {csvData, isError, distanceUnit, activeWorkoutType} from "$lib/store/store.js";
+  import {csvToJson, getDistanceUnit, validateCSV} from "$lib/utils/fileUtils.js";
 
   let files;
   // let errorStatus = false;
@@ -16,9 +16,11 @@
   });
 
   const updateData = (json) => {
+    console.debug("Raw JSON", json);
     localStorage.clear();
     csvData.set();
     isError.set(false);
+    activeWorkoutType.set("Cycling"); // Default
     try {
       validateCSV(json);
       distanceUnit.set(getDistanceUnit(json)); // There's a better way to do this

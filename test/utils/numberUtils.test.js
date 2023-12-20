@@ -1,4 +1,4 @@
-import {getRoundNumber, formatNumberWithCommas} from "../../src/routes/utils/numberUtils";
+import {getRoundNumber, formatNumberWithCommas} from "../../src/lib/utils/numberUtils";
 
 describe("getRoundNumber", () => {
   it("should round a number and only have one decimal places", () => {
