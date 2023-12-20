@@ -1,27 +1,27 @@
 <script>
-  import {rideTypes, rideTitleFilters} from "../store/store.js";
+  import {workoutTypes, titleFilters} from "$lib/store/store.js";
 
   const handleChange = (filter, value) => {
     if (value) {
-      $rideTitleFilters.push(filter);
+      $titleFilters.push(filter);
     } else {
-      const filterToRemove = $rideTitleFilters.indexOf(filter);
-      $rideTitleFilters.splice(filterToRemove, 1);
+      const filterToRemove = $titleFilters.indexOf(filter);
+      $titleFilters.splice(filterToRemove, 1);
     }
 
-    rideTitleFilters.set($rideTitleFilters);
+    titleFilters.set($titleFilters);
   };
 </script>
 
 <div>
-  <h3>Exclude Ride Types</h3>
+  <h3>Exclude Workout Types</h3>
   <div class="columns">
-    {#each $rideTypes as type}
+    {#each $workoutTypes as type}
       <label class="option-label">
         <input
           type="checkbox"
           on:change={(e) => handleChange(type, e.target.checked)}
-          checked={$rideTitleFilters.includes(type) ? "checked" : false}
+          checked={$titleFilters.includes(type) ? "checked" : false}
           class="option-field"
         />
         {type}

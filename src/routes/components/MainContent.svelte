@@ -1,18 +1,19 @@
 <script>
   import CSVUpload from "../data/CSVUpload.svelte";
-  import OutputOverTime from "../visuals/charts/OutputOverTime.svelte";
-  import FTP from "../visuals/charts/FTP.svelte";
-  import AverageOutput from "../visuals/charts/AverageOutput.svelte";
-  import AverageCadenceVsResistance from "../visuals/charts/AverageCadenceVsResistance.svelte";
-  // import AverageOutputByInstructor from "../visuals/charts/AverageOutputByInstructor.svelte";
-  import ClassesTakenByInstructor from "../visuals/charts/ClassesTakenByInstructor.svelte";
-  import ErrorMessage from "../components/ErrorMessage.svelte";
-  import {mappedCSVData, isError} from "../store/store.js";
-  import TopFiveSection from "../visuals/TopFiveSection.svelte";
-  import TotalsSection from "../visuals/TotalsSection.svelte";
-  import InfoMessage from "./InfoMessage.svelte";
-  import AverageOutputByRideType from "../visuals/AverageOutputByRideType.svelte";
-  import AverageTotalOutputByInstructor from "../visuals/charts/AverageTotalOutputByInstructor.svelte";
+  import OutputOverTime from "./charts/cycling/OutputOverTime.svelte";
+  import FTP from "./charts/cycling/FTP.svelte";
+  import AverageOutput from "./charts/cycling/AverageOutput.svelte";
+  import AverageCadenceVsResistance from "./charts/cycling/AverageCadenceVsResistance.svelte";
+  // import AverageOutputByInstructor from "../charts/charts/AverageOutputByInstructor.svelte";
+  import ClassesTakenByInstructor from "./charts/general/ClassesTakenByInstructor.svelte";
+  import ErrorMessage from "./messaging/ErrorMessage.svelte";
+  import {isError, csvData} from "$lib/store/store.js";
+  import TopFiveSection from "./charts/cycling/TopFiveSection.svelte";
+  import TotalsSection from "./charts/totals/TotalsSection.svelte";
+  import InfoMessage from "./messaging/InfoMessage.svelte";
+  import AverageOutputByRideType from "./charts/cycling/AverageOutputByRideType.svelte";
+  import AverageTotalOutputByInstructor from "./charts/cycling/AverageTotalOutputByInstructor.svelte";
+  import ClassesTakenByType from "./charts/general/ClassesTakenByType.svelte";
 </script>
 
 <main>
@@ -21,7 +22,9 @@
       Sorry, an error occurred while processing the file. Please try again.
     </ErrorMessage>
   {/if}
-  {#if $mappedCSVData.length > 0}
+  {#if $csvData && $csvData.length > 0}
+    <TotalsSection />
+    <ClassesTakenByType />
     <OutputOverTime />
     <AverageOutput />
     <FTP />
@@ -31,7 +34,6 @@
     <AverageCadenceVsResistance />
     <AverageOutputByRideType />
     <TopFiveSection />
-    <TotalsSection />
   {:else}
     <InfoMessage
       >Upload your Peloton rides to see your output over time, averages, top rides, and more!</InfoMessage

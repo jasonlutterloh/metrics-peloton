@@ -4,7 +4,7 @@ const {
   isDateSameOrBeforeGivenDate,
   isDateSameOrAfterGivenDate,
   subtractNMonthsFromDate
-} = require("../../src/routes/utils/dateUtils");
+} = require("../../src/lib/utils/dateUtils");
 
 describe("getReadableDate", () => {
   it('should return a date in the following format "YYYY-MM-DD', () => {
