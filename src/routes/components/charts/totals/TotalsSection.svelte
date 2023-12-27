@@ -1,7 +1,6 @@
 <script>
   import {
-    filteredData,
-    activeWorkoutType,
+    activeData,
     totalCalories,
     totalMinutes,
     distanceUnit,
@@ -9,8 +8,6 @@
   } from "$lib/store/store";
   import {formatNumberWithCommas} from "$lib/utils/numberUtils";
   import IconStat from "./IconStat.svelte";
-
-  const classesTaken = $filteredData[$activeWorkoutType] ? $filteredData[$activeWorkoutType] : 0;
 </script>
 
 <section>
@@ -20,7 +17,7 @@
     <div class="wrapper">
       <IconStat
         statTitle="Classes"
-        statNumber={formatNumberWithCommas(classesTaken.length)}
+        statNumber={formatNumberWithCommas($activeData.length)}
         iconFile="../images/exercise.svg"
       />
       <IconStat
