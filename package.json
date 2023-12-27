@@ -1,6 +1,6 @@
 {
   "name": "peloton-metrics",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "author": {
     "name": "Jason Lutterloh",
     "url": "https://lutterloh.dev"
@@ -21,9 +21,10 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.20",
-    "@sveltejs/adapter-auto": "^2.0.0",
-    "@sveltejs/adapter-static": "^2.0.3",
-    "@sveltejs/kit": "^1.26.0",
+    "@sveltejs/adapter-auto": "^3.0.1",
+    "@sveltejs/adapter-static": "^3.0.1",
+    "@sveltejs/vite-plugin-svelte": "^3.0.1",
+    "@sveltejs/kit": "^2.0.6",
     "@testing-library/jest-dom": "^6.1.2",
     "@testing-library/svelte": "^4.0.3",
     "babel-jest": "^29.6.4",
@@ -37,7 +38,7 @@
     "prettier-plugin-svelte": "^2.10.1",
     "svelte": "^4.0.5",
     "svelte-jester": "^3.0.0",
-    "vite": "^4.4.12"
+    "vite": "^5.0.10"
   },
   "type": "module",
   "dependencies": {
