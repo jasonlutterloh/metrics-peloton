@@ -124,3 +124,6 @@ coverage
 build
 public
 .svelte-kit
+
+# Local
+vite.config.js.timestamp*
